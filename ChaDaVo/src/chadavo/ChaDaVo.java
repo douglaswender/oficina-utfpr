@@ -16,7 +16,7 @@ public class ChaDaVo {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("Belloli Commit");
+        System.out.println("Belloli");
     }
     
 }
