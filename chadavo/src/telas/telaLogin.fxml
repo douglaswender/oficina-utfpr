@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1">
+   <children>
+      <Button id="btnEntrar" layoutX="255.0" layoutY="266.0" mnemonicParsing="false" text="ENTRAR">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Button>
+      <Label id="lbUsuario" layoutX="120.0" layoutY="92.0" text="Usuário:">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Label>
+      <Label id="lbSenha" layoutX="130.0" layoutY="187.0" prefHeight="23.0" prefWidth="65.0" text="Senha:">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Label>
+      <TextField id="txUsuario" layoutX="195.0" layoutY="86.0">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </TextField>
+      <TextField id="txSenha" layoutX="196.0" layoutY="181.0" prefHeight="35.0" prefWidth="224.0">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </TextField>
+      <Text id="lbInfo" layoutX="195.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuário ou senha inválidos!" textAlignment="CENTER" wrappingWidth="224.00000095367432">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Label layoutX="210.0" layoutY="234.0" text="Não possui cadastro? Cadastre-se">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

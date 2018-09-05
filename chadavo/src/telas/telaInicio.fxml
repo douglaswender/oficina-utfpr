@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chadavo.InicioController">
+   <children>
+      <Label alignment="CENTER" layoutX="132.0" layoutY="78.0" text="Não é cadastrado? Cadastre-se!">
+         <font>
+            <Font name="Segoe UI" size="24.0" />
+         </font></Label>
+      <Label alignment="CENTER" layoutX="163.0" layoutY="213.0" text="Já possui cadastro? Entre!">
+         <font>
+            <Font name="Segoe UI" size="24.0" />
+         </font></Label>
+      <Button id="btnCadastrar" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="231.0" layoutY="130.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="136.0" text="CADASTRAR">
+         <font>
+            <Font name="Segoe UI Black" size="18.0" />
+         </font></Button>
+      <Button id="btnEntrar" alignment="CENTER" focusTraversable="false" layoutX="232.0" layoutY="269.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="136.0" text="ENTRAR">
+         <font>
+            <Font name="Segoe UI Black" size="18.0" />
+         </font></Button>
+   </children>
+</AnchorPane>
