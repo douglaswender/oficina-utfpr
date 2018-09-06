@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" pickOnBounds="false" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #006B18;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="chadavo.controller.TelaLoginController">
+   <children>
+      <JFXPasswordField alignment="CENTER" focusColor="#18ca56" layoutX="266.0" layoutY="214.0" promptText="SENHA" style="-fx-prompt-text-fill: #FFFFFF;" unFocusColor="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXTextField alignment="CENTER" focusColor="#1cc71f" layoutX="266.0" layoutY="140.0" promptText="LOGIN" style="-fx-prompt-text-fill: #ffffff;" unFocusColor="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </JFXTextField>
+   </children>
+</AnchorPane>

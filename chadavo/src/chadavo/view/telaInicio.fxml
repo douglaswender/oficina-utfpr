@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #006B18;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chadavo.controller.TelaInicioController">
+   <children>
+      <Label layoutX="98.0" layoutY="83.0" text="Já tem cadastro? Então faça o login!" textFill="#f2f2f2">
+         <font>
+            <Font size="38.0" />
+         </font>
+      </Label>
+      <Label layoutX="73.0" layoutY="324.0" text="Ainda não tem cadastro? Faça já o seu!" textFill="#f2f2f2">
+         <font>
+            <Font size="38.0" />
+         </font>
+      </Label>
+      <JFXButton id="btnLogin" fx:id="btnLogin" buttonType="RAISED" focusTraversable="false" layoutX="348.0" layoutY="138.0" style="-fx-background-color: #14CC3E;" text="LOGIN" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </JFXButton>
+      <JFXButton id="btnCadastrar" fx:id="btnCadastro" buttonType="RAISED" focusTraversable="false" layoutX="308.0" layoutY="379.0" style="-fx-background-color: #14CC3E;" text="CADASTRE-SE" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>
