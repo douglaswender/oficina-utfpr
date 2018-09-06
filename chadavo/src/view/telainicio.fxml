@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #006B18;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chadavo.controller.TelaInicioController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #006B18;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaInicioController">
    <children>
       <Label layoutX="98.0" layoutY="83.0" text="Já tem cadastro? Então faça o login!" textFill="#f2f2f2">
          <font>
@@ -17,7 +17,7 @@
             <Font size="38.0" />
          </font>
       </Label>
-      <JFXButton id="btnLogin" fx:id="btnLogin" buttonType="RAISED" focusTraversable="false" layoutX="348.0" layoutY="138.0" style="-fx-background-color: #14CC3E;" text="LOGIN" textAlignment="CENTER" textFill="WHITE">
+      <JFXButton id="btnLogin" fx:id="btnLogin" buttonType="RAISED" focusTraversable="false" layoutX="348.0" layoutY="138.0" onAction="#btLoginAction" style="-fx-background-color: #14CC3E;" text="LOGIN" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>

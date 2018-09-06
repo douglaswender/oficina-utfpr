@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" pickOnBounds="false" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #006B18;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaLoginController">
+   <children>
+      <JFXPasswordField fx:id="txSenha" alignment="CENTER" focusColor="#18ca56" layoutX="265.0" layoutY="264.0" promptText="SENHA" style="-fx-prompt-text-fill: #FFFFFF;" unFocusColor="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXTextField fx:id="txLogin" alignment="CENTER" focusColor="#1cc71f" layoutX="265.0" layoutY="190.0" promptText="LOGIN" style="-fx-prompt-text-fill: #ffffff;" unFocusColor="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton fx:id="btnEntrar" buttonType="RAISED" layoutX="346.0" layoutY="366.0" style="-fx-background-color: #14CC3E;" text="ENTRAR!" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXButton>
+      <Label contentDisplay="CENTER" disable="true" layoutX="325.0" layoutY="331.0" prefHeight="18.0" prefWidth="149.0" textAlignment="CENTER" />
+   </children>
+</AnchorPane>
