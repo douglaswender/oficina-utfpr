@@ -16,6 +16,7 @@ public class Main extends Application {
     
     private static Scene mainScene;
     private static Scene loginScene;
+    private static Scene cadastroScene;
     
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -30,8 +31,11 @@ public class Main extends Application {
         
         Parent fxmlLogin = FXMLLoader.load(getClass().getResource("/view/telalogin.fxml"));
         loginScene = new Scene(fxmlLogin);
+
+        Parent fxmlCadastroCha = FXMLLoader.load(getClass().getResource("/view/telacadastrocha.fxml"));
+        cadastroScene = new Scene(fxmlCadastroCha);
                   
-        primaryStage.setScene(mainScene);
+        primaryStage.setScene(cadastroScene);
                
         primaryStage.show();
     }
