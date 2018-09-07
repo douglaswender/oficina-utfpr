@@ -47,6 +47,8 @@ public class Main extends Application {
             case "main":
                 stage.setScene(mainScene);
                 break;
+            case "cadastro":
+                stage.setScene(cadastroScene);
         }
     }
     

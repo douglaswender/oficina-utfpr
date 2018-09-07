@@ -14,56 +14,53 @@ import javafx.scene.image.ImageView;
 public class TelaCadastroChaController {
 
     @FXML
-    private ResourceBundle resources;
+    private JFXTextField txPesquisa;
 
     @FXML
-    private URL location;
+    private JFXTextField txNome;
 
     @FXML
-    private JFXTextField TxtNome;
+    private JFXTextField txDescricao;
 
     @FXML
-    private JFXTextField TxtBreveDescricao;
+    private JFXTextField txDetalhes;
 
     @FXML
-    private JFXTextField TxtDetalhes;
+    private JFXTextField txEspecificacao;
 
     @FXML
-    private JFXTextField TxtEspecificacaoTecnica;
+    private JFXTextField txIndicacao;
 
     @FXML
-    private JFXTextField TxtIndicacoes;
+    private JFXTextField txContraIndicacao;
 
     @FXML
-    private JFXTextField TxtContraIndicacoes;
+    private JFXTextField txDicas;
 
     @FXML
-    private JFXTextField TxtDicas;
-
+    private JFXTextField txPrevencao;
+    
     @FXML
-    private JFXTextField TxtPrevencao;
-
-    @FXML
-    private ImageView ImgCha;
+    private ImageView imgCha;
 
     @FXML
     void btGravarAction(ActionEvent event) throws SQLException {
         String nome, brevedescricao, detalhes, especificacao_tecnica, indicacao, contra_indicacao, dicas, prevencao, imgcha;
 
         Connection con = new Conexao().getConnection();
-        System.out.println(TxtNome.getText());
+        System.out.println(txNome.getText());
 
-        nome                  = TxtNome.getText();
-        brevedescricao        = TxtBreveDescricao.getText();
-        detalhes              = TxtDetalhes.getText();
-        especificacao_tecnica = TxtEspecificacaoTecnica.getText();
-        indicacao             = TxtIndicacoes.getText();
-        contra_indicacao      = TxtContraIndicacoes.getText();
-        dicas                 = TxtDicas.getText();
-        prevencao             = TxtPrevencao.getText();
+        nome                  = txNome.getText();
+        brevedescricao        = txDescricao.getText();
+        detalhes              = txDetalhes.getText();
+        especificacao_tecnica = txEspecificacao.getText();
+        indicacao             = txIndicacao.getText();
+        contra_indicacao      = txContraIndicacao.getText();
+        dicas                 = txDicas.getText();
+        prevencao             = txPrevencao.getText();
         Image image = new Image("/img/sem_foto.png");
-        ImgCha.setImage(image);
-        imgcha                = ImgCha.toString();
+        imgCha.setImage(image);
+        imgcha                = imgCha.toString();
 
         String sql = "INSERT INTO CHA(NOME                           , BREVE_DESCRICAO        , DETALHES, " +
                                      "ESPECIFICACAO_TECNICA          , INDICACAO              , CONTRA_INDICACAO, " +

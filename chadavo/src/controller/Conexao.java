@@ -14,9 +14,9 @@ import java.sql.SQLException;
  * @author ViniciusBelloli
  */
 public class Conexao {
-    private static String url   = "jdbc:postgresql://localhost:8745/chadavo";
+    private static String url   = "jdbc:postgresql://localhost:5432/chadavo";
     private static String user  = "postgres";
-    private static String senha = "pgsql";
+    private static String senha = "";
 
     public Connection getConnection(){
         try {
