@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -52,5 +53,13 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    //--------
+    private static ArrayList<OnChangeScreen> listeners = new ArrayList<>();
+    public static interface OnChangeScreen{
+        void  onScreenChanged(String newScreen, Object o);
+    }
     
+    public static void addOnChangeScreenListener(OnChangeScreen newListener){
+        listeners.add(newListener);
+    }
 }
