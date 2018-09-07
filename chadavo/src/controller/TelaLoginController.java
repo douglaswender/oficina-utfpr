@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -29,6 +30,20 @@ public class TelaLoginController implements Initializable {
 
     @FXML
     private JFXButton btnEntrar;
+    
+    @FXML
+    protected void btnEntrarAction(ActionEvent e){
+        String login = txLogin.getText();
+        String senha = txSenha.getText();
+        
+        //usar DAO para pegar os dados e realizar login
+        System.out.println(login+ "-"+ senha);
+    }
+    
+    @FXML
+    protected void btnBackAction(ActionEvent e){
+        Main.changeScene("main");
+    }
     /**
      * Initializes the controller class.
      */
