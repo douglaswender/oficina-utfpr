@@ -32,7 +32,8 @@ public class UsuarioDAO {
             System.out.println(e);
         }
     }
-    public static int loginUsuario(String login, String senha){
+    public static Usuario loginUsuario(String login, String senha){
+        Usuario usuario = null;
         try {            
             Connection con = new Conexao().getConnection();
             PreparedStatement stm = con.prepareStatement("SELECT * FROM usuario WHERE login=?");
@@ -42,11 +43,8 @@ public class UsuarioDAO {
             
             if(rs.next()){
                 
-                Usuario usuario = new Usuario(rs.getInt("id"), rs.getString("login"), rs.getString("senha"));
-
-                if(usuario.getSenhaUsuario().equals(senha)){
-                    return 1;
-                }
+                usuario = new Usuario(rs.getInt("id"), rs.getString("login"), rs.getString("senha"));
+                return usuario;
             }
             
             
@@ -57,7 +55,7 @@ public class UsuarioDAO {
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return 0;
+        return usuario;
     }
     
 }

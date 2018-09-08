@@ -39,18 +39,25 @@ public class Main extends Application {
                
         primaryStage.show();
     }
-    public static void changeScene(String scene){
+    public static void changeScene(String scene, Object data){
         switch(scene){
             case "login":
                 stage.setScene(loginScene);
+                notifyAllListeners("login", data);
                 break;
             case "main":
                 stage.setScene(mainScene);
+                notifyAllListeners("main", data);
                 break;
             case "cadastro":
                 stage.setScene(cadastroScene);
+                notifyAllListeners("cadastro", data);
+                break;
         }
     }
+    public static void changeScene(String scene){
+                changeScene(scene, null);
+            }
     
 
     /**
@@ -59,13 +66,22 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    //--------
+    
+    
+    //--------PASSAGEM DE PARAMETROS-----------
+    
     private static ArrayList<OnChangeScreen> listeners = new ArrayList<>();
+    
     public static interface OnChangeScreen{
-        void  onScreenChanged(String newScreen, Object o);
+        void  onScreenChanged(String newScreen, Object Data);
     }
     
     public static void addOnChangeScreenListener(OnChangeScreen newListener){
         listeners.add(newListener);
+    }
+    
+    private static void notifyAllListeners(String newScreen, Object Data){
+        for(OnChangeScreen l: listeners)
+            l.onScreenChanged(newScreen, Data);
     }
 }

@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import model.Usuario;
 
 /**
  * FXML Controller class
@@ -39,18 +40,19 @@ public class TelaLoginController implements Initializable {
     
     @FXML
     protected void btnEntrarAction(ActionEvent e) throws SQLException{
-        int retorno;
+        
+        Usuario retorno=null;
         String login = txLogin.getText();
         String senha = txSenha.getText();
         
         //usar DAO para pegar os dados e realizar login
         retorno = UsuarioDAO.loginUsuario(login, senha);
-        System.out.println(retorno);
-        if(retorno == 0){
+        //System.out.println(retorno);
+        if(retorno == null || !retorno.getSenhaUsuario().equals(senha)){
             lbSenha.setText("Usuário ou senha inválidos!");
             //System.out.println("Usuário ou senha incorretos!");
         }else{
-            Main.changeScene("cadastro");
+            Main.changeScene("cadastro", retorno);
             //System.out.println("ChangeScene");
         }
         //System.out.println(login+ "-"+ senha);
