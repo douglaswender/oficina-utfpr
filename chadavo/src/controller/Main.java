@@ -35,7 +35,7 @@ public class Main extends Application {
         Parent fxmlCadastroCha = FXMLLoader.load(getClass().getResource("/view/telacadastrocha.fxml"));
         cadastroScene = new Scene(fxmlCadastroCha);
                   
-        primaryStage.setScene(mainScene );
+        primaryStage.setScene(mainScene);
                
         primaryStage.show();
     }

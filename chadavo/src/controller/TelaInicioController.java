@@ -35,7 +35,7 @@ public class TelaInicioController implements Initializable {
     
     @FXML
     protected void btLoginAction(ActionEvent e){
-        System.out.println("entrou!");
+        //System.out.println("entrou!");
         Main.changeScene("login");
     }
 

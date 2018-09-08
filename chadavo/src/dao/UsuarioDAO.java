@@ -43,7 +43,7 @@ public class UsuarioDAO {
             
             if(rs.next()){
                 
-                usuario = new Usuario(rs.getInt("id"), rs.getString("login"), rs.getString("senha"));
+                usuario = new Usuario(rs.getInt("id"), rs.getString("login"), rs.getString("senha"), rs.getString("nome"));
                 return usuario;
             }
             

@@ -149,7 +149,7 @@ public class TelaCadastroChaController {
             public void onScreenChanged(String newScreen, Object Data) {
                 Usuario usr = (Usuario) Data;
                 if (newScreen.equals("cadastro")) {
-                    lbUser.setText("Olá "+ usr.getLoginUsuario());
+                    lbUser.setText("Olá "+ usr.getNomeUsuario());
                     System.out.println("estou na tela cadastro e os dados são: " + usr.getLoginUsuario());
                 }
             }

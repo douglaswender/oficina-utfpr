@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/OficinaIntegracao/ChaDaVo/oficina-utfpr/chadavo/src/controller/TelaCadastroChaController.java</file>
-            <file>file:/D:/OficinaIntegracao/ChaDaVo/oficina-utfpr/chadavo/src/controller/Main.java</file>
-            <file>file:/D:/OficinaIntegracao/ChaDaVo/oficina-utfpr/chadavo/src/controller/TelaLoginController.java</file>
+            <file>file:/C:/Users/dougl/Documents/Projetos%20Java/oficina-utfpr/chadavo/src/controller/TelaInicioController.java</file>
+            <file>file:/C:/Users/dougl/Documents/Projetos%20Java/oficina-utfpr/chadavo/src/model/Usuario.java</file>
+            <file>file:/C:/Users/dougl/Documents/Projetos%20Java/oficina-utfpr/chadavo/src/controller/TelaLoginController.java</file>
+            <file>file:/C:/Users/dougl/Documents/Projetos%20Java/oficina-utfpr/chadavo/nbproject/jfx-impl.xml</file>
+            <file>file:/C:/Users/dougl/Documents/Projetos%20Java/oficina-utfpr/chadavo/src/controller/Main.java</file>
+            <file>file:/C:/Users/dougl/Documents/Projetos%20Java/oficina-utfpr/chadavo/src/dao/UsuarioDAO.java</file>
+            <file>file:/C:/Users/dougl/Documents/Projetos%20Java/oficina-utfpr/chadavo/src/controller/Conexao.java</file>
         </group>
     </open-files>
 </project-private>

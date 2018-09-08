@@ -3,7 +3,8 @@ create table usuario(
     login varchar(40),
     senha varchar(40),
     nome varchar(40),
-    constraint pk_usuario primary key(id)
+    constraint pk_usuario primary key(id),
+    constraint uc_login unique(login)
 )
 
 create table cha(
