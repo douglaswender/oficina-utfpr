@@ -1,19 +1,15 @@
 package controller;
 
 import com.jfoenix.controls.JFXTextField;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-<<<<<<< HEAD
 import model.Usuario;
-=======
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javafx.embed.swing.SwingFXUtils;
@@ -21,9 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import util.ManipularImagem;
 import dao.CadastroChaDAO;
->>>>>>> 72a9af232197eae3a0a6bcb7521e458bef43f007
 
 public class TelaCadastroChaController {
 
@@ -58,14 +52,13 @@ public class TelaCadastroChaController {
     private ImageView imgCha;
 
     @FXML
-<<<<<<< HEAD
     private Label lbUser;
-=======
+
+    @FXML
     private ImageView btAdicionar;
 
     @FXML
     private ImageView btRemover;
->>>>>>> 72a9af232197eae3a0a6bcb7521e458bef43f007
 
     @FXML
     void btGravarAction(ActionEvent event) throws SQLException {
@@ -79,14 +72,13 @@ public class TelaCadastroChaController {
         brevedescricao = txDescricao.getText();
         detalhes = txDetalhes.getText();
         especificacao_tecnica = txEspecificacao.getText();
-<<<<<<< HEAD
         indicacao = txIndicacao.getText();
         contra_indicacao = txContraIndicacao.getText();
         dicas = txDicas.getText();
         prevencao = txPrevencao.getText();
         Image image = new Image("/img/sem_foto.png");
         imgCha.setImage(image);
-        imgcha = imgCha.toString();
+        //imgcha = imgCha.toString();
 
         String sql = "INSERT INTO CHA(NOME                           , BREVE_DESCRICAO        , DETALHES, "
                 + "ESPECIFICACAO_TECNICA          , INDICACAO              , CONTRA_INDICACAO, "
@@ -105,7 +97,7 @@ public class TelaCadastroChaController {
         stm.executeUpdate(sql);
         stm.close();
         con.close();
-=======
+
         indicacao             = txIndicacao.getText();
         contra_indicacao      = txContraIndicacao.getText();
         dicas                 = txDicas.getText();
@@ -113,8 +105,8 @@ public class TelaCadastroChaController {
         //Image image = new Image("/img/sem_foto.png");
         //imgCha.setImage(image);
         imgcha                = imgCha.getImage();
-        BufferedImage image = SwingFXUtils.fromFXImage(imgcha, null);
-        CadastroChaDAO.Gravar(nome, brevedescricao, detalhes, especificacao_tecnica, indicacao, contra_indicacao, dicas, prevencao, image);
+        BufferedImage imageBuffered = SwingFXUtils.fromFXImage(imgcha, null);
+        CadastroChaDAO.Gravar(nome, brevedescricao, detalhes, especificacao_tecnica, indicacao, contra_indicacao, dicas, prevencao, imageBuffered);
         
     }
 
@@ -148,7 +140,6 @@ public class TelaCadastroChaController {
     @FXML
     void btRemoverAction(MouseEvent event) {
 
->>>>>>> 72a9af232197eae3a0a6bcb7521e458bef43f007
     }
 
     @FXML
