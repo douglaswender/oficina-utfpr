@@ -10,6 +10,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.input.MouseEvent;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import util.ManipularImagem;
 
 public class TelaCadastroChaController {
 
@@ -44,6 +51,12 @@ public class TelaCadastroChaController {
     private ImageView imgCha;
 
     @FXML
+    private ImageView btAdicionar;
+
+    @FXML
+    private ImageView btRemover;
+
+    @FXML
     void btGravarAction(ActionEvent event) throws SQLException {
         String nome, brevedescricao, detalhes, especificacao_tecnica, indicacao, contra_indicacao, dicas, prevencao, imgcha;
 
@@ -64,22 +77,44 @@ public class TelaCadastroChaController {
 
         String sql = "INSERT INTO CHA(NOME                           , BREVE_DESCRICAO        , DETALHES, " +
                                      "ESPECIFICACAO_TECNICA          , INDICACAO              , CONTRA_INDICACAO, " +
-                                     "DICAS                          , PREVENCAO              ) " + 
-                              "VALUES('" + nome                  + "','" + brevedescricao + "','" + detalhes + "'," +
-                                     "'" + especificacao_tecnica + "','" + indicacao      + "','" + contra_indicacao + "'," +
-                                     "'" + dicas                 + "','" + prevencao      + "')";
-
-        /*String sql = "INSERT INTO CHA(NOME                           , BREVE_DESCRICAO        , DETALHES, " +
-                                     "ESPECIFICACAO_TECNICA          , INDICACAO              , CONTRA_INDICACAO, " +
                                      "DICAS                          , PREVENCAO              , IMGCHA) " + 
                               "VALUES('" + nome                  + "','" + brevedescricao + "','" + detalhes + "'," +
                                      "'" + especificacao_tecnica + "','" + indicacao      + "','" + contra_indicacao + "'," +
-                                     "'" + dicas                 + "','" + prevencao      + "','" + imgcha + "')";*/
+                                     "'" + dicas                 + "','" + prevencao      + "','" + imgcha + "')";
 
         Statement stm = con.createStatement();
         stm.executeUpdate(sql);
         stm.close();
         con.close();
+    }
+
+    @FXML
+    void btAdicionarAction(MouseEvent event) {
+        BufferedImage imagem;
+        // TODO add your handling code here:
+        JFileChooser fc = new JFileChooser();
+        int res = fc.showOpenDialog(null);
+
+        if (res == JFileChooser.APPROVE_OPTION) {
+            File arquivo = fc.getSelectedFile();
+
+            try {
+                imagem = ManipularImagem.setImagemDimensao(arquivo.getAbsolutePath(), 160, 160);
+                Image image = SwingFXUtils.toFXImage(imagem, null);
+                imgCha.setImage(image);
+
+            } catch (Exception ex) {
+               // System.out.println(ex.printStackTrace().toString());
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Voce nao selecionou nenhum arquivo.");
+        }
+    }
+
+    @FXML
+    void btRemoverAction(MouseEvent event) {
+
     }
 
     @FXML
