@@ -34,6 +34,9 @@
                </image>
             </ImageView>
          </graphic></JFXButton>
-      <Label contentDisplay="CENTER" disable="true" layoutX="325.0" layoutY="331.0" prefHeight="18.0" prefWidth="149.0" textAlignment="CENTER" />
+      <Label fx:id="lbSenha" alignment="CENTER" layoutX="365.0" layoutY="326.0" prefHeight="18.0" prefWidth="270.0" textAlignment="CENTER" textFill="#df0e0e" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
    </children>
 </AnchorPane>
