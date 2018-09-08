@@ -15,8 +15,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 /**
  *
@@ -101,5 +101,9 @@ public class ManipularImagem {
         InputStream is = new ByteArrayInputStream(baos.toByteArray());
         
         return baos.toByteArray();
+    }
+
+    public static Image getImgBytes(Image imgcha) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

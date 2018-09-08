@@ -14,9 +14,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.input.MouseEvent;
+import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import util.ManipularImagem;
+import dao.CadastroChaDAO;
 
 public class TelaCadastroChaController {
 
@@ -58,7 +60,8 @@ public class TelaCadastroChaController {
 
     @FXML
     void btGravarAction(ActionEvent event) throws SQLException {
-        String nome, brevedescricao, detalhes, especificacao_tecnica, indicacao, contra_indicacao, dicas, prevencao, imgcha;
+        String nome, brevedescricao, detalhes, especificacao_tecnica, indicacao, contra_indicacao, dicas, prevencao;
+        Image imgcha;
 
         Connection con = new Conexao().getConnection();
         System.out.println(txNome.getText());
@@ -71,21 +74,12 @@ public class TelaCadastroChaController {
         contra_indicacao      = txContraIndicacao.getText();
         dicas                 = txDicas.getText();
         prevencao             = txPrevencao.getText();
-        Image image = new Image("/img/sem_foto.png");
-        imgCha.setImage(image);
-        imgcha                = imgCha.toString();
-
-        String sql = "INSERT INTO CHA(NOME                           , BREVE_DESCRICAO        , DETALHES, " +
-                                     "ESPECIFICACAO_TECNICA          , INDICACAO              , CONTRA_INDICACAO, " +
-                                     "DICAS                          , PREVENCAO              , IMGCHA) " + 
-                              "VALUES('" + nome                  + "','" + brevedescricao + "','" + detalhes + "'," +
-                                     "'" + especificacao_tecnica + "','" + indicacao      + "','" + contra_indicacao + "'," +
-                                     "'" + dicas                 + "','" + prevencao      + "','" + imgcha + "')";
-
-        Statement stm = con.createStatement();
-        stm.executeUpdate(sql);
-        stm.close();
-        con.close();
+        //Image image = new Image("/img/sem_foto.png");
+        //imgCha.setImage(image);
+        imgcha                = imgCha.getImage();
+        BufferedImage image = SwingFXUtils.fromFXImage(imgcha, null);
+        CadastroChaDAO.Gravar(nome, brevedescricao, detalhes, especificacao_tecnica, indicacao, contra_indicacao, dicas, prevencao, image);
+        
     }
 
     @FXML
@@ -99,8 +93,11 @@ public class TelaCadastroChaController {
             File arquivo = fc.getSelectedFile();
 
             try {
-                imagem = ManipularImagem.setImagemDimensao(arquivo.getAbsolutePath(), 160, 160);
+                /*imagem = ManipularImagem.setImagemDimensao(arquivo.getAbsolutePath(), 160, 160);
                 Image image = SwingFXUtils.toFXImage(imagem, null);
+                imgCha.setImage(image);*/
+                BufferedImage bufferedImage = ImageIO.read(arquivo);
+                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
                 imgCha.setImage(image);
 
             } catch (Exception ex) {
