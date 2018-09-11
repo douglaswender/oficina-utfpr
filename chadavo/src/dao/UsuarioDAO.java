@@ -19,17 +19,24 @@ import model.Usuario;
 public class UsuarioDAO {
 
     
-    public static void createUsuario(String login, String senha) throws SQLException{
+    public static boolean createUsuario(String login, String senha, String nome) throws SQLException{
         try {
+            if(login.equals("")||senha.equals("")||nome.equals("")){
+                return false;
+            }else{
             Connection con = new Conexao().getConnection();
-            PreparedStatement stm = con.prepareStatement("INSERT INTO usuario(login, senha) VALUES (?, ?)");
+            PreparedStatement stm = con.prepareStatement("INSERT INTO usuario(login, senha, nome) VALUES (?, ?, ?)");
             stm.setString(1, login);
             stm.setString(2, senha);
+            stm.setString(3, nome);
         
             stm.execute();
             stm.close();
+            return true;
+            }
         } catch (Exception e) {
-            System.out.println(e);
+            return false;
+            //System.out.println(e);
         }
     }
     public static Usuario loginUsuario(String login, String senha){

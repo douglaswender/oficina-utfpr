@@ -38,6 +38,11 @@ public class TelaInicioController implements Initializable {
         //System.out.println("entrou!");
         Main.changeScene("login");
     }
+    
+        @FXML
+    void btnCadastrarAction(ActionEvent event) {
+        Main.changeScene("cadastrousuario");
+    }
 
     /**
      * Initializes the controller class.
