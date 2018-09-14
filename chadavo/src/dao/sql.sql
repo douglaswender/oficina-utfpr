@@ -19,3 +19,5 @@ create table cha(
   imgcha bytea
   constraint pk_cha primary key(codigo)
 )
+
+-- tabelas refentes ao cadastro de chas
