@@ -26,7 +26,7 @@ import model.Usuario;
  *
  * @author dougl
  */
-public class TelacadastrousuarioController implements Initializable {
+public class TelaCadastroUsuarioController implements Initializable {
 
     @FXML
     private JFXTextField txNome;

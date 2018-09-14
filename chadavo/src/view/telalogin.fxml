@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,19 +12,6 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onEnterPress" pickOnBounds="false" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #006B18;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaLoginController">
    <children>
-      <JFXButton buttonType="RAISED" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" onAction="#btnBackAction" prefHeight="44.0" prefWidth="34.0" style="-fx-background-color: #14CC3E #14CC3E; -fx-background-radius: 100%;" styleClass="login" textAlignment="CENTER">
-         <graphic>
-            <ImageView fx:id="imgBtn" depthTest="ENABLE" fitHeight="35.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/back.png" />
-               </image>
-            </ImageView>
-         </graphic></JFXButton>
-      <Label fx:id="lbSenha" alignment="CENTER" layoutX="468.0" layoutY="388.0" prefHeight="18.0" prefWidth="264.0" textAlignment="CENTER" textFill="#df0e0e" wrapText="true">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
       <JFXTextField fx:id="txLogin" alignment="CENTER" depthTest="ENABLE" focusColor="#1cc71f" labelFloat="true" layoutX="463.0" layoutY="220.0" promptText="LOGIN" style="-fx-prompt-text-fill: #ffffff; -fx-text-fill: #fff;" unFocusColor="WHITE">
          <font>
             <Font size="24.0" />
@@ -39,5 +27,26 @@
             <Font size="20.0" />
          </font>
       </JFXButton>
+      <Label fx:id="lbSenha1" alignment="CENTER" contentDisplay="RIGHT" layoutX="465.0" layoutY="510.0" prefHeight="18.0" prefWidth="264.0" text="Esqueceu a senha?" textAlignment="CENTER" textFill="#14cc3e" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <graphic>
+            <Hyperlink fx:id="hlClique" onAction="#hlCliqueAction" style="-fx-underline: true; -fx-text-fill: #fff;" text="Clique aqui" wrapText="true" />
+         </graphic>
+      </Label>
+      <JFXButton buttonType="RAISED" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" onAction="#btnBackAction" prefHeight="44.0" prefWidth="34.0" style="-fx-background-color: #14CC3E #14CC3E; -fx-background-radius: 100%;" styleClass="login" textAlignment="CENTER">
+         <graphic>
+            <ImageView fx:id="imgBtn" depthTest="ENABLE" fitHeight="35.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/back.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <Label fx:id="lbSenha" alignment="CENTER" layoutX="468.0" layoutY="388.0" prefHeight="18.0" prefWidth="264.0" textAlignment="CENTER" textFill="#df0e0e" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -9,26 +9,20 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import dao.UsuarioDAO;
-import java.awt.event.ActionListener;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.util.Duration;
-import javax.swing.SwingUtilities;
 import model.Usuario;
 
 /**
@@ -54,6 +48,9 @@ public class TelaLoginController implements Initializable {
     private ImageView imgBtn;
 
     @FXML
+    private Hyperlink hlClique;
+
+    @FXML
     protected void btnEntrarAction(ActionEvent e) throws SQLException {
         realizarLogin();
     }
@@ -71,6 +68,11 @@ public class TelaLoginController implements Initializable {
     }
 
     @FXML
+    void hlCliqueAction(ActionEvent event) {
+        Main.changeScene("recuperar");
+    }
+
+    @FXML
     protected void realizarLogin() {
         Usuario retorno = null;
         String login = txLogin.getText();
@@ -80,7 +82,7 @@ public class TelaLoginController implements Initializable {
         retorno = UsuarioDAO.loginUsuario(login, senha);
         //System.out.println(retorno);
         if (retorno == null || !retorno.getSenhaUsuario().equals(senha)) {
-            
+
             lbSenha.setText("Usuário ou senha inválidos!");
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
@@ -95,24 +97,19 @@ public class TelaLoginController implements Initializable {
                 }
             }, 5000, 5000);
             //System.out.println("Usuário ou senha incorretos!");
-        }else {
+        } else {
             Main.changeScene("cadastrocha", retorno);
             //System.out.println("ChangeScene");
         }
-            //System.out.println(login+ "-"+ senha);
-        }
+        //System.out.println(login+ "-"+ senha);
+    }
 
-        /**
-         * Initializes the controller class.
-         */
-        @Override
-        public void initialize
-        (URL url, ResourceBundle rb
-        
-        
-    
-
-) {
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb
+    ) {
         // TODO
     }
 

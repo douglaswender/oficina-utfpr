@@ -19,6 +19,7 @@ public class Main extends Application {
     private static Scene loginScene;
     private static Scene cadastroChaScene;
     private static Scene cadastroUsuarioScene;
+    private static Scene recuperarSenhaScene;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -40,6 +41,9 @@ public class Main extends Application {
 
         Parent fxmlCadastroUsuario = FXMLLoader.load(getClass().getResource("/view/telacadastrousuario.fxml"));
         cadastroUsuarioScene = new Scene(fxmlCadastroUsuario);
+
+        Parent fxmlRecuperarSenha = FXMLLoader.load(getClass().getResource("/view/telaesqueceusenha.fxml"));
+        recuperarSenhaScene = new Scene(fxmlRecuperarSenha);
 
         primaryStage.setScene(mainScene);
 
@@ -63,6 +67,10 @@ public class Main extends Application {
             case "cadastrousuario":
                 stage.setScene(cadastroUsuarioScene);
                 notifyAllListeners("cadastrousuario", data);
+                break;
+            case "recuperar":
+                stage.setScene(recuperarSenhaScene);
+                notifyAllListeners("recuperar", data);
                 break;
         }
     }
