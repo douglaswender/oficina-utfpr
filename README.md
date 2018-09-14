@@ -1,5 +1,5 @@
 # oficina-utfpr
-Atividade de desenvolvimento para disciplina de Oficina de Integração.
+Atividade de desenvolvimento para a disciplina de Oficina de Integração.
 
 
 # instruções
