@@ -17,7 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import dao.CadastroChaDAO;
+import dao.ChaDAO;
 
 public class TelaCadastroChaController {
 
@@ -106,7 +106,7 @@ public class TelaCadastroChaController {
         //imgCha.setImage(image);
         imgcha                = imgCha.getImage();
         BufferedImage imageBuffered = SwingFXUtils.fromFXImage(imgcha, null);
-        CadastroChaDAO.Gravar(nome, brevedescricao, detalhes, especificacao_tecnica, indicacao, contra_indicacao, dicas, prevencao, imageBuffered);
+        ChaDAO.Gravar(nome, brevedescricao, detalhes, especificacao_tecnica, indicacao, contra_indicacao, dicas, prevencao, imageBuffered);
         
     }
 

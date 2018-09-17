@@ -16,7 +16,7 @@ import util.ManipularImagem;
  *
  * @author ViniciusBelloli
  */
-public class CadastroChaDAO {
+public class ChaDAO {
 
     public static void Gravar(String nome, String brevedescricao, String detalhes, String especificacao_tecnica, String indicacao, String contra_indicacao, String dicas, String prevencao, BufferedImage imgcha) throws SQLException{
         try {
