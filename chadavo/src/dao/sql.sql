@@ -32,19 +32,19 @@ create table Ingredientes (Cod_ingrediente serial primary key, nome_ingrediente 
 
 create table benecha (chave_beneficio int not null, chave_benecha int not null);
 create table preparocha (chave_preparo int not null , chave_preparocha int not null);
-create table ingrecha (chave_ingre int not null, chave_ingrecha int not null);
+create table preparoingre (chave_ingre int not null, chave_preparoingre int not null);
 create table contracha (chave_contra int not null, chave_contracha int not null);
 
 alter table benecha add constraint pk_benecha primary key (chave_beneficio, chave_benecha);
 alter table preparocha add constraint pk_preparocha primary key (chave_preparo, chave_preparocha);
-alter table ingrecha add constraint pk_ingrecha primary key (chave_ingre, chave_ingrecha);
+alter table preparoingre add constraint pk_preparoingre primary key (chave_ingre, chave_preparoingre);
 alter table contracha add constraint pk_contracha primary key (chave_contra, chave_contracha);
 
 alter table benecha add constraint fk_ch_beneficio foreign key (chave_beneficio) references beneficios(cod_beneficio);
 alter table benecha add constraint fk_ch_benecha foreign key (chave_benecha) references chas(cod_cha);
 alter table preparocha add constraint fk_ch_preparo foreign key (chave_preparo) references modo_preparo(cod_preparo);
 alter table preparocha add constraint fk_ch_preparocha foreign key (chave_preparocha) references chas(cod_cha);
-alter table ingrecha add constraint fk_ch_ingre foreign key (chave_ingre) references ingredientes(cod_ingrediente);
-alter table ingrecha add constraint fk_ch_ingrecha foreign key (chave_ingrecha) references chas(cod_cha);
+alter table preparoingre add constraint fk_ch_ingre foreign key (chave_ingre) references ingredientes(cod_ingrediente);
+alter table preparoingre add constraint fk_ch_preparoingre foreign key (chave_preparoingre) references modo_preparo(cod_preparo);
 alter table contracha add constraint fk_ch_contra foreign key (chave_contra) references Contra_indicacao(cod_contra);
-alter table contracha add constraint fk_ch_contracha foreign key (chave_contracha) references chas(cod_cha)  
+alter table contracha add constraint fk_ch_contracha foreign key (chave_contracha) references chas(cod_cha)   
