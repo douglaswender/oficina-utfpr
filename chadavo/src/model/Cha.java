@@ -5,7 +5,10 @@
  */
 package model;
 
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import java.awt.image.BufferedImage;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -33,7 +36,31 @@ public class Cha {
         this.prevencao             = prevencao;
         this.imgcha                = imgcha;
     }
+/*
+    public class Chas extends RecursiveTreeObject<Chas> {
 
+        StringProperty nome;
+        StringProperty brevedescricao;
+        StringProperty detalhes;
+        StringProperty especificacao_tecnica;
+        StringProperty indicacao;
+        StringProperty contra_indicacao;
+        StringProperty dicas;
+        StringProperty prevencao;
+
+        public Chas(String nome, String brevedescricao, String detalhes, String especificacao_tecnica, String indicacao, String contra_indicacao, String dicas, String prevencao) {
+            this.nome                  = new SimpleStringProperty(nome);
+            this.brevedescricao        = new SimpleStringProperty(brevedescricao);
+            this.detalhes              = new SimpleStringProperty(detalhes);
+            this.especificacao_tecnica = new SimpleStringProperty(especificacao_tecnica);
+            this.indicacao             = new SimpleStringProperty(indicacao);
+            this.contra_indicacao      = new SimpleStringProperty(contra_indicacao);
+            this.dicas                 = new SimpleStringProperty(dicas);
+            this.prevencao             = new SimpleStringProperty(prevencao);                        
+        }
+
+    }
+*/
     public String getNome() {
         return nome;
     }
