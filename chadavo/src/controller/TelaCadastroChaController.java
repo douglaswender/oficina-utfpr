@@ -18,6 +18,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import dao.ChaDAO;
+import java.io.ByteArrayOutputStream;
 
 public class TelaCadastroChaController {
 
@@ -90,7 +91,7 @@ public class TelaCadastroChaController {
         /*String sql = "INSERT INTO CHA(NOME                           , BREVE_DESCRICAO        , DETALHES, " +
                                      "ESPECIFICACAO_TECNICA          , INDICACAO              , CONTRA_INDICACAO, " +
                                      "DICAS                          , PREVENCAO              , IMGCHA) " + 
-                              "VALUES('" + nome                  + "','" + brevedescricao + "','" + detalhes + "'," +
+                     d         "VALUES('" + nome                  + "','" + brevedescricao + "','" + detalhes + "'," +
                                      "'" + especificacao_tecnica + "','" + indicacao      + "','" + contra_indicacao + "'," +
                                      "'" + dicas                 + "','" + prevencao      + "','" + imgcha + "')";*/
         Statement stm = con.createStatement();
@@ -124,10 +125,8 @@ public class TelaCadastroChaController {
                 /*imagem = ManipularImagem.setImagemDimensao(arquivo.getAbsolutePath(), 160, 160);
                 Image image = SwingFXUtils.toFXImage(imagem, null);
                 imgCha.setImage(image);*/
-                BufferedImage bufferedImage = ImageIO.read(arquivo);
-                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                Image image = new Image(arquivo.getAbsolutePath());
                 imgCha.setImage(image);
-
             } catch (Exception ex) {
                // System.out.println(ex.printStackTrace().toString());
             }
