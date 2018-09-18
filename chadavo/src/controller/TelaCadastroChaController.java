@@ -91,7 +91,7 @@ public class TelaCadastroChaController {
         /*String sql = "INSERT INTO CHA(NOME                           , BREVE_DESCRICAO        , DETALHES, " +
                                      "ESPECIFICACAO_TECNICA          , INDICACAO              , CONTRA_INDICACAO, " +
                                      "DICAS                          , PREVENCAO              , IMGCHA) " + 
-                              "VALUES('" + nome                  + "','" + brevedescricao + "','" + detalhes + "'," +
+                     d         "VALUES('" + nome                  + "','" + brevedescricao + "','" + detalhes + "'," +
                                      "'" + especificacao_tecnica + "','" + indicacao      + "','" + contra_indicacao + "'," +
                                      "'" + dicas                 + "','" + prevencao      + "','" + imgcha + "')";*/
         Statement stm = con.createStatement();

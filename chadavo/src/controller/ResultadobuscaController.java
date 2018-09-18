@@ -9,13 +9,18 @@ import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TreeTableColumn;
 import javafx.util.Callback;
+import dao.ChaDAO;
+import java.io.IOException;
 
 public class ResultadobuscaController {
 
@@ -29,7 +34,7 @@ public class ResultadobuscaController {
     private JFXTreeTableView<Chas> TbvCha;
 
     @FXML
-    void initialize() {
+    void initialize() throws IOException {
         JFXTreeTableColumn<Chas, String> nome = new JFXTreeTableColumn<>("Nome");
         nome.setPrefWidth(150);
         nome.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Chas, String>, ObservableValue<String>>() {
@@ -39,11 +44,16 @@ public class ResultadobuscaController {
             }
         });
 
+        ObservableList<Chas> chas = FXCollections.observableArrayList();
+        
+        List lista = ChaDAO.Pesquisar("d");;
+        
+        chas.add(new Chas(lista.get(1).toString(), lista.get(2).toString(), lista.get(3).toString(), lista.get(4).toString(), lista.get(5).toString(), lista.get(6).toString(), lista.get(7).toString(), lista.get(8).toString()));
+
     }
 }
 
 class Chas extends RecursiveTreeObject<Chas> {
-
     StringProperty nome;
     StringProperty brevedescricao;
     StringProperty detalhes;
