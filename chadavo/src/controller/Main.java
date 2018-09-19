@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -25,6 +26,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         stage = primaryStage;
+        primaryStage.getIcons().add(new Image("/img/POJET.png"));
         primaryStage.setTitle("Chá da Vó 1.0 ALPHA");
         primaryStage.setResizable(false);
         primaryStage.setWidth(1200);

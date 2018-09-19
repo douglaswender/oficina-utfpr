@@ -1,0 +1,25 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 14/09/2018, 19:31:59
+    Author     : dougl
+*/
+.jfx-date-picker > .jfx-text-field { 
+    -jfx-unfocus-color: #FFF; 
+    -jfx-default-color: #FFF;
+}
+
+
+
+.text-field, .text-area, .combo-box{
+    -jfx-focus-color:#1cc71f;
+    -jfx-unfocus-color: white;
+    -jfx-label-float: true;
+    -fx-alignment: CENTER;
+    -fx-text-fill: #FFF;
+    -fx-prompt-text-fill: #FFF;
+    -fx-font-size: 24px;
+}
