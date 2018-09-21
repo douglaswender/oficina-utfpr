@@ -1,11 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaPrincipalController">
-    
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #14CC3E;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaPrincipalController">
+   <children>
+      <Pane prefHeight="200.0" prefWidth="1200.0" style="-fx-background-color: #006B18;">
+         <children>
+            <Label layoutX="285.0" layoutY="55.0" text="CHÁ DA VÓ" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="62.0" />
+               </font>
+            </Label>
+            <JFXTextField focusColor="#1cc71f" layoutX="1001.0" layoutY="98.0" prefHeight="25.0" prefWidth="161.0" unFocusColor="WHITE" />
+            <Label layoutX="971.0" layoutY="11.0" lineSpacing="1.0" prefHeight="97.0" prefWidth="221.0" text="Ta sentindo alguma coisa? Está a procura de algum chá? Digite aê..." textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
+            <JFXButton layoutX="1001.0" layoutY="130.0" style="-fx-background-color: #14CC3E;" text="PESQUISAR!" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" cancelButton="true" layoutX="14.0" layoutY="14.0" onAction="#btnSairAction" ripplerFill="WHITE" style="-fx-background-color: #D9534F;" text="SAIR" textAlignment="CENTER" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Pane layoutX="-5.0" layoutY="210.0" prefHeight="488.0" prefWidth="600.0" style="-fx-background-color: #62CC8F;">
+         <children>
+            <Label contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="40.0" prefWidth="389.0" text="O que está procurando?" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <JFXListView fx:id="listOpc1" layoutX="14.0" layoutY="54.0" prefHeight="417.0" prefWidth="277.0" style="-fx-background-color: #62CC8F;" stylesheets="@../css/Principal.css" />
+            <JFXListView fx:id="listOpc2" layoutX="291.0" layoutY="54.0" prefHeight="417.0" prefWidth="277.0" style="-fx-background-color: #62CC8F;" stylesheets="@../css/Principal.css" />
+         </children>
+      </Pane>
+      <Pane layoutX="599.0" layoutY="210.0" prefHeight="488.0" prefWidth="600.0" style="-fx-background-color: #62CC8F;" />
+   </children>
 </AnchorPane>

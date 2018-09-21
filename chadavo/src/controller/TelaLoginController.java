@@ -98,7 +98,9 @@ public class TelaLoginController implements Initializable {
             }, 5000, 5000);
             //System.out.println("Usuário ou senha incorretos!");
         } else {
-            Main.changeScene("cadastrocha", retorno);
+            txLogin.setText(null);
+            txSenha.setText(null);
+            Main.changeScene("principal", retorno);
             //System.out.println("ChangeScene");
         }
         //System.out.println(login+ "-"+ senha);
