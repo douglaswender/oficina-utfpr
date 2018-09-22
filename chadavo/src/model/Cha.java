@@ -5,10 +5,7 @@
  */
 package model;
 
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import java.awt.image.BufferedImage;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -36,6 +33,14 @@ public class Cha {
         this.prevencao             = prevencao;
         this.imgcha                = imgcha;
     }
+
+    public Cha(String nome, String detalhes) {
+        this.nome = nome;
+        this.detalhes = detalhes;
+    }
+
+
+    
 /*
     public class Chas extends RecursiveTreeObject<Chas> {
 

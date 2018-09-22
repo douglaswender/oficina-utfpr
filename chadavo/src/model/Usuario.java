@@ -23,6 +23,13 @@ public class Usuario {
         this.nomeUsuario = nomeUsuario;
     }
 
+    public Usuario(String loginUsuario, String senhaUsuario, String nomeUsuario) {
+        this.loginUsuario = loginUsuario;
+        this.senhaUsuario = senhaUsuario;
+        this.nomeUsuario = nomeUsuario;
+    }
+
+    
     public Usuario() {
     }
 

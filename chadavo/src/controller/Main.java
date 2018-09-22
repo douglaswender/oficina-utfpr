@@ -30,8 +30,8 @@ public class Main extends Application {
         primaryStage.getIcons().add(new Image("/img/POJET.png"));
         primaryStage.setTitle("Chá da Vó 1.0 ALPHA");
         primaryStage.setResizable(false);
-        primaryStage.setWidth(1200);
-        primaryStage.setHeight(700);
+        //primaryStage.setWidth(1200);
+        //,primaryStage.setHeight(700);
 
         Parent fxmlInicio = FXMLLoader.load(getClass().getResource("/view/telainicio.fxml"));
         mainScene = new Scene(fxmlInicio, 1200, 700);

@@ -18,13 +18,18 @@ public class Conexao {
     private static String user  = "postgres";
     private static String senha = "";
 
-    public Connection getConnection(){
+    public Connection getConnection() throws SQLException{
+        
+        Connection con = null;
         try {
+            con = DriverManager.getConnection(url, user, senha);
             System.out.println("Conexão efetada com sucesso");
-            return DriverManager.getConnection(url, user, senha);
+            return con;
         } catch (SQLException ex) {
             System.out.println("Falha de Conexão");
             throw new RuntimeException(ex);
+        } finally{
+            //con.close();
         }
     }
 }

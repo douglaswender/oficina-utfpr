@@ -55,15 +55,17 @@ public class TelaCadastroUsuarioController implements Initializable {
 
     @FXML
     void btnCadastrarAction(ActionEvent event) throws SQLException {
-        Usuario usuario = null;
+        
         boolean retorno;
 
         String nome = txNome.getText();
         String login = txUsuario.getText();
         String senha = txSenha.getText();
         
+        Usuario usuario = new Usuario(login, senha, nome);
         
-        retorno = dao.UsuarioDAO.createUsuario(login, senha, nome);
+        
+        retorno = dao.UsuarioDAO.createUsuario(usuario);
 
         if (!retorno) {
             lbSenha.setText("Nenhum campo pode estar vazio!");
@@ -81,7 +83,11 @@ public class TelaCadastroUsuarioController implements Initializable {
             }, 5000, 5000);
         } else{
             usuario = dao.UsuarioDAO.loginUsuario(login, senha);
-            Main.changeScene("cadastrocha", usuario);
+            Main.changeScene("principal", usuario);
+            txNome.setText(null);
+            txSenha.setText(null);
+            txUsuario.setText(null);
+            txNome.requestFocus();
         }
 
     }

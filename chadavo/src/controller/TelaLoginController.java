@@ -98,9 +98,18 @@ public class TelaLoginController implements Initializable {
             }, 5000, 5000);
             //System.out.println("Usuário ou senha incorretos!");
         } else {
-            txLogin.setText(null);
-            txSenha.setText(null);
-            Main.changeScene("principal", retorno);
+            if ("admin".equals(login)) {
+                txLogin.setText(null);
+                txSenha.setText(null);
+                txLogin.requestFocus();
+                Main.changeScene("cadastrocha", retorno);
+            } else {
+                txLogin.setText(null);
+                txSenha.setText(null);
+                txLogin.requestFocus();
+                Main.changeScene("principal", retorno);
+            }
+
             //System.out.println("ChangeScene");
         }
         //System.out.println(login+ "-"+ senha);
@@ -110,9 +119,9 @@ public class TelaLoginController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb
-    ) {
+    public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        txLogin.requestFocus();
     }
 
 }
