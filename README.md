@@ -1,3 +1,5 @@
+EU
+
 # oficina-utfpr
 Atividade de desenvolvimento para a disciplina de Oficina de Integração.
 
