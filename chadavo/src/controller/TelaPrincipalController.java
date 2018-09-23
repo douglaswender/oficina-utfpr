@@ -6,7 +6,9 @@
 package controller;
 
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTextField;
 import dao.ChaDAO;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Cha;
+import model.BeneficioTable;
 import model.ChaTable;
 import model.Usuario;
 
@@ -44,19 +46,43 @@ public class TelaPrincipalController implements Initializable {
     private TableColumn<ChaTable, String> clmCha;
 
     @FXML
+    private JFXTextField txPesquisa;
+
+    @FXML
     private TableColumn<ChaTable, String> clmBeneficio;
+
+    @FXML
+    void btnPerquisarAction(ActionEvent event) throws IOException {
+
+        ChaDAO dao = new ChaDAO();
+
+        ObservableList<ChaTable> chas = FXCollections.observableArrayList(dao.Pesquisar(txPesquisa.getText()));
+        tabela.setItems(chas);
+
+    }
+
+    @FXML
+    void loadData(ActionEvent event) {
+
+    }
 
     @FXML
     void btnSairAction(ActionEvent event) {
         Main.changeScene("login");
     }
+    
+    
 
     void initTable() {
-        clmCha.setCellValueFactory(new PropertyValueFactory<ChaTable, String>("nome"));
-        clmBeneficio.setCellValueFactory(new PropertyValueFactory<ChaTable, String>("detalhes"));
         ChaDAO dao = new ChaDAO();
         ObservableList<ChaTable> chas = FXCollections.observableArrayList(dao.TodosChas());
         tabela.setItems(chas);
+    }
+    
+    void clickList(){
+        listOpc1.setOnMouseClicked(e->{
+           
+        });
     }
 
     //data
@@ -71,6 +97,8 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        clmCha.setCellValueFactory(new PropertyValueFactory<ChaTable, String>("nome"));
+        clmBeneficio.setCellValueFactory(new PropertyValueFactory<ChaTable, String>("detalhes"));
         initTable();
 
         // final TreeItem<Cha> root = new RecursiveTreeItem<Cha>(chas, RecursiveTreeObject::getChildren);

@@ -61,6 +61,7 @@ public class TelaCadastroUsuarioController implements Initializable {
         String nome = txNome.getText();
         String login = txUsuario.getText();
         String senha = txSenha.getText();
+       
         
         Usuario usuario = new Usuario(login, senha, nome);
         
@@ -82,7 +83,7 @@ public class TelaCadastroUsuarioController implements Initializable {
                 }
             }, 5000, 5000);
         } else{
-            usuario = dao.UsuarioDAO.loginUsuario(login, senha);
+            usuario = dao.UsuarioDAO.loginUsuario(usuario);
             Main.changeScene("principal", usuario);
             txNome.setText(null);
             txSenha.setText(null);

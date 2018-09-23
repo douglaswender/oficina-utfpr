@@ -43,12 +43,12 @@ public class UsuarioDAO {
             
         }
     }
-    public static Usuario loginUsuario(String login, String senha){
+    public static Usuario loginUsuario(Usuario u){
         Usuario usuario = null;
         try {            
             Connection con = new Conexao().getConnection();
             PreparedStatement stm = con.prepareStatement("SELECT * FROM usuario WHERE login=?");
-            stm.setString(1, login);
+            stm.setString(1, u.getLoginUsuario());
             
             ResultSet rs = stm.executeQuery();
             

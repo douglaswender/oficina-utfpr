@@ -5,64 +5,74 @@
  */
 package model;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  *
  * @author dougl
  */
 public class Usuario {
     
-    private int idUsuario;
-    private String loginUsuario;
-    private String senhaUsuario;
-    private String nomeUsuario;
+    private SimpleIntegerProperty idUsuario;
+    private SimpleStringProperty loginUsuario;
+    private SimpleStringProperty senhaUsuario;
+    private SimpleStringProperty nomeUsuario;
 
     public Usuario(int idUsuario, String loginUsuario, String senhaUsuario, String nomeUsuario) {
-        this.idUsuario = idUsuario;
-        this.loginUsuario = loginUsuario;
-        this.senhaUsuario = senhaUsuario;
-        this.nomeUsuario = nomeUsuario;
+        this.idUsuario = new SimpleIntegerProperty(idUsuario);
+        this.loginUsuario = new SimpleStringProperty(loginUsuario);
+        this.senhaUsuario = new SimpleStringProperty(senhaUsuario);
+        this.nomeUsuario = new SimpleStringProperty(nomeUsuario);
     }
 
     public Usuario(String loginUsuario, String senhaUsuario, String nomeUsuario) {
-        this.loginUsuario = loginUsuario;
-        this.senhaUsuario = senhaUsuario;
-        this.nomeUsuario = nomeUsuario;
+        this.loginUsuario = new SimpleStringProperty(loginUsuario);
+        this.senhaUsuario = new SimpleStringProperty(senhaUsuario);
+        this.nomeUsuario = new SimpleStringProperty(nomeUsuario);
     }
+
+    public Usuario(String loginUsuario, String senhaUsuario) {
+        this.loginUsuario = new SimpleStringProperty(loginUsuario);
+        this.senhaUsuario = new SimpleStringProperty(senhaUsuario);
+    }
+    
+    
 
     
     public Usuario() {
     }
 
     public int getIdUsuario() {
-        return idUsuario;
+        return idUsuario.getValue();
     }
 
     public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+        this.idUsuario = new SimpleIntegerProperty(idUsuario);
     }
 
     public String getLoginUsuario() {
-        return loginUsuario;
+        return loginUsuario.get();
     }
 
     public void setLoginUsuario(String loginUsuario) {
-        this.loginUsuario = loginUsuario;
+        this.loginUsuario = new SimpleStringProperty(loginUsuario);
     }
 
     public String getSenhaUsuario() {
-        return senhaUsuario;
+        return senhaUsuario.get();
     }
 
     public void setSenhaUsuario(String senhaUsuario) {
-        this.senhaUsuario = senhaUsuario;
+        this.senhaUsuario = new SimpleStringProperty(senhaUsuario);
     }
 
     public String getNomeUsuario() {
-        return nomeUsuario;
+        return nomeUsuario.get();
     }
 
     public void setNomeUsuario(String nomeUsuario) {
-        this.nomeUsuario = nomeUsuario;
+        this.nomeUsuario = new SimpleStringProperty(nomeUsuario);
     }
     
     

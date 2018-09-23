@@ -19,12 +19,12 @@
                   <Font name="System Bold" size="62.0" />
                </font>
             </Label>
-            <JFXTextField focusColor="#1cc71f" labelFloat="true" layoutX="1001.0" layoutY="77.0" prefHeight="25.0" prefWidth="161.0" style="-fx-prompt-text-fill: #FFF; -fx-text-fill: #FFF;" unFocusColor="WHITE">
+            <JFXTextField fx:id="txPesquisa" focusColor="#1cc71f" labelFloat="true" layoutX="1001.0" layoutY="77.0" prefHeight="25.0" prefWidth="161.0" style="-fx-prompt-text-fill: #FFF; -fx-text-fill: #FFF;" unFocusColor="WHITE">
                <font>
                   <Font size="22.0" />
                </font></JFXTextField>
             <Label fx:id="lbTexto" layoutX="971.0" layoutY="7.0" lineSpacing="1.0" prefHeight="97.0" prefWidth="221.0" text="Olá FULANO, está sentindo alguma coisa? Está a procura de algum chá? Digite aê..." textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
-            <JFXButton buttonType="RAISED" layoutX="1001.0" layoutY="130.0" ripplerFill="WHITE" style="-fx-background-color: #14CC3E;" text="PESQUISAR!" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="1001.0" layoutY="130.0" onAction="#btnPerquisarAction" ripplerFill="WHITE" style="-fx-background-color: #14CC3E;" text="PESQUISAR!" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
@@ -44,7 +44,7 @@
       </Pane>
       <Pane layoutX="325.0" layoutY="210.0" prefHeight="482.0" prefWidth="874.0" style="-fx-background-color: #62CC8F;">
          <children>
-            <TableView fx:id="tabela" prefHeight="482.0" prefWidth="874.0">
+            <TableView fx:id="tabela" onSort="#loadData" prefHeight="482.0" prefWidth="874.0">
               <columns>
                 <TableColumn fx:id="clmCha" prefWidth="512.0000305175781" text="Chá" />
                 <TableColumn fx:id="clmBeneficio" prefWidth="361.6000061035156" text="Benefício" />

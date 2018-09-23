@@ -77,9 +77,11 @@ public class TelaLoginController implements Initializable {
         Usuario retorno = null;
         String login = txLogin.getText();
         String senha = txSenha.getText();
+        
+        Usuario u = new Usuario(login, senha);
 
         //usar DAO para pegar os dados e realizar login
-        retorno = UsuarioDAO.loginUsuario(login, senha);
+        retorno = UsuarioDAO.loginUsuario(u);
         //System.out.println(retorno);
         if (retorno == null || !retorno.getSenhaUsuario().equals(senha)) {
 

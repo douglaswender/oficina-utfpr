@@ -46,9 +46,9 @@ public class ResultadobuscaController {
 
         ObservableList<Chas> chas = FXCollections.observableArrayList();
         
-        List lista = ChaDAO.Pesquisar("d");;
+       // List lista = ChaDAO.Pesquisar();;
         
-        chas.add(new Chas(lista.get(1).toString(), lista.get(2).toString(), lista.get(3).toString(), lista.get(4).toString(), lista.get(5).toString(), lista.get(6).toString(), lista.get(7).toString(), lista.get(8).toString()));
+        //chas.add(new Chas(lista.get(1).toString(), lista.get(2).toString(), lista.get(3).toString(), lista.get(4).toString(), lista.get(5).toString(), lista.get(6).toString(), lista.get(7).toString(), lista.get(8).toString()));
 
     }
 }

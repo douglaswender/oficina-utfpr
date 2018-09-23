@@ -5,6 +5,7 @@
  */
 package model;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
@@ -13,10 +14,12 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class ChaTable {
     
+    private SimpleIntegerProperty id;
     private SimpleStringProperty nome;
     private SimpleStringProperty detalhes;
 
     public ChaTable(Cha c) {
+        this.id = new SimpleIntegerProperty(c.getId());
         this.nome = new SimpleStringProperty(c.getNome());
         this.detalhes = new SimpleStringProperty(c.getDetalhes());
     }
@@ -28,6 +31,12 @@ public class ChaTable {
     public String getDetalhes() {
         return detalhes.getValue() ;
     }
+
+    public int getId() {
+        return id.getValue();
+    }
+    
+    
     
     
     

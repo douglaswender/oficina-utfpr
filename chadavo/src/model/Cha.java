@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
  * @author ViniciusBelloli
  */
 public class Cha {
+    int id;
     String nome;
     String brevedescricao;
     String detalhes;
@@ -22,7 +23,9 @@ public class Cha {
     String prevencao;
     BufferedImage imgcha;
 
-    public Cha(String nome, String brevedescricao, String detalhes, String especificacao_tecnica, String indicacao, String contra_indicacao, String dicas, String prevencao, BufferedImage imgcha){
+    public Cha(int id, String nome, String brevedescricao, String detalhes, String especificacao_tecnica, String indicacao, String contra_indicacao, String dicas, String prevencao, BufferedImage imgcha){
+        
+        this.id = id;
         this.nome                  = nome;
         this.brevedescricao        = brevedescricao;
         this.detalhes              = detalhes;
@@ -141,4 +144,13 @@ public class Cha {
     public Cha(){
         
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
 }
