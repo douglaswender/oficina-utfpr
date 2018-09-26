@@ -58,21 +58,22 @@ public class ChaDAO {
     public List<ChaTable> Pesquisar(String pesquisa) throws IOException {
         try {
             Connection con = new Conexao().getConnection();
-            PreparedStatement stm = con.prepareStatement("SELECT nome, detalhes FROM cha WHERE nome ~* ?");
+            PreparedStatement stm = con.prepareStatement("SELECT * FROM chas WHERE nome_cha ~* ?");
             stm.setString(1, pesquisa);
 
             ResultSet rs = stm.executeQuery();
 
-            List<ChaTable> lista = new ArrayList<ChaTable>();
+            List<ChaTable> lista = new ArrayList<>();
 
             int nCont = 0;
             while (rs.next()) {
-                String nome = rs.getString("nome");
-                String detalhes = rs.getString("detalhes");
+                int id = rs.getInt("cod_cha");
+                String nome = rs.getString("nome_cha");
+                String detalhes = rs.getString("descricao_cha");
                 System.out.println(nome);
                 System.out.println(detalhes);
                 //Cha c = new ChaTable(nome, detalhes);
-                lista.add(new ChaTable(new Cha(nome, detalhes)));
+                lista.add(new ChaTable(new Cha(id, nome, detalhes)));
 //                InputStream in = new ByteArrayInputStream(rs.getBytes(9));
 //                BufferedImage bImageFromConvert = ImageIO.read(in);
 //
@@ -102,17 +103,18 @@ public class ChaDAO {
             Connection con = new Conexao().getConnection();
 
             //trocar detalhes por beneficios
-            PreparedStatement stm = con.prepareStatement("SELECT nome, detalhes FROM cha");
+            PreparedStatement stm = con.prepareStatement("SELECT * FROM chas");
 
             ResultSet rs = stm.executeQuery();
 
             while (rs.next()) {
-                String nome = rs.getString("nome");
-                String detalhes = rs.getString("detalhes");
+                int cod = rs.getInt("cod_cha");
+                String nome = rs.getString("nome_cha");
+                String detalhes = rs.getString("descricao_cha");
 //                System.out.println(nome);
 //                System.out.println(detalhes);
                 //Cha c = new ChaTable(nome, detalhes);
-                chas.add(new ChaTable(new Cha(nome, detalhes)));
+                chas.add(new ChaTable(new Cha(cod, nome, detalhes)));
 
             }
             for (ChaTable cha : chas) {

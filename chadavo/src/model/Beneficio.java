@@ -45,6 +45,11 @@ public class Beneficio {
         this.nome = new SimpleStringProperty(nome);
     }
     
+    @Override
+    public String toString(){
+        return this.getNome();
+    }
+    
     
     
 }

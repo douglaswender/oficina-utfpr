@@ -9,9 +9,14 @@ import controller.Conexao;
 import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.Label;
 import model.Beneficio;
+import model.Cha;
+import model.ChaTable;
 
 /**
  *
@@ -85,15 +90,66 @@ public class BeneficioDAO {
 
             return false;
 
-        } finally{
+        } finally {
             ps.close();
         }
     }
-    
-    public List<Beneficio> pesquisaBeneficio(Beneficio b){
-        List<Beneficio> retorno = null;
+
+    public List<ChaTable> pesquisaChaPorBeneficio(Beneficio b) throws SQLException {
+        List<ChaTable> retorno = new ArrayList<>();
+        //System.out.println("Benefício: "+b.getId()+" "+b.getNome());
+        Connection con = new Conexao().getConnection();
+
+        PreparedStatement ps = con.prepareStatement("SELECT DISTINCT c.cod_cha, c.nome_cha, c.descricao_cha FROM chas c "
+                + "JOIN benecha bc on bc.chave_benecha = c.cod_cha "
+                + "JOIN beneficios b on b.cod_beneficio = bc.chave_beneficio "
+                + " WHERE b.cod_beneficio = ?");
         
+        ps.setInt(1, b.getId());
+        
+        try {
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                ChaTable c = new ChaTable(new Cha(rs.getInt("cod_cha"), rs.getString("nome_cha"), rs.getString("descricao_cha")));
+                retorno.add(c);
+            }
+        } catch (Exception e) {
+            System.out.println("ERRO: #" + e);
+            return null;
+        } finally{
+            //rs.close();
+            ps.close();
+            con.close();
+        }
+
         return retorno;
+    }
+
+    public List<Beneficio> pesquisaTodosBeneficios() throws SQLException {
+        List<Beneficio> retorno = new ArrayList<>();
+
+        Connection con = new Conexao().getConnection();
+
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM beneficios");
+
+        ResultSet rs = ps.executeQuery();
+
+        try {
+
+            while (rs.next()) {
+                Beneficio b = new Beneficio(rs.getInt("cod_beneficio"), rs.getString("nome_beneficio"));
+                //System.out.println(b.getId() + "#" + b.getNome());
+                retorno.add(b);
+            }
+            return retorno;
+        } catch (SQLException e) {
+            System.out.println("ERRO: #" + e);
+            return null;
+        } finally {
+            ps.close();
+        }
+
     }
 
 }

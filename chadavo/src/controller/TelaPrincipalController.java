@@ -7,12 +7,14 @@ package controller;
 
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
+import dao.BeneficioDAO;
 import dao.ChaDAO;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,7 +24,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.BeneficioTable;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import model.Beneficio;
 import model.ChaTable;
 import model.Usuario;
 
@@ -37,7 +42,7 @@ public class TelaPrincipalController implements Initializable {
     private Label lbTexto;
 
     @FXML
-    private JFXListView<Label> listOpc1;
+    private JFXListView<Beneficio> listOpc1;
 
     @FXML
     private TableView<ChaTable> tabela;
@@ -54,10 +59,7 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     void btnPerquisarAction(ActionEvent event) throws IOException {
 
-        ChaDAO dao = new ChaDAO();
-
-        ObservableList<ChaTable> chas = FXCollections.observableArrayList(dao.Pesquisar(txPesquisa.getText()));
-        tabela.setItems(chas);
+        pesquisaPorNome();
 
     }
 
@@ -70,18 +72,61 @@ public class TelaPrincipalController implements Initializable {
     void btnSairAction(ActionEvent event) {
         Main.changeScene("login");
     }
+
+    @FXML
+    void listClick(MouseEvent event) throws SQLException {
+        Beneficio b = listOpc1.getSelectionModel().getSelectedItem();
+        //System.out.println(b.getId()+b.getNome());
+        pesquisarPorBeneficio(b);
+
+    }
+
+    @FXML
+    void onEnterPress(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+            pesquisaPorNome();
+        }
+
+    }
+
+    void pesquisaPorNome() throws IOException {
+
+        ChaDAO dao = new ChaDAO();
+
+        ObservableList<ChaTable> chas = FXCollections.observableArrayList(dao.Pesquisar(txPesquisa.getText()));
+
+        tabela.setItems(chas);
+
+    }
     
-    
+    void pesquisarPorBeneficio(Beneficio b) throws SQLException{
+        
+        BeneficioDAO dao = new BeneficioDAO();
+        
+        ObservableList<ChaTable> chas = FXCollections.observableArrayList(dao.pesquisaChaPorBeneficio(b));
+        
+        tabela.setItems(chas);
+    }
+
+    void initListBeneficio() throws SQLException {
+
+        BeneficioDAO dao = new BeneficioDAO();
+
+        ObservableList<Beneficio> list = FXCollections.observableArrayList(dao.pesquisaTodosBeneficios());
+
+        listOpc1.getItems().addAll(list);
+
+    }
 
     void initTable() {
         ChaDAO dao = new ChaDAO();
         ObservableList<ChaTable> chas = FXCollections.observableArrayList(dao.TodosChas());
         tabela.setItems(chas);
     }
-    
-    void clickList(){
-        listOpc1.setOnMouseClicked(e->{
-           
+
+    void clickList() {
+        listOpc1.setOnMouseClicked(e -> {
+
         });
     }
 
@@ -97,6 +142,11 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        try {
+            initListBeneficio();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         clmCha.setCellValueFactory(new PropertyValueFactory<ChaTable, String>("nome"));
         clmBeneficio.setCellValueFactory(new PropertyValueFactory<ChaTable, String>("detalhes"));
         initTable();
@@ -104,23 +154,6 @@ public class TelaPrincipalController implements Initializable {
         // final TreeItem<Cha> root = new RecursiveTreeItem<Cha>(chas, RecursiveTreeObject::getChildren);
         //Trazendo dados do banco para primeira carregada dos chás
         //AQUI TERÁ QUE TRAZER INFORMAÇÕES DO BANCO, "CATEGORIAS" CREIO EU
-        List<Label> labels = new ArrayList<>();
-
-        try {
-            Label lb1 = new Label("Chás calmantes");
-            Label lb2 = new Label("Chás para insônia");
-            Label lb3 = new Label("Chás para gases");
-            Label lb4 = new Label("Chás para cólica");
-
-            listOpc1.getItems().add(lb1);
-            listOpc1.getItems().add(lb2);
-            listOpc1.getItems().add(lb3);
-            listOpc1.getItems().add(lb4);
-
-        } catch (Exception e) {
-            System.out.println("Erro " + e);
-        }
-
         Main.addOnChangeScreenListener(new Main.OnChangeScreen() {
             @Override
             public void onScreenChanged(String newScreen, Object Data) {

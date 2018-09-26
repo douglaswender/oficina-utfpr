@@ -37,7 +37,8 @@ public class Cha {
         this.imgcha                = imgcha;
     }
 
-    public Cha(String nome, String detalhes) {
+    public Cha(int id, String nome, String detalhes) {
+        this.id = id; 
         this.nome = nome;
         this.detalhes = detalhes;
     }

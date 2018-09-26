@@ -19,7 +19,7 @@
                   <Font name="System Bold" size="62.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txPesquisa" focusColor="#1cc71f" labelFloat="true" layoutX="1001.0" layoutY="77.0" prefHeight="25.0" prefWidth="161.0" style="-fx-prompt-text-fill: #FFF; -fx-text-fill: #FFF;" unFocusColor="WHITE">
+            <JFXTextField fx:id="txPesquisa" focusColor="#1cc71f" labelFloat="true" layoutX="1001.0" layoutY="77.0" onKeyPressed="#onEnterPress" prefHeight="25.0" prefWidth="161.0" style="-fx-prompt-text-fill: #FFF; -fx-text-fill: #FFF;" unFocusColor="WHITE">
                <font>
                   <Font size="22.0" />
                </font></JFXTextField>
@@ -39,7 +39,7 @@
                   <Font size="28.0" />
                </font>
             </Label>
-            <JFXListView fx:id="listOpc1" layoutX="14.0" layoutY="54.0" prefHeight="417.0" prefWidth="302.0" style="-fx-background-color: #62CC8F;" stylesheets="@../css/Principal.css" />
+            <JFXListView fx:id="listOpc1" layoutX="14.0" layoutY="54.0" onMouseClicked="#listClick" prefHeight="417.0" prefWidth="302.0" style="-fx-background-color: #62CC8F;" stylesheets="@../css/Principal.css" />
          </children>
       </Pane>
       <Pane layoutX="325.0" layoutY="210.0" prefHeight="482.0" prefWidth="874.0" style="-fx-background-color: #62CC8F;">
