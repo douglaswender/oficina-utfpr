@@ -11,14 +11,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.Usuario;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.input.MouseEvent;
-import javax.imageio.ImageIO;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import dao.ChaDAO;
-import java.io.ByteArrayOutputStream;
+import java.io.File;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class TelaCadastroChaController {
 
@@ -113,26 +113,17 @@ public class TelaCadastroChaController {
 
     @FXML
     void btAdicionarAction(MouseEvent event) {
-        BufferedImage imagem;
-        // TODO add your handling code here:
-        JFileChooser fc = new JFileChooser();
-        int res = fc.showOpenDialog(null);
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(new ExtensionFilter("Arquivos de imagem", "*.jpg"));
+        File f = fc.showOpenDialog(null);
 
-        if (res == JFileChooser.APPROVE_OPTION) {
-            File arquivo = fc.getSelectedFile();
-
-            try {
-                /*imagem = ManipularImagem.setImagemDimensao(arquivo.getAbsolutePath(), 160, 160);
-                Image image = SwingFXUtils.toFXImage(imagem, null);
-                imgCha.setImage(image);*/
-                Image image = new Image(arquivo.getAbsolutePath());
-                imgCha.setImage(image);
-            } catch (Exception ex) {
-               // System.out.println(ex.printStackTrace().toString());
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Voce nao selecionou nenhum arquivo.");
+        if(f != null){
+            String arquivo = f.getAbsolutePath();
+        }else{
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Atenção!");
+            alert.setHeaderText("Nenhum arquivo foi selecionado");
+            alert.show();
         }
     }
 
