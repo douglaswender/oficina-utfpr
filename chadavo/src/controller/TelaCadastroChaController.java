@@ -119,10 +119,14 @@ public class TelaCadastroChaController {
 
         if(f != null){
             String arquivo = f.getAbsolutePath();
+            File file = new File(arquivo);
+            Image image = new Image(file.toURI().toString());
+            imgCha.setImage(image);
         }else{
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("Atenção!");
             alert.setHeaderText("Nenhum arquivo foi selecionado");
+            javafx.scene.image.ImageView imageview = new javafx.scene.image.ImageView();
             alert.show();
         }
     }
