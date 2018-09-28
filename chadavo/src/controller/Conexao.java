@@ -26,7 +26,7 @@ public class Conexao {
             System.out.println("Conexão efetada com sucesso");
             return con;
         } catch (SQLException ex) {
-            System.out.println("Falha de Conexão");
+            System.out.println("Falha de Conexão " + ex);
             throw new RuntimeException(ex);
         } finally{
             //con.close();
