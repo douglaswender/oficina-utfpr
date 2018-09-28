@@ -23,10 +23,10 @@ public class Conexao {
         Connection con = null;
         try {
             con = DriverManager.getConnection(url, user, senha);
-            System.out.println("Conexão efetada com sucesso");
+            //System.out.println("Conexão efetada com sucesso");
             return con;
         } catch (SQLException ex) {
-            System.out.println("Falha de Conexão " + ex);
+            //System.out.println("Falha de Conexão " + ex);
             throw new RuntimeException(ex);
         } finally{
             //con.close();
