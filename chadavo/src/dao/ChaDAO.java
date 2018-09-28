@@ -5,11 +5,10 @@
  */
 package dao;
 
-import com.sun.javafx.collections.ElementObservableListDecorator;
 import controller.Conexao;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.File;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -18,12 +17,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javax.imageio.ImageIO;
 import model.Cha;
 import model.ChaTable;
-import util.ManipularImagem;
 
 /**
  *
@@ -32,21 +28,22 @@ import util.ManipularImagem;
 public class ChaDAO {
 
     //mudar todos esses dados para passar apenas um chá (objeto)
-    public static void Gravar(String nome, String brevedescricao, String detalhes, String especificacao_tecnica, String indicacao, String contra_indicacao, String dicas, String prevencao, BufferedImage imgcha) throws SQLException {
+    public static void Gravar(String nome, String brevedescricao, String beneficios, String ingredientes, String contra_indicacao, String modo_preparo, BufferedImage imgcha) throws SQLException, IOException {
         try {
             Connection con = new Conexao().getConnection();
-            PreparedStatement stm = con.prepareStatement("INSERT INTO CHA(NOME, BREVE_DESCRICAO, DETALHES, ESPECIFICACAO_TECNICA, INDICACAO, CONTRA_INDICACAO, DICAS, PREVENCAO, IMGCHA) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement stm = con.prepareStatement("INSERT INTO CHAS(NOME, BREVE_DESCRICAO, BENEFICIOS, INGREDIENTES, CONTRA_INDICACAO, MODO_PREPARO, IMGCHA) VALUES(?, ?, ?, ?, ?, ?, ?)");
             stm.setString(1, nome);
             stm.setString(2, brevedescricao);
-            stm.setString(3, detalhes);
-            stm.setString(4, especificacao_tecnica);
-            stm.setString(5, indicacao);
-            stm.setString(6, contra_indicacao);
-            stm.setString(7, dicas);
-            stm.setString(8, prevencao);
-            ImagemDAO obj = new ImagemDAO();
-            obj.setImagem(ManipularImagem.getImgBytes(imgcha));
-            stm.setBytes(9, obj.getImagem());
+            stm.setString(3, beneficios);
+            stm.setString(4, ingredientes);
+            stm.setString(5, contra_indicacao);
+            stm.setString(6, modo_preparo);
+
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ImageIO.write(imgcha, "jpg", bos );
+            byte [] data = bos.toByteArray();
+
+            stm.setBytes(7, data);
 
             stm.execute();
             stm.close();
@@ -55,6 +52,17 @@ public class ChaDAO {
         }
     }
 
+    public static BufferedImage Pesquisar2(int codigo) throws SQLException, IOException{
+        Connection con = new Conexao().getConnection();
+        PreparedStatement stm = con.prepareStatement("SELECT imgcha FROM chas WHERE nome_cha ~* ?");
+        stm.setInt(1, codigo);
+        ResultSet rs = stm.executeQuery();
+        
+        InputStream in = new ByteArrayInputStream(rs.getBytes(1));
+	BufferedImage bImageFromConvert = ImageIO.read(in);
+        return bImageFromConvert;
+    }
+    
     public List<ChaTable> Pesquisar(String pesquisa) throws IOException {
         try {
             Connection con = new Conexao().getConnection();

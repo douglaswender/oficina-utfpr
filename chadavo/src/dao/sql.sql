@@ -7,16 +7,15 @@ create table usuario(
     constraint uc_login unique(login)
 )
 
-create table cha(
+create table chas(
   codigo serial,
   nome character varying(60),
   breve_descricao character varying(60),
-  detalhes character varying(60),
-  especificacao_tecnica character varying(60),
+  beneficios character varying(60),
+  ingredientes character varying(60),
   contra_indicacao character varying(60),
-  dicas character varying(60),
-  prevencao character varying(60),
-  imgcha bytea
+  modo_preparo character varying(60),
+  imgcha bytea,
   constraint pk_cha primary key(codigo)
 )
 
