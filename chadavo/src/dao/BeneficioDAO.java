@@ -16,8 +16,6 @@ import java.util.List;
 import javafx.scene.control.Label;
 import model.Beneficio;
 import model.Cha;
-import model.ChaTable;
-
 /**
  *
  * @author dougl
@@ -95,8 +93,8 @@ public class BeneficioDAO {
         }
     }
 
-    public List<ChaTable> pesquisaChaPorBeneficio(Beneficio b) throws SQLException {
-        List<ChaTable> retorno = new ArrayList<>();
+    public List<Cha> pesquisaChaPorBeneficio(Beneficio b) throws SQLException {
+        List<Cha> retorno = new ArrayList<>();
         //System.out.println("Benefício: "+b.getId()+" "+b.getNome());
         Connection con = new Conexao().getConnection();
 
@@ -111,7 +109,7 @@ public class BeneficioDAO {
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
-                ChaTable c = new ChaTable(new Cha(rs.getInt("cod_cha"), rs.getString("nome_cha"), rs.getString("descricao_cha")));
+                Cha c = new Cha(new Cha(rs.getInt("cod_cha"), rs.getString("nome_cha"), rs.getString("descricao_cha")));
                 retorno.add(c);
             }
         } catch (Exception e) {

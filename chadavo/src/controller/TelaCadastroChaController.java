@@ -1,5 +1,6 @@
 package controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -62,21 +63,24 @@ public class TelaCadastroChaController {
     private ImageView btRemover;
 
     @FXML
+    private JFXButton btImagem;
+
+    @FXML
     void btGravarAction(ActionEvent event) throws SQLException, IOException {
         String nome, brevedescricao, beneficio, ingredientes, contra_indicacao, modo_preparo;
         Image imgcha;
 
         nome = txNome.getText();
         brevedescricao = txDescricao.getText();
-        beneficio      = txBeneficio.getText();
-        ingredientes   = txIngredientes.getText();
+        beneficio = txBeneficio.getText();
+        ingredientes = txIngredientes.getText();
         contra_indicacao = txContraIndicacao.getText();
-        modo_preparo     = txModoPreparo.getText();
+        modo_preparo = txModoPreparo.getText();
 
-        imgcha                = imgCha.getImage();
+        imgcha = imgCha.getImage();
         BufferedImage imageBuffered = SwingFXUtils.fromFXImage(imgcha, null);
         ChaDAO.Gravar(nome, brevedescricao, beneficio, ingredientes, contra_indicacao, modo_preparo, imageBuffered);
-        
+
     }
 
     @FXML
@@ -85,12 +89,12 @@ public class TelaCadastroChaController {
         fc.getExtensionFilters().add(new ExtensionFilter("Arquivos de imagem", "*.jpg"));
         File f = fc.showOpenDialog(null);
 
-        if(f != null){
+        if (f != null) {
             String arquivo = f.getAbsolutePath();
             File file = new File(arquivo);
             Image image = new Image(file.toURI().toString());
             imgCha.setImage(image);
-        }else{
+        } else {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("Atenção!");
             alert.setHeaderText("Nenhum arquivo foi selecionado");
@@ -105,13 +109,21 @@ public class TelaCadastroChaController {
     }
 
     @FXML
+    void btImagem(ActionEvent event) {
+        Cha c = new Cha();
+        c.setId(2);
+        Image img = ChaDAO.capturaImagemCha(c);
+        imgCha.setImage(img);
+    }
+
+    @FXML
     void initialize() {
         Main.addOnChangeScreenListener(new Main.OnChangeScreen() {
             @Override
             public void onScreenChanged(String newScreen, Object Data) {
                 Usuario usr = (Usuario) Data;
                 if (newScreen.equals("cadastrocha")) {
-                    lbUser.setText("Olá "+ usr.getNomeUsuario());
+                    lbUser.setText("Olá " + usr.getNomeUsuario());
                     //System.out.println("estou na tela cadastro e os dados são: " + usr.getLoginUsuario());
                 }
             }
