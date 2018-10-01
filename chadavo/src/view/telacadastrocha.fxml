@@ -49,6 +49,7 @@
                         </ImageView>
                         <JFXButton id="BtnGravar" layoutX="14.0" layoutY="562.0" onAction="#btGravarAction" style="-fx-background-color: #14CC3E;" text="Gravar" />
                         <ImageView id="imgCha" fx:id="imgCha" fitHeight="196.0" fitWidth="319.0" layoutX="614.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
+                        <JFXButton id="btImagem" fx:id="btImagem" layoutX="80.0" layoutY="562.0" onAction="#btImagem" text="Imagem" />
                      </children>
                   </AnchorPane>
               </content>

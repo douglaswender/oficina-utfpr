@@ -6,132 +6,98 @@
 package model;
 
 import java.awt.image.BufferedImage;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 /**
  *
  * @author ViniciusBelloli
  */
 public class Cha {
-    int id;
-    String nome;
-    String brevedescricao;
-    String detalhes;
-    String especificacao_tecnica;
-    String indicacao;
-    String contra_indicacao;
-    String dicas;
-    String prevencao;
+    SimpleIntegerProperty id;
+    SimpleStringProperty nome;
+    SimpleStringProperty descricao_cha;
+    SimpleStringProperty beneficios;
+    SimpleStringProperty ingredientes;
+    SimpleStringProperty contra_indicacao;
+    SimpleStringProperty modo_preparo;
     BufferedImage imgcha;
 
-    public Cha(int id, String nome, String brevedescricao, String detalhes, String especificacao_tecnica, String indicacao, String contra_indicacao, String dicas, String prevencao, BufferedImage imgcha){
-        
+    public Cha(SimpleIntegerProperty id, SimpleStringProperty nome, SimpleStringProperty descricao_cha, SimpleStringProperty beneficios, SimpleStringProperty ingredientes, SimpleStringProperty contra_indicacao, SimpleStringProperty modo_preparo, BufferedImage imgcha){
         this.id = id;
-        this.nome                  = nome;
-        this.brevedescricao        = brevedescricao;
-        this.detalhes              = detalhes;
-        this.especificacao_tecnica = especificacao_tecnica;
-        this.indicacao             = indicacao;
-        this.contra_indicacao      = contra_indicacao;
-        this.dicas                 = dicas;
-        this.prevencao             = prevencao;
-        this.imgcha                = imgcha;
+        this.nome          = nome;
+        this.descricao_cha = descricao_cha;
+        this.imgcha        = imgcha;
+    }
+
+    public Cha(SimpleIntegerProperty id, SimpleStringProperty nome, SimpleStringProperty detalhes) {
+        this.id = id; 
+        this.nome = nome;
+        this.descricao_cha = descricao_cha;
     }
 
     public Cha(int id, String nome, String detalhes) {
-        this.id = id; 
-        this.nome = nome;
-        this.detalhes = detalhes;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-
-    
-/*
-    public class Chas extends RecursiveTreeObject<Chas> {
-
-        StringProperty nome;
-        StringProperty brevedescricao;
-        StringProperty detalhes;
-        StringProperty especificacao_tecnica;
-        StringProperty indicacao;
-        StringProperty contra_indicacao;
-        StringProperty dicas;
-        StringProperty prevencao;
-
-        public Chas(String nome, String brevedescricao, String detalhes, String especificacao_tecnica, String indicacao, String contra_indicacao, String dicas, String prevencao) {
-            this.nome                  = new SimpleStringProperty(nome);
-            this.brevedescricao        = new SimpleStringProperty(brevedescricao);
-            this.detalhes              = new SimpleStringProperty(detalhes);
-            this.especificacao_tecnica = new SimpleStringProperty(especificacao_tecnica);
-            this.indicacao             = new SimpleStringProperty(indicacao);
-            this.contra_indicacao      = new SimpleStringProperty(contra_indicacao);
-            this.dicas                 = new SimpleStringProperty(dicas);
-            this.prevencao             = new SimpleStringProperty(prevencao);                        
-        }
-
+    public Cha(Cha cha) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-*/
-    public String getNome() {
+
+    public int getId() {
+        return id.getValue();
+    }
+
+    public void setId(int id) {
+        this.id = new SimpleIntegerProperty (id);
+    }
+
+    public SimpleStringProperty getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNome(SimpleStringProperty nome) {
         this.nome = nome;
     }
 
-    public String getBrevedescricao() {
-        return brevedescricao;
+    public SimpleStringProperty getDescricao_cha() {
+        return descricao_cha;
     }
 
-    public void setBrevedescricao(String brevedescricao) {
-        this.brevedescricao = brevedescricao;
+    public void setDescricao_cha(SimpleStringProperty descricao_cha) {
+        this.descricao_cha = descricao_cha;
     }
 
-    public String getDetalhes() {
-        return detalhes;
+    public SimpleStringProperty getBeneficios() {
+        return beneficios;
     }
 
-    public void setDetalhes(String detalhes) {
-        this.detalhes = detalhes;
+    public void setBeneficios(SimpleStringProperty beneficios) {
+        this.beneficios = beneficios;
     }
 
-    public String getEspecificacao_tecnica() {
-        return especificacao_tecnica;
+    public SimpleStringProperty getIngredientes() {
+        return ingredientes;
     }
 
-    public void setEspecificacao_tecnica(String especificacao_tecnica) {
-        this.especificacao_tecnica = especificacao_tecnica;
+    public void setIngredientes(SimpleStringProperty ingredientes) {
+        this.ingredientes = ingredientes;
     }
 
-    public String getIndicacao() {
-        return indicacao;
-    }
-
-    public void setIndicacao(String indicacao) {
-        this.indicacao = indicacao;
-    }
-
-    public String getContra_indicacao() {
+    public SimpleStringProperty getContra_indicacao() {
         return contra_indicacao;
     }
 
-    public void setContra_indicacao(String contra_indicacao) {
+    public void setContra_indicacao(SimpleStringProperty contra_indicacao) {
         this.contra_indicacao = contra_indicacao;
     }
 
-    public String getDicas() {
-        return dicas;
+    public SimpleStringProperty getModo_preparo() {
+        return modo_preparo;
     }
 
-    public void setDicas(String dicas) {
-        this.dicas = dicas;
-    }
-
-    public String getPrevencao() {
-        return prevencao;
-    }
-
-    public void setPrevencao(String prevencao) {
-        this.prevencao = prevencao;
+    public void setModo_preparo(SimpleStringProperty modo_preparo) {
+        this.modo_preparo = modo_preparo;
     }
 
     public BufferedImage getImgcha() {
@@ -144,14 +110,6 @@ public class Cha {
 
     public Cha(){
         
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
     
 }

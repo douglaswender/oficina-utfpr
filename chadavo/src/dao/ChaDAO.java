@@ -17,9 +17,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import model.Cha;
-import model.ChaTable;
 
 /**
  *
@@ -63,7 +65,7 @@ public class ChaDAO {
         return bImageFromConvert;
     }
     
-    public List<ChaTable> Pesquisar(String pesquisa) throws IOException {
+    public List<Cha> Pesquisar(String pesquisa) throws IOException {
         try {
             Connection con = new Conexao().getConnection();
             PreparedStatement stm = con.prepareStatement("SELECT * FROM chas WHERE nome_cha ~* ?");
@@ -71,7 +73,7 @@ public class ChaDAO {
 
             ResultSet rs = stm.executeQuery();
 
-            List<ChaTable> lista = new ArrayList<>();
+            List<Cha> lista = new ArrayList<>();
 
             int nCont = 0;
             while (rs.next()) {
@@ -81,7 +83,7 @@ public class ChaDAO {
                 System.out.println(nome);
                 System.out.println(detalhes);
                 //Cha c = new ChaTable(nome, detalhes);
-                lista.add(new ChaTable(new Cha(id, nome, detalhes)));
+                lista.add(new Cha(new Cha(id, nome, detalhes)));
 //                InputStream in = new ByteArrayInputStream(rs.getBytes(9));
 //                BufferedImage bImageFromConvert = ImageIO.read(in);
 //
@@ -104,9 +106,9 @@ public class ChaDAO {
         return null;
     }
 
-    public List<ChaTable> TodosChas() {
+    public List<Cha> TodosChas() {
 
-        List<ChaTable> chas = new ArrayList<ChaTable>();
+        List<Cha> chas = new ArrayList<Cha>();
         try {
             Connection con = new Conexao().getConnection();
 
@@ -122,11 +124,11 @@ public class ChaDAO {
 //                System.out.println(nome);
 //                System.out.println(detalhes);
                 //Cha c = new ChaTable(nome, detalhes);
-                chas.add(new ChaTable(new Cha(cod, nome, detalhes)));
+                chas.add(new Cha(new Cha(cod, nome, detalhes)));
 
             }
-            for (ChaTable cha : chas) {
-                System.out.println(cha.getDetalhes());
+            for (Cha cha : chas) {
+                System.out.println(cha.getDescricao_cha());
                 System.out.println(cha.getNome());
             }
 
@@ -135,6 +137,29 @@ public class ChaDAO {
         }
         return chas;
 
+    }
+    
+    public static Image capturaImagemCha(Cha c) {
+            byte[] imageByte = null;
+            Image image = null;
+
+            try {
+                    Connection con = new Conexao().getConnection();
+                    PreparedStatement stm = con.prepareStatement("SELECT imgcha FROM chas WHERE codigo = ?");
+                    stm.setInt(1, c.getId());
+                    ResultSet rs = stm.executeQuery();
+
+                    rs.next();
+                    imageByte = rs.getBytes("imgcha");
+                    ImageIcon icon = new ImageIcon(imageByte);
+                    BufferedImage img;
+                    img = ImageIO.read(new ByteArrayInputStream(imageByte));
+                    Image img2 = SwingFXUtils.toFXImage(img, null );
+                    return img2;
+            } catch (Exception e) {
+                    e.printStackTrace();
+            }
+            return image;
     }
 
 }

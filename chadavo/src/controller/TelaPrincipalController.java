@@ -28,7 +28,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.Beneficio;
-import model.ChaTable;
+import model.Cha;
 import model.Usuario;
 
 /**
@@ -45,16 +45,16 @@ public class TelaPrincipalController implements Initializable {
     private JFXListView<Beneficio> listOpc1;
 
     @FXML
-    private TableView<ChaTable> tabela;
+    private TableView<Cha> tabela;
 
     @FXML
-    private TableColumn<ChaTable, String> clmCha;
+    private TableColumn<Cha, String> clmCha;
 
     @FXML
     private JFXTextField txPesquisa;
 
     @FXML
-    private TableColumn<ChaTable, String> clmBeneficio;
+    private TableColumn<Cha, String> clmBeneficio;
 
     @FXML
     void btnPerquisarAction(ActionEvent event) throws IOException {
@@ -93,7 +93,7 @@ public class TelaPrincipalController implements Initializable {
 
         ChaDAO dao = new ChaDAO();
 
-        ObservableList<ChaTable> chas = FXCollections.observableArrayList(dao.Pesquisar(txPesquisa.getText()));
+        ObservableList<Cha> chas = FXCollections.observableArrayList(dao.Pesquisar(txPesquisa.getText()));
 
         tabela.setItems(chas);
 
@@ -103,7 +103,7 @@ public class TelaPrincipalController implements Initializable {
         
         BeneficioDAO dao = new BeneficioDAO();
         
-        ObservableList<ChaTable> chas = FXCollections.observableArrayList(dao.pesquisaChaPorBeneficio(b));
+        ObservableList<Cha> chas = FXCollections.observableArrayList(dao.pesquisaChaPorBeneficio(b));
         
         tabela.setItems(chas);
     }
@@ -120,7 +120,7 @@ public class TelaPrincipalController implements Initializable {
 
     void initTable() {
         ChaDAO dao = new ChaDAO();
-        ObservableList<ChaTable> chas = FXCollections.observableArrayList(dao.TodosChas());
+        ObservableList<Cha> chas = FXCollections.observableArrayList(dao.TodosChas());
         tabela.setItems(chas);
     }
 
@@ -147,8 +147,8 @@ public class TelaPrincipalController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(TelaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        clmCha.setCellValueFactory(new PropertyValueFactory<ChaTable, String>("nome"));
-        clmBeneficio.setCellValueFactory(new PropertyValueFactory<ChaTable, String>("detalhes"));
+        clmCha.setCellValueFactory(new PropertyValueFactory<Cha, String>("nome"));
+        clmBeneficio.setCellValueFactory(new PropertyValueFactory<Cha, String>("detalhes"));
         initTable();
 
         // final TreeItem<Cha> root = new RecursiveTreeItem<Cha>(chas, RecursiveTreeObject::getChildren);
