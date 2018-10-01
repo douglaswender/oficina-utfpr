@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="564.0" prefWidth="725.0" style="-fx-background-color: #006B18;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelacadastrabeneficioController">
+   <children>
+      <Pane layoutX="26.0" layoutY="67.0" prefHeight="430.0" prefWidth="673.0">
+         <children>
+            <Label layoutX="235.0" layoutY="159.0" text="NOME:" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <JFXTextField focusColor="#1cc71f" layoutX="304.0" layoutY="162.0" unFocusColor="WHITE" />
+            <JFXButton fx:id="btnCadastrar" buttonType="RAISED" layoutX="265.0" layoutY="276.0" onAction="#btnCadastrarAction" style="-fx-background-color: #14CC3E;" text="CADASTRAR!" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Label layoutX="199.0" layoutY="39.0" text="CADASTRAR NOVO BENEFÍCIO" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

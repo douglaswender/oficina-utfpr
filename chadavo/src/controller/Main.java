@@ -22,6 +22,8 @@ public class Main extends Application {
     private static Scene cadastroUsuarioScene;
     private static Scene recuperarSenhaScene;
     private static Scene principalScene;
+    private static Scene cadastroBeneficio;
+    private static Scene principalAdminScene;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -51,6 +53,12 @@ public class Main extends Application {
         Parent fxmlPrincipal = FXMLLoader.load(getClass().getResource("/view/telaprincipal.fxml"));
         principalScene = new Scene(fxmlPrincipal);
 
+        Parent fxmlCadastroBeneficio = FXMLLoader.load(getClass().getResource("/view/telacadastrabeneficio.fxml"));
+        cadastroBeneficio = new Scene(fxmlCadastroBeneficio);
+        
+        Parent fxmlPrincipalAdmin = FXMLLoader.load(getClass().getResource("/view/telaprincipaladmin.fxml"));
+        principalAdminScene = new Scene(fxmlPrincipalAdmin);
+        
         primaryStage.setScene(mainScene);
 
         primaryStage.show();
@@ -81,6 +89,14 @@ public class Main extends Application {
             case "principal":
                 stage.setScene(principalScene);
                 notifyAllListeners("principal", data);
+                break;
+            case "principaladmin":
+                stage.setScene(principalAdminScene);
+                notifyAllListeners("principaladmin", data);
+                break;  
+            case "cadastrobeneficio":
+                stage.setScene(cadastroBeneficio);
+                notifyAllListeners("cadastrobeneficio", data);
                 break;
         }
     }
