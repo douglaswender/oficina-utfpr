@@ -23,6 +23,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import model.Cha;
@@ -65,6 +67,9 @@ public class TelaCadastroChaController {
     @FXML
     private JFXButton btImagem;
 
+    private Boolean lAlteracao = false;
+    private Integer id = 0;
+
     @FXML
     void btGravarAction(ActionEvent event) throws SQLException, IOException {
         String nome, brevedescricao, beneficio, ingredientes, contra_indicacao, modo_preparo;
@@ -79,7 +84,7 @@ public class TelaCadastroChaController {
 
         imgcha = imgCha.getImage();
         BufferedImage imageBuffered = SwingFXUtils.fromFXImage(imgcha, null);
-        ChaDAO.Gravar(nome, brevedescricao, beneficio, ingredientes, contra_indicacao, modo_preparo, imageBuffered);
+        ChaDAO.Gravar(nome, brevedescricao, beneficio, ingredientes, contra_indicacao, modo_preparo, imageBuffered, lAlteracao, id);
 
     }
 
@@ -109,11 +114,37 @@ public class TelaCadastroChaController {
     }
 
     @FXML
-    void btImagem(ActionEvent event) {
-        Cha c = new Cha();
-        c.setId(2);
-        Image img = ChaDAO.capturaImagemCha(c);
-        imgCha.setImage(img);
+    void Pesquisar(ActionEvent event) throws SQLException, IOException {
+//        Cha c = new Cha();
+//        c.setId(Integer.parseInt(txPesquisa.getText()));
+//        Cha cha = ChaDAO.Pesquisar2(c);
+//        Image img = ChaDAO.capturaImagemCha(c);
+//        imgCha.setImage(img);
+//        txNome.setText(c.getNome());
+//        txDescricao.setText(c.getDescricao_cha());
+//        txBeneficio.setText(c.getBeneficios());
+//        txIngredientes.setText(c.getIngredientes());
+//        txContraIndicacao.setText(c.getContra_indicacao());
+//        txModoPreparo.setText(c.getModo_preparo());
+    }
+
+    @FXML
+    void onEnterPress(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            Cha c = new Cha();
+            c.setId(Integer.parseInt(txPesquisa.getText()));
+            Cha cha = ChaDAO.Pesquisar2(c);
+            Image img = ChaDAO.capturaImagemCha(c);
+            imgCha.setImage(img);
+            txNome.setText(cha.getNome());
+            txDescricao.setText(cha.getDescricao_cha());
+            txBeneficio.setText(cha.getBeneficios());
+            txIngredientes.setText(cha.getIngredientes());
+            txContraIndicacao.setText(cha.getContra_indicacao());
+            txModoPreparo.setText(cha.getModo_preparo());
+            lAlteracao = true;
+            id = cha.getId();
+        }
     }
 
     @FXML
