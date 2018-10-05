@@ -36,9 +36,9 @@ public class ChaDAO {
             String cSqlExecute;
 
             if (lAlteracao) {
-                cSqlExecute = "UPDATE CHAS SET NOME = ?, BREVE_DESCRICAO = ?, BENEFICIOS = ?, INGREDIENTES = ?, CONTRA_INDICACAO = ?, MODO_PREPARO = ?, IMGCHA = ?";
+                cSqlExecute = "UPDATE CHAS SET NOME_CHA = ?, DESCRICAO_CHA = ?, BENEFICIOS = ?, INGREDIENTES = ?, CONTRA_INDICACAO = ?, MODO_PREPARO = ?, IMGCHA = ? WHERE COD_CHA = ?";
             }else{
-                cSqlExecute = "INSERT INTO CHAS(NOME, BREVE_DESCRICAO, BENEFICIOS, INGREDIENTES, CONTRA_INDICACAO, MODO_PREPARO, IMGCHA) VALUES(?, ?, ?, ?, ?, ?, ?)";
+                cSqlExecute = "INSERT INTO CHAS(NOME_CHA, DESCRICAO_CHA, BENEFICIOS, INGREDIENTES, CONTRA_INDICACAO, MODO_PREPARO, IMGCHA) VALUES(?, ?, ?, ?, ?, ?, ?)";
             }
 
             PreparedStatement stm = con.prepareStatement(cSqlExecute);
@@ -54,6 +54,10 @@ public class ChaDAO {
             byte [] data = bos.toByteArray();
 
             stm.setBytes(7, data);
+            
+            if (lAlteracao) {
+                stm.setInt(7, id);
+            }
 
             stm.execute();
             stm.close();
@@ -142,7 +146,7 @@ public class ChaDAO {
 
             try {
                     Connection con = new Conexao().getConnection();
-                    PreparedStatement stm = con.prepareStatement("SELECT imgcha FROM chas WHERE codigo = ?");
+                    PreparedStatement stm = con.prepareStatement("SELECT imgcha FROM chas WHERE cod_cha = ?");
                     stm.setInt(1, c.getId());
                     ResultSet rs = stm.executeQuery();
 
@@ -165,7 +169,7 @@ public class ChaDAO {
 
             try {
                     Connection con = new Conexao().getConnection();
-                    PreparedStatement stm = con.prepareStatement("SELECT * FROM chas WHERE codigo = ?");
+                    PreparedStatement stm = con.prepareStatement("SELECT * FROM chas WHERE cod_cha = ?");
                     stm.setInt(1, c.getId());
                     ResultSet rs = stm.executeQuery();
 
