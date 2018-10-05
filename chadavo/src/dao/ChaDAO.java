@@ -36,27 +36,24 @@ public class ChaDAO {
             String cSqlExecute;
 
             if (lAlteracao) {
-                cSqlExecute = "UPDATE CHAS SET NOME = ?, DESCRICAO_CHA = ?, BENEFICIOS = ?, INGREDIENTES = ?, CONTRA_INDICACAO = ?, MODO_PREPARO = ?, IMGCHA = ? WHERE COD_CHA = ?";
+                cSqlExecute = "UPDATE CHAS SET NOME_CHA = ?, DESCRICAO_CHA = ?, BENEFICIOS = ?, IMGCHA = ? WHERE COD_CHA = ?";
             }else{
-                cSqlExecute = "INSERT INTO CHAS(NOME, DESCRICAO_CHA, BENEFICIOS, INGREDIENTES, CONTRA_INDICACAO, MODO_PREPARO, IMGCHA) VALUES(?, ?, ?, ?, ?, ?, ?)";
+                cSqlExecute = "INSERT INTO CHAS(NOME_CHA, DESCRICAO_CHA, BENEFICIOS, IMGCHA) VALUES(?, ?, ?, ?)";
             }
 
             PreparedStatement stm = con.prepareStatement(cSqlExecute);
             stm.setString(1, nome);
             stm.setString(2, brevedescricao);
             stm.setString(3, beneficios);
-            stm.setString(4, ingredientes);
-            stm.setString(5, contra_indicacao);
-            stm.setString(6, modo_preparo);
 
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             ImageIO.write(imgcha, "jpg", bos );
             byte [] data = bos.toByteArray();
 
-            stm.setBytes(7, data);
+            stm.setBytes(4, data);
             
             if (lAlteracao) {
-                stm.setInt(8, id);
+                stm.setInt(5, id);
             }
 
             stm.execute();
@@ -147,7 +144,7 @@ public class ChaDAO {
 
             try {
                     Connection con = new Conexao().getConnection();
-                    PreparedStatement stm = con.prepareStatement("SELECT imgcha FROM chas WHERE codigo = ?");
+                    PreparedStatement stm = con.prepareStatement("SELECT imgcha FROM chas WHERE cod_cha = ?");
                     stm.setInt(1, c.getId());
                     ResultSet rs = stm.executeQuery();
 
@@ -185,7 +182,7 @@ public class ChaDAO {
 
             try {
                     Connection con = new Conexao().getConnection();
-                    PreparedStatement stm = con.prepareStatement("SELECT * FROM chas WHERE codigo = ?");
+                    PreparedStatement stm = con.prepareStatement("SELECT cod_cha, nome_cha, descricao_cha, beneficios  FROM chas WHERE cod_cha = ?");
                     stm.setInt(1, c.getId());
                     ResultSet rs = stm.executeQuery();
 
@@ -195,9 +192,6 @@ public class ChaDAO {
                     cha.setNome(rs.getString(2));
                     cha.setDescricao_cha(rs.getString(3));
                     cha.setBeneficios(rs.getString(4));
-                    cha.setIngredientes(rs.getString(5));
-                    cha.setContra_indicacao(rs.getString(6));
-                    cha.setModo_preparo(rs.getString(7));
                     return cha;
                     
             } catch (Exception e) {
