@@ -5,10 +5,12 @@
         <group>
             <file>file:/C:/Users/dougl/Documents/Projetos%20Java/oficina-utfpr/chadavo/src/controller/TelaPrincipalController.java</file>
             <file>file:/C:/Users/dougl/Documents/Projetos%20Java/oficina-utfpr/chadavo/src/dao/sql.sql</file>
+            <file>file:/C:/Users/dougl/Documents/Projetos%20Java/oficina-utfpr/chadavo/src/controller/TelaCadastroChaController.java</file>
             <file>file:/C:/Users/dougl/Documents/Projetos%20Java/oficina-utfpr/chadavo/src/model/Cha.java</file>
             <file>file:/C:/Users/dougl/Documents/Projetos%20Java/oficina-utfpr/chadavo/src/controller/Main.java</file>
             <file>file:/C:/Users/dougl/Documents/Projetos%20Java/oficina-utfpr/chadavo/src/dao/BeneficioDAO.java</file>
             <file>file:/C:/Users/dougl/Documents/Projetos%20Java/oficina-utfpr/chadavo/src/dao/ChaDAO.java</file>
+            <file>file:/C:/Users/dougl/Documents/Projetos%20Java/oficina-utfpr/chadavo/src/controller/TelacadastrabeneficioController.java</file>
         </group>
     </open-files>
 </project-private>

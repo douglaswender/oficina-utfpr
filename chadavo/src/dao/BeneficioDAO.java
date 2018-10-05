@@ -98,8 +98,8 @@ public class BeneficioDAO {
         //System.out.println("Benefício: "+b.getId()+" "+b.getNome());
         Connection con = new Conexao().getConnection();
 
-        PreparedStatement ps = con.prepareStatement("SELECT DISTINCT c.codigo, c.nome, c.beneficios FROM chas c "
-                + "JOIN benecha bc on bc.chave_benecha = c.codigo "
+        PreparedStatement ps = con.prepareStatement("SELECT DISTINCT c.cod_cha, c.nome_cha, c.beneficios FROM chas c "
+                + "JOIN benecha bc on bc.chave_benecha = c.cod_cha "
                 + "JOIN beneficios b on b.cod_beneficio = bc.chave_beneficio "
                 + " WHERE b.cod_beneficio = ?");
         
@@ -109,7 +109,7 @@ public class BeneficioDAO {
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
-                Cha c = new Cha(rs.getInt("codigo"), rs.getString("nome"), rs.getString("beneficios"));
+                Cha c = new Cha(rs.getInt("cod_cha"), rs.getString("nome_cha"), rs.getString("beneficios"));
                 retorno.add(c);
             }
         } catch (Exception e) {

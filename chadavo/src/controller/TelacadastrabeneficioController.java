@@ -24,12 +24,16 @@ public class TelacadastrabeneficioController implements Initializable {
     @FXML
     private JFXListView<Beneficio> list;
 
+    @FXML
+    void btnBackAction(ActionEvent event) {
+        Main.changeScene("principaladmin");
+    }
+
     private static Stage stage;
 
     public static Stage getStage() {
         return stage;
     }
-
 
     @FXML
     void btnCadastrarAction(ActionEvent event) throws SQLException {
@@ -42,9 +46,8 @@ public class TelacadastrabeneficioController implements Initializable {
         dao.cadastraBeneficio(b);
 
         txBeneficio.setText(null);
-        
+
         Main.changeScene("principaladmin");
-      
 
     }
 

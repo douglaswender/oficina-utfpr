@@ -46,8 +46,8 @@
          <children>
             <TableView fx:id="tabela" onSort="#loadData" prefHeight="482.0" prefWidth="874.0">
               <columns>
-                <TableColumn fx:id="clmCha" prefWidth="512.0000305175781" text="Chá" />
-                <TableColumn fx:id="clmBeneficio" prefWidth="361.6000061035156" text="Benefício" />
+                <TableColumn fx:id="clmCha" prefWidth="235.20001220703125" text="Chá" />
+                <TableColumn fx:id="clmBeneficio" prefWidth="640.0" text="Benefício" />
               </columns>
             </TableView>
          </children></Pane>

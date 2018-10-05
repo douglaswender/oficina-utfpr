@@ -35,9 +35,9 @@ public class ChaDAO {
             String cSqlExecute;
 
             if (lAlteracao) {
-                cSqlExecute = "UPDATE CHAS SET NOME_CHA = ?, DESCRICAO_CHA = ?, BENEFICIOS = ?, INGREDIENTES = ?, CONTRA_INDICACAO = ?, MODO_PREPARO = ?, IMGCHA = ? WHERE COD_CHA = ?";
+                cSqlExecute = "UPDATE CHAS SET NOME = ?, DESCRICAO_CHA = ?, BENEFICIOS = ?, INGREDIENTES = ?, CONTRA_INDICACAO = ?, MODO_PREPARO = ?, IMGCHA = ? WHERE COD_CHA = ?";
             }else{
-                cSqlExecute = "INSERT INTO CHAS(NOME_CHA, DESCRICAO_CHA, BENEFICIOS, INGREDIENTES, CONTRA_INDICACAO, MODO_PREPARO, IMGCHA) VALUES(?, ?, ?, ?, ?, ?, ?)";
+                cSqlExecute = "INSERT INTO CHAS(NOME, DESCRICAO_CHA, BENEFICIOS, INGREDIENTES, CONTRA_INDICACAO, MODO_PREPARO, IMGCHA) VALUES(?, ?, ?, ?, ?, ?, ?)";
             }
 
             PreparedStatement stm = con.prepareStatement(cSqlExecute);
@@ -68,7 +68,7 @@ public class ChaDAO {
     public List<Cha> Pesquisar(String pesquisa) throws IOException {
         try {
             Connection con = new Conexao().getConnection();
-            PreparedStatement stm = con.prepareStatement("SELECT codigo, nome, beneficios FROM chas WHERE nome ~* ?");
+            PreparedStatement stm = con.prepareStatement("SELECT cod_cha, nome_cha, beneficios FROM chas WHERE nome_cha ~* ?");
             stm.setString(1, pesquisa);
 
             ResultSet rs = stm.executeQuery();
@@ -77,8 +77,8 @@ public class ChaDAO {
 
             int nCont = 0;
             while (rs.next()) {
-                int id = rs.getInt("codigo");
-                String nome = rs.getString("nome");
+                int id = rs.getInt("cod_cha");
+                String nome = rs.getString("nome_cha");
                 String detalhes = rs.getString("beneficios");
                 //System.out.println(nome);
                 //System.out.println(detalhes);
@@ -114,13 +114,13 @@ public class ChaDAO {
             Connection con = new Conexao().getConnection();
 
             //trocar detalhes por beneficios
-            PreparedStatement stm = con.prepareStatement("SELECT codigo, nome, beneficios FROM chas");
+            PreparedStatement stm = con.prepareStatement("SELECT cod_cha, nome_cha, beneficios FROM chas");
 
             ResultSet rs = stm.executeQuery();
 
             while (rs.next()) {
-                int cod = rs.getInt("codigo");
-                String nome = rs.getString("nome");
+                int cod = rs.getInt("cod_cha");
+                String nome = rs.getString("nome_cha");
                 String detalhes = rs.getString("beneficios");
                 System.out.println(nome);
                 System.out.println(detalhes);
@@ -146,7 +146,7 @@ public class ChaDAO {
 
             try {
                     Connection con = new Conexao().getConnection();
-                    PreparedStatement stm = con.prepareStatement("SELECT imgcha FROM chas WHERE cod_cha = ?");
+                    PreparedStatement stm = con.prepareStatement("SELECT imgcha FROM chas WHERE codigo = ?");
                     stm.setInt(1, c.getId());
                     ResultSet rs = stm.executeQuery();
 
@@ -169,7 +169,7 @@ public class ChaDAO {
 
             try {
                     Connection con = new Conexao().getConnection();
-                    PreparedStatement stm = con.prepareStatement("SELECT * FROM chas WHERE cod_cha = ?");
+                    PreparedStatement stm = con.prepareStatement("SELECT * FROM chas WHERE codigo = ?");
                     stm.setInt(1, c.getId());
                     ResultSet rs = stm.executeQuery();
 

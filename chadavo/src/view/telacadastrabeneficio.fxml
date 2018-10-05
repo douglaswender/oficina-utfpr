@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="564.0" prefWidth="725.0" style="-fx-background-color: #006B18;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelacadastrabeneficioController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #006B18;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelacadastrabeneficioController">
    <children>
-      <Pane layoutX="26.0" layoutY="67.0" prefHeight="430.0" prefWidth="673.0">
+      <Pane layoutX="190.0" layoutY="135.0" prefHeight="430.0" prefWidth="673.0">
          <children>
             <Label layoutX="235.0" layoutY="159.0" text="NOME:" textFill="WHITE">
                <font>
@@ -24,7 +24,7 @@
             </JFXButton>
          </children>
       </Pane>
-      <Label layoutX="199.0" layoutY="39.0" text="CADASTRAR NOVO BENEFÍCIO" textFill="WHITE">
+      <Label layoutX="363.0" layoutY="117.0" text="CADASTRAR NOVO BENEFÍCIO" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
