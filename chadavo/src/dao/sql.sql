@@ -13,15 +13,15 @@ create table usuario(
 
 CREATE TABLE public.chas
 (
-  codigo serial,
-  nome character varying(60),
-  breve_descricao character varying(60),
+  cod_cha serial,
+  nome_cha character varying(60),
+  descricao_cha character varying(60),
   beneficios character varying(60),
   ingredientes character varying(60),
   contra_indicacao character varying(60),
   modo_preparo character varying(60),
   imgcha bytea,
-  CONSTRAINT pk_cha PRIMARY KEY (codigo)
+  CONSTRAINT pk_cha PRIMARY KEY (cod_cha)
 )
 WITH (
   OIDS=FALSE
