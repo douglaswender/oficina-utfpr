@@ -11,13 +11,13 @@
 
 <AnchorPane id="AnchorPane" pickOnBounds="false" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #006B18;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaCadastroChaController">
    <children>
-      <JFXTextField id="TxtPesquisa" fx:id="txPesquisa" focusColor="#1cc71f" layoutX="93.0" layoutY="20.0" onAction="#Pesquisar" onKeyPressed="#onEnterPress" prefHeight="27.0" prefWidth="477.0" promptText="INFORME UM CHÁ" style="-fx-prompt-text-fill: #ffffff;" unFocusColor="WHITE" />
-      <Label id="LblPesquisa" layoutX="14.0" layoutY="24.0" text="Pesquisa" textFill="#f2f2f2" />
-      <JFXTabPane fx:id="PgfGeral" layoutX="14.0" layoutY="55.0" prefHeight="640.0" prefWidth="1180.0" style="-fx-background-color: #ffffff;" stylesheets="@../css/CadastroCha.css">
+      <JFXTextField id="TxtPesquisa" fx:id="txPesquisa" focusColor="#1cc71f" layoutX="89.0" layoutY="78.0" onAction="#Pesquisar" onKeyPressed="#onEnterPress" prefHeight="27.0" prefWidth="477.0" promptText="INFORME UM CHÁ" style="-fx-prompt-text-fill: #ffffff;" unFocusColor="WHITE" />
+      <Label id="LblPesquisa" layoutX="14.0" layoutY="83.0" text="Pesquisa" textFill="#f2f2f2" />
+      <JFXTabPane fx:id="PgfGeral" layoutX="14.0" layoutY="113.0" prefHeight="574.0" prefWidth="1180.0" style="-fx-background-color: #ffffff;" stylesheets="@../css/CadastroCha.css">
          <tabs>
             <Tab fx:id="PgDados" text="Dados">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="531.0" prefWidth="1180.0">
                      <children>
                         <Label id="LblNome" layoutX="12.0" layoutY="18.0" text="Nome" />
                         <Label id="LblBreveDescricao" layoutX="12.0" layoutY="55.0" text="Breve Descrição" />
@@ -41,13 +41,23 @@
                               <Image url="@../img/negative.png" />
                            </image>
                         </ImageView>
-                        <JFXButton id="BtnGravar" layoutX="14.0" layoutY="562.0" onAction="#btGravarAction" style="-fx-background-color: #14CC3E;" text="Gravar" />
                         <ImageView id="imgCha" fx:id="imgCha" fitHeight="196.0" fitWidth="319.0" layoutX="614.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
+                        <JFXButton layoutX="76.0" layoutY="506.0" onAction="#btTeste" style="-fx-background-color: #14CC3E;" text="Teste" />
+                        <JFXButton id="BtnGravar" layoutX="14.0" layoutY="506.0" onAction="#btGravarAction" style="-fx-background-color: #14CC3E;" text="Gravar" />
                      </children>
                   </AnchorPane>
               </content>
             </Tab>
          </tabs>
       </JFXTabPane>
+      <JFXButton buttonType="RAISED" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" onAction="#btnBackAction" prefHeight="44.0" prefWidth="34.0" style="-fx-background-color: #14CC3E #14CC3E; -fx-background-radius: 100%;" styleClass="login" textAlignment="CENTER">
+         <graphic>
+            <ImageView fx:id="imgBtn" depthTest="ENABLE" fitHeight="35.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/back.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

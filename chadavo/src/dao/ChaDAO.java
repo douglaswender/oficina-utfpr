@@ -20,6 +20,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import com.jfoenix.controls.JFXCheckBox;
 import model.Cha;
 
 /**
@@ -55,7 +56,7 @@ public class ChaDAO {
             stm.setBytes(7, data);
             
             if (lAlteracao) {
-                stm.setInt(7, id);
+                stm.setInt(8, id);
             }
 
             stm.execute();
@@ -163,6 +164,21 @@ public class ChaDAO {
             return image;
     }
 
+    public static List<JFXCheckBox> TodosBeneficios() throws SQLException{
+        List<JFXCheckBox> checkboxes = new ArrayList<>();
+        Connection con = new Conexao().getConnection();
+        PreparedStatement stm = con.prepareStatement("SELECT * FROM beneficios");
+        ResultSet rs = stm.executeQuery();
+
+        while (rs.next()) {
+            JFXCheckBox box = new JFXCheckBox(rs.getString(2));
+            checkboxes.add(box);
+        }
+
+        return null;
+    
+    }
+
     public static Cha Pesquisar2(Cha c){
             byte[] imageByte = null;
             Image image = null;
@@ -178,6 +194,10 @@ public class ChaDAO {
                     cha.setId(rs.getInt(1));
                     cha.setNome(rs.getString(2));
                     cha.setDescricao_cha(rs.getString(3));
+                    cha.setBeneficios(rs.getString(4));
+                    cha.setIngredientes(rs.getString(5));
+                    cha.setContra_indicacao(rs.getString(6));
+                    cha.setModo_preparo(rs.getString(7));
                     return cha;
                     
             } catch (Exception e) {
