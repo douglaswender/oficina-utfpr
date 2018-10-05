@@ -12,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" pickOnBounds="false" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #006B18;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaCadastroChaController">
    <children>
-      <JFXTextField id="TxtPesquisa" fx:id="txPesquisa" focusColor="#1cc71f" layoutX="93.0" layoutY="20.0" prefHeight="27.0" prefWidth="477.0" promptText="INFORME UM CHÁ" style="-fx-prompt-text-fill: #ffffff;" unFocusColor="WHITE" />
+      <JFXTextField id="TxtPesquisa" fx:id="txPesquisa" focusColor="#1cc71f" layoutX="93.0" layoutY="20.0" onAction="#Pesquisar" onKeyPressed="#onEnterPress" prefHeight="27.0" prefWidth="477.0" promptText="INFORME UM CHÁ" style="-fx-prompt-text-fill: #ffffff;" unFocusColor="WHITE" />
       <Label id="LblPesquisa" layoutX="14.0" layoutY="24.0" text="Pesquisa" textFill="#f2f2f2" />
       <Label fx:id="lbUser" alignment="TOP_RIGHT" layoutX="587.0" layoutY="9.0" prefHeight="18.0" prefWidth="238.0" textAlignment="RIGHT" textFill="WHITE">
          <font>
@@ -49,7 +49,6 @@
                         </ImageView>
                         <JFXButton id="BtnGravar" layoutX="14.0" layoutY="562.0" onAction="#btGravarAction" style="-fx-background-color: #14CC3E;" text="Gravar" />
                         <ImageView id="imgCha" fx:id="imgCha" fitHeight="196.0" fitWidth="319.0" layoutX="614.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
-                        <JFXButton id="btImagem" fx:id="btImagem" layoutX="80.0" layoutY="562.0" onAction="#btImagem" text="Imagem" />
                      </children>
                   </AnchorPane>
               </content>

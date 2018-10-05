@@ -30,10 +30,18 @@ import model.Cha;
 public class ChaDAO {
 
     //mudar todos esses dados para passar apenas um chá (objeto)
-    public static void Gravar(String nome, String brevedescricao, String beneficios, String ingredientes, String contra_indicacao, String modo_preparo, BufferedImage imgcha) throws SQLException, IOException {
+    public static void Gravar(String nome, String brevedescricao, String beneficios, String ingredientes, String contra_indicacao, String modo_preparo, BufferedImage imgcha, Boolean lAlteracao, Integer id) throws SQLException, IOException {
         try {
             Connection con = new Conexao().getConnection();
-            PreparedStatement stm = con.prepareStatement("INSERT INTO CHAS(NOME, BREVE_DESCRICAO, BENEFICIOS, INGREDIENTES, CONTRA_INDICACAO, MODO_PREPARO, IMGCHA) VALUES(?, ?, ?, ?, ?, ?, ?)");
+            String cSqlExecute;
+
+            if (lAlteracao) {
+                cSqlExecute = "UPDATE CHAS SET NOME = ?, BREVE_DESCRICAO = ?, BENEFICIOS = ?, INGREDIENTES = ?, CONTRA_INDICACAO = ?, MODO_PREPARO = ?, IMGCHA = ?";
+            }else{
+                cSqlExecute = "INSERT INTO CHAS(NOME, BREVE_DESCRICAO, BENEFICIOS, INGREDIENTES, CONTRA_INDICACAO, MODO_PREPARO, IMGCHA) VALUES(?, ?, ?, ?, ?, ?, ?)";
+            }
+
+            PreparedStatement stm = con.prepareStatement(cSqlExecute);
             stm.setString(1, nome);
             stm.setString(2, brevedescricao);
             stm.setString(3, beneficios);
@@ -52,17 +60,6 @@ public class ChaDAO {
         } catch (SQLException e) {
             System.out.println(e);
         }
-    }
-
-    public static BufferedImage Pesquisar2(int codigo) throws SQLException, IOException{
-        Connection con = new Conexao().getConnection();
-        PreparedStatement stm = con.prepareStatement("SELECT imgcha FROM chas WHERE nome_cha ~* ?");
-        stm.setInt(1, codigo);
-        ResultSet rs = stm.executeQuery();
-        
-        InputStream in = new ByteArrayInputStream(rs.getBytes(1));
-	BufferedImage bImageFromConvert = ImageIO.read(in);
-        return bImageFromConvert;
     }
     
     public List<Cha> Pesquisar(String pesquisa) throws IOException {
@@ -160,6 +157,34 @@ public class ChaDAO {
                     e.printStackTrace();
             }
             return image;
+    }
+
+    public static Cha Pesquisar2(Cha c){
+            byte[] imageByte = null;
+            Image image = null;
+
+            try {
+                    Connection con = new Conexao().getConnection();
+                    PreparedStatement stm = con.prepareStatement("SELECT * FROM chas WHERE codigo = ?");
+                    stm.setInt(1, c.getId());
+                    ResultSet rs = stm.executeQuery();
+
+                    rs.next();
+                    Cha cha = new Cha();
+                    cha.setId(rs.getInt(1));
+                    cha.setNome(rs.getString(2));
+                    cha.setDescricao_cha(rs.getString(3));
+                    cha.setBeneficios(rs.getString(4));
+                    cha.setIngredientes(rs.getString(5));
+                    cha.setContra_indicacao(rs.getString(6));
+                    cha.setModo_preparo(rs.getString(7));
+                    return cha;
+                    
+            } catch (Exception e) {
+                    e.printStackTrace();
+            }
+
+            return null;
     }
 
 }

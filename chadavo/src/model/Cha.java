@@ -27,7 +27,10 @@ public class Cha {
         this.id = id;
         this.nome          = nome;
         this.descricao_cha = descricao_cha;
-        this.imgcha        = imgcha;
+        this.beneficios    = beneficios;
+        this.ingredientes  = ingredientes;
+        this.contra_indicacao = contra_indicacao;
+        this.modo_preparo  = modo_preparo;
     }
 
 
@@ -47,51 +50,75 @@ public class Cha {
     }
 
     public String getNome() {
+<<<<<<< HEAD
         return nome.getValue();
+=======
+        return nome.get();
+>>>>>>> 571fbecb7625eb0311f3073e47ab53800d3f7dc2
     }
 
-    public void setNome(SimpleStringProperty nome) {
-        this.nome = nome;
+    public void setNome(String nome) {
+        this.nome = new SimpleStringProperty (nome);
     }
 
     public String getDescricao_cha() {
+<<<<<<< HEAD
         return descricao_cha.getValue();
+=======
+        return descricao_cha.get();
+>>>>>>> 571fbecb7625eb0311f3073e47ab53800d3f7dc2
     }
 
-    public void setDescricao_cha(SimpleStringProperty descricao_cha) {
-        this.descricao_cha = descricao_cha;
+    public void setDescricao_cha(String descricao_cha) {
+        this.descricao_cha = new SimpleStringProperty (descricao_cha);
     }
 
     public String getBeneficios() {
+<<<<<<< HEAD
         return beneficios.getValue();
+=======
+        return beneficios.get();
+>>>>>>> 571fbecb7625eb0311f3073e47ab53800d3f7dc2
     }
 
-    public void setBeneficios(SimpleStringProperty beneficios) {
-        this.beneficios = beneficios;
+    public void setBeneficios(String beneficios) {
+        this.beneficios = new SimpleStringProperty (beneficios);
     }
 
     public String getIngredientes() {
+<<<<<<< HEAD
         return ingredientes.getValue();
+=======
+        return ingredientes.get();
+>>>>>>> 571fbecb7625eb0311f3073e47ab53800d3f7dc2
     }
 
-    public void setIngredientes(SimpleStringProperty ingredientes) {
-        this.ingredientes = ingredientes;
+    public void setIngredientes(String ingredientes) {
+        this.ingredientes = new SimpleStringProperty (ingredientes);
     }
 
     public String getContra_indicacao() {
+<<<<<<< HEAD
         return contra_indicacao.getValue();
+=======
+        return contra_indicacao.get();
+>>>>>>> 571fbecb7625eb0311f3073e47ab53800d3f7dc2
     }
 
-    public void setContra_indicacao(SimpleStringProperty contra_indicacao) {
-        this.contra_indicacao = contra_indicacao;
+    public void setContra_indicacao(String contra_indicacao) {
+        this.contra_indicacao = new SimpleStringProperty (contra_indicacao);
     }
 
     public String getModo_preparo() {
+<<<<<<< HEAD
         return modo_preparo.getValue();
+=======
+        return modo_preparo.get();
+>>>>>>> 571fbecb7625eb0311f3073e47ab53800d3f7dc2
     }
 
-    public void setModo_preparo(SimpleStringProperty modo_preparo) {
-        this.modo_preparo = modo_preparo;
+    public void setModo_preparo(String modo_preparo) {
+        this.modo_preparo = new SimpleStringProperty (modo_preparo);
     }
 
     public BufferedImage getImgcha() {
