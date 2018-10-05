@@ -41,8 +41,10 @@
                               <Image url="@../img/negative.png" />
                            </image>
                         </ImageView>
-                        <ImageView id="imgCha" fx:id="imgCha" fitHeight="196.0" fitWidth="319.0" layoutX="614.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
-                        <JFXButton layoutX="76.0" layoutY="506.0" onAction="#btTeste" style="-fx-background-color: #14CC3E;" text="Teste" />
+                        <ImageView id="imgCha" fx:id="imgCha" fitHeight="196.0" fitWidth="319.0" layoutX="614.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/sem_foto.png" />
+                           </image></ImageView>
                         <JFXButton id="BtnGravar" layoutX="14.0" layoutY="506.0" onAction="#btGravarAction" style="-fx-background-color: #14CC3E;" text="Gravar" />
                      </children>
                   </AnchorPane>

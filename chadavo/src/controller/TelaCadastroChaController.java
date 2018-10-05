@@ -120,7 +120,8 @@ public class TelaCadastroChaController {
 
     @FXML
     void btRemoverAction(MouseEvent event) {
-
+        Image img = new Image("/img/sem_foto.png");
+        imgCha.setImage(img);
     }
 
     @FXML
@@ -140,6 +141,15 @@ public class TelaCadastroChaController {
 
     @FXML
     void btnBackAction(ActionEvent event) {
+        txNome.setText("");
+        txDescricao.setText("");
+        txBeneficio.setText("");
+        txIngredientes.setText("");
+        txContraIndicacao.setText("");
+        txModoPreparo.setText("");
+        txPesquisa.setText("");
+        Image img = new Image("/img/sem_foto.png");
+        imgCha.setImage(img);
         Main.changeScene("principaladmin");
     }
 
@@ -176,6 +186,9 @@ public class TelaCadastroChaController {
             txNome.setText(cha.getNome());
             txDescricao.setText(cha.getDescricao_cha());
             txBeneficio.setText(cha.getBeneficios());
+            txIngredientes.setText(cha.getIngredientes());
+            txContraIndicacao.setText(cha.getContra_indicacao());
+            txModoPreparo.setText(cha.getModo_preparo());
             lAlteracao = true;
             id = cha.getId();
         }
