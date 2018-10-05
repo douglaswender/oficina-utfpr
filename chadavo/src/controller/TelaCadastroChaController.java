@@ -27,6 +27,13 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import com.jfoenix.controls.JFXCheckBox;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.BoxLayout;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import model.Cha;
 
 public class TelaCadastroChaController {
@@ -48,6 +55,9 @@ public class TelaCadastroChaController {
 
     @FXML
     private JFXTextField txContraIndicacao;
+    
+    @FXML
+    private JFXCheckBox ckBeneficio;
 
     @FXML
     private JFXTextField txModoPreparo;
@@ -126,6 +136,33 @@ public class TelaCadastroChaController {
 //        txIngredientes.setText(c.getIngredientes());
 //        txContraIndicacao.setText(c.getContra_indicacao());
 //        txModoPreparo.setText(c.getModo_preparo());
+    }
+
+    @FXML
+    void btnBackAction(ActionEvent event) {
+        Main.changeScene("principaladmin");
+    }
+
+    @FXML
+    void btTeste(ActionEvent event) throws SQLException {
+        //List<JFXCheckBox> TodosBeneficios = ChaDAO.TodosBeneficios();
+//        JFrame frame = new JFrame("Options");
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+//        frame.setSize(300, 300);
+//        JPanel panel = new JPanel();
+//        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+//        List<JCheckBox> checkboxes = new ArrayList<>();
+//
+//        Connection con = new Conexao().getConnection();
+//        PreparedStatement stm = con.prepareStatement("SELECT * FROM beneficios");
+//        ResultSet rs = stm.executeQuery();
+//
+//        while (rs.next()) {
+//            JCheckBox box = new JCheckBox(rs.getString(2));
+//            checkboxes.add(box);
+//        }
+//
+//        frame.add(panel);
     }
 
     @FXML
