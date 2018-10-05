@@ -109,7 +109,7 @@ public class BeneficioDAO {
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
-                Cha c = new Cha(new Cha(rs.getInt("cod_cha"), rs.getString("nome_cha"), rs.getString("descricao_cha")));
+                Cha c = new Cha(rs.getInt("cod_cha"), rs.getString("nome_cha"), rs.getString("descricao_cha"));
                 retorno.add(c);
             }
         } catch (Exception e) {

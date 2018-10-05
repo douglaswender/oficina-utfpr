@@ -83,7 +83,7 @@ public class ChaDAO {
                 System.out.println(nome);
                 System.out.println(detalhes);
                 //Cha c = new ChaTable(nome, detalhes);
-                lista.add(new Cha(new Cha(id, nome, detalhes)));
+                lista.add(new Cha(id, nome, detalhes));
 //                InputStream in = new ByteArrayInputStream(rs.getBytes(9));
 //                BufferedImage bImageFromConvert = ImageIO.read(in);
 //
@@ -124,13 +124,13 @@ public class ChaDAO {
 //                System.out.println(nome);
 //                System.out.println(detalhes);
                 //Cha c = new ChaTable(nome, detalhes);
-                chas.add(new Cha(new Cha(cod, nome, detalhes)));
+                chas.add(new Cha(cod, nome, detalhes));
 
             }
-            for (Cha cha : chas) {
-                System.out.println(cha.getDescricao_cha());
-                System.out.println(cha.getNome());
-            }
+//            for (Cha cha : chas) {
+//                System.out.println(cha.getDescricao_cha());
+//                System.out.println(cha.getNome());
+//            }
 
             return chas;
         } catch (SQLException e) {

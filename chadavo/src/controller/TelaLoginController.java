@@ -104,7 +104,7 @@ public class TelaLoginController implements Initializable {
                 txLogin.setText(null);
                 txSenha.setText(null);
                 txLogin.requestFocus();
-                Main.changeScene("cadastrocha", retorno);
+                Main.changeScene("principaladmin", retorno);
             } else {
                 txLogin.setText(null);
                 txSenha.setText(null);

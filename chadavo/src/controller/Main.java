@@ -100,9 +100,15 @@ public class Main extends Application {
                 break;
         }
     }
+    
+    
 
     public static void changeScene(String scene) {
         changeScene(scene, null);
+    }
+    
+    public static Scene retornaSceneCadBeneficio(){
+        return cadastroBeneficio;
     }
 
     /**

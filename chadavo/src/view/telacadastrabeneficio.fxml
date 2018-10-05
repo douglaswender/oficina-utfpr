@@ -16,7 +16,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <JFXTextField focusColor="#1cc71f" layoutX="304.0" layoutY="162.0" unFocusColor="WHITE" />
+            <JFXTextField fx:id="txBeneficio" focusColor="#1cc71f" layoutX="304.0" layoutY="162.0" unFocusColor="WHITE" />
             <JFXButton fx:id="btnCadastrar" buttonType="RAISED" layoutX="265.0" layoutY="276.0" onAction="#btnCadastrarAction" style="-fx-background-color: #14CC3E;" text="CADASTRAR!" textFill="WHITE">
                <font>
                   <Font size="20.0" />

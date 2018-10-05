@@ -30,19 +30,13 @@ public class Cha {
         this.imgcha        = imgcha;
     }
 
-    public Cha(SimpleIntegerProperty id, SimpleStringProperty nome, SimpleStringProperty detalhes) {
-        this.id = id; 
-        this.nome = nome;
-        this.descricao_cha = descricao_cha;
-    }
 
     public Cha(int id, String nome, String detalhes) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.id = new SimpleIntegerProperty(id);
+        this.descricao_cha = new SimpleStringProperty(detalhes);
+        this.nome = new SimpleStringProperty(nome);        
     }
 
-    public Cha(Cha cha) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     public int getId() {
         return id.getValue();
@@ -52,48 +46,48 @@ public class Cha {
         this.id = new SimpleIntegerProperty (id);
     }
 
-    public SimpleStringProperty getNome() {
-        return nome;
+    public String getNome() {
+        return nome.getValue();
     }
 
     public void setNome(SimpleStringProperty nome) {
         this.nome = nome;
     }
 
-    public SimpleStringProperty getDescricao_cha() {
-        return descricao_cha;
+    public String getDescricao_cha() {
+        return descricao_cha.getValue();
     }
 
     public void setDescricao_cha(SimpleStringProperty descricao_cha) {
         this.descricao_cha = descricao_cha;
     }
 
-    public SimpleStringProperty getBeneficios() {
-        return beneficios;
+    public String getBeneficios() {
+        return beneficios.getValue();
     }
 
     public void setBeneficios(SimpleStringProperty beneficios) {
         this.beneficios = beneficios;
     }
 
-    public SimpleStringProperty getIngredientes() {
-        return ingredientes;
+    public String getIngredientes() {
+        return ingredientes.getValue();
     }
 
     public void setIngredientes(SimpleStringProperty ingredientes) {
         this.ingredientes = ingredientes;
     }
 
-    public SimpleStringProperty getContra_indicacao() {
-        return contra_indicacao;
+    public String getContra_indicacao() {
+        return contra_indicacao.getValue();
     }
 
     public void setContra_indicacao(SimpleStringProperty contra_indicacao) {
         this.contra_indicacao = contra_indicacao;
     }
 
-    public SimpleStringProperty getModo_preparo() {
-        return modo_preparo;
+    public String getModo_preparo() {
+        return modo_preparo.getValue();
     }
 
     public void setModo_preparo(SimpleStringProperty modo_preparo) {
@@ -110,6 +104,11 @@ public class Cha {
 
     public Cha(){
         
+    }
+    
+    @Override
+    public String toString(){
+        return this.getNome();
     }
     
 }

@@ -38,6 +38,7 @@ import model.Usuario;
  */
 public class TelaPrincipalController implements Initializable {
 
+    
     @FXML
     private Label lbTexto;
 
@@ -113,6 +114,7 @@ public class TelaPrincipalController implements Initializable {
         BeneficioDAO dao = new BeneficioDAO();
 
         ObservableList<Beneficio> list = FXCollections.observableArrayList(dao.pesquisaTodosBeneficios());
+        
 
         listOpc1.getItems().addAll(list);
 
@@ -148,7 +150,7 @@ public class TelaPrincipalController implements Initializable {
             Logger.getLogger(TelaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
         clmCha.setCellValueFactory(new PropertyValueFactory<Cha, String>("nome"));
-        clmBeneficio.setCellValueFactory(new PropertyValueFactory<Cha, String>("detalhes"));
+        clmBeneficio.setCellValueFactory(new PropertyValueFactory<Cha, String>("descricao_cha"));
         initTable();
 
         // final TreeItem<Cha> root = new RecursiveTreeItem<Cha>(chas, RecursiveTreeObject::getChildren);
