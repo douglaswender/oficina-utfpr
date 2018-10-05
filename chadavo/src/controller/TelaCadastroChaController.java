@@ -186,9 +186,9 @@ public class TelaCadastroChaController {
             txNome.setText(cha.getNome());
             txDescricao.setText(cha.getDescricao_cha());
             txBeneficio.setText(cha.getBeneficios());
-            txIngredientes.setText(cha.getIngredientes());
-            txContraIndicacao.setText(cha.getContra_indicacao());
-            txModoPreparo.setText(cha.getModo_preparo());
+//            txIngredientes.setText(cha.getIngredientes());
+//            txContraIndicacao.setText(cha.getContra_indicacao());
+//            txModoPreparo.setText(cha.getModo_preparo());
             lAlteracao = true;
             id = cha.getId();
         }

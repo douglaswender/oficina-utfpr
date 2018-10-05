@@ -22,15 +22,15 @@
                         <Label id="LblNome" layoutX="12.0" layoutY="18.0" text="Nome" />
                         <Label id="LblBreveDescricao" layoutX="12.0" layoutY="55.0" text="Breve Descrição" />
                         <Label id="LblBeneficios" layoutX="12.0" layoutY="95.0" text="Benefícios" />
-                        <Label id="LblEspecificacaoTecnica" layoutX="13.0" layoutY="134.0" text="Ingredientes" />
-                        <Label id="LblContraIndicacoes" layoutX="12.0" layoutY="173.0" text="Contra Indicação" />
-                        <Label id="LblDicas" layoutX="12.0" layoutY="215.0" text="Modo de Preparo" />
+                        <Label id="LblEspecificacaoTecnica" layoutX="13.0" layoutY="134.0" text="Ingredientes" visible="false" />
+                        <Label id="LblContraIndicacoes" layoutX="12.0" layoutY="173.0" text="Contra Indicação" visible="false" />
+                        <Label id="LblDicas" layoutX="12.0" layoutY="215.0" text="Modo de Preparo" visible="false" />
                         <JFXTextField id="TxtNome" fx:id="txNome" layoutX="161.0" layoutY="14.0" prefHeight="26.0" prefWidth="408.0" />
                         <JFXTextField id="TxtBreveDescricao" fx:id="txDescricao" layoutX="163.0" layoutY="49.0" prefHeight="26.0" prefWidth="408.0" />
                         <JFXTextField id="txBeneficio" fx:id="txBeneficio" layoutX="163.0" layoutY="89.0" prefHeight="26.0" prefWidth="408.0" />
-                        <JFXTextField id="txIngredientes" fx:id="txIngredientes" layoutX="163.0" layoutY="128.0" prefHeight="26.0" prefWidth="408.0" />
-                        <JFXTextField id="txContraIndicacao" fx:id="txContraIndicacao" layoutX="163.0" layoutY="168.0" prefHeight="26.0" prefWidth="408.0" />
-                        <JFXTextField id="txModoPreparo" fx:id="txModoPreparo" layoutX="162.0" layoutY="210.0" prefHeight="26.0" prefWidth="408.0" />
+                        <JFXTextField id="txIngredientes" fx:id="txIngredientes" layoutX="163.0" layoutY="128.0" prefHeight="26.0" prefWidth="408.0" visible="false" />
+                        <JFXTextField id="txContraIndicacao" fx:id="txContraIndicacao" layoutX="163.0" layoutY="168.0" prefHeight="26.0" prefWidth="408.0" visible="false" />
+                        <JFXTextField id="txModoPreparo" fx:id="txModoPreparo" layoutX="162.0" layoutY="210.0" prefHeight="26.0" prefWidth="408.0" visible="false" />
                         <ImageView id="btAdicionar" fx:id="btAdicionar1" depthTest="ENABLE" fitHeight="24.0" fitWidth="100.0" layoutX="614.0" layoutY="223.0" onMouseClicked="#btAdicionarAction" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/plus.png" />

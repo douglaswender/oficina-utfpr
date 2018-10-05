@@ -21,6 +21,7 @@ import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import com.jfoenix.controls.JFXCheckBox;
+import javafx.scene.control.Alert;
 import model.Cha;
 
 /**
@@ -61,6 +62,11 @@ public class ChaDAO {
         } catch (SQLException e) {
             System.out.println(e);
         }
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Informação");
+        alert.setHeaderText("Dados Gravados Com Sucesso.");
+        alert.show();
     }
     
     public List<Cha> Pesquisar(String pesquisa) throws IOException {
