@@ -75,7 +75,7 @@ public class TelaPrincipalAdminController implements Initializable {
 
     @FXML
     void btnCadChaAction(ActionEvent event) {
-
+        Main.changeScene("cadastrocha");
     }
 
     @FXML

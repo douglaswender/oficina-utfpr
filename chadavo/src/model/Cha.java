@@ -50,11 +50,8 @@ public class Cha {
     }
 
     public String getNome() {
-<<<<<<< HEAD
         return nome.getValue();
-=======
-        return nome.get();
->>>>>>> 571fbecb7625eb0311f3073e47ab53800d3f7dc2
+
     }
 
     public void setNome(String nome) {
@@ -62,11 +59,7 @@ public class Cha {
     }
 
     public String getDescricao_cha() {
-<<<<<<< HEAD
         return descricao_cha.getValue();
-=======
-        return descricao_cha.get();
->>>>>>> 571fbecb7625eb0311f3073e47ab53800d3f7dc2
     }
 
     public void setDescricao_cha(String descricao_cha) {
@@ -74,11 +67,8 @@ public class Cha {
     }
 
     public String getBeneficios() {
-<<<<<<< HEAD
-        return beneficios.getValue();
-=======
         return beneficios.get();
->>>>>>> 571fbecb7625eb0311f3073e47ab53800d3f7dc2
+
     }
 
     public void setBeneficios(String beneficios) {
@@ -86,11 +76,9 @@ public class Cha {
     }
 
     public String getIngredientes() {
-<<<<<<< HEAD
+
         return ingredientes.getValue();
-=======
-        return ingredientes.get();
->>>>>>> 571fbecb7625eb0311f3073e47ab53800d3f7dc2
+
     }
 
     public void setIngredientes(String ingredientes) {
@@ -98,11 +86,9 @@ public class Cha {
     }
 
     public String getContra_indicacao() {
-<<<<<<< HEAD
+
         return contra_indicacao.getValue();
-=======
-        return contra_indicacao.get();
->>>>>>> 571fbecb7625eb0311f3073e47ab53800d3f7dc2
+
     }
 
     public void setContra_indicacao(String contra_indicacao) {
@@ -110,11 +96,9 @@ public class Cha {
     }
 
     public String getModo_preparo() {
-<<<<<<< HEAD
+
         return modo_preparo.getValue();
-=======
-        return modo_preparo.get();
->>>>>>> 571fbecb7625eb0311f3073e47ab53800d3f7dc2
+
     }
 
     public void setModo_preparo(String modo_preparo) {

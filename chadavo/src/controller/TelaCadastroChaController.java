@@ -149,15 +149,6 @@ public class TelaCadastroChaController {
 
     @FXML
     void initialize() {
-        Main.addOnChangeScreenListener(new Main.OnChangeScreen() {
-            @Override
-            public void onScreenChanged(String newScreen, Object Data) {
-                Usuario usr = (Usuario) Data;
-                if (newScreen.equals("cadastrocha")) {
-                    lbUser.setText("Olá " + usr.getNomeUsuario());
-                    //System.out.println("estou na tela cadastro e os dados são: " + usr.getLoginUsuario());
-                }
-            }
-        });
+        
     }
 }

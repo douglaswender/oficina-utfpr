@@ -10,7 +10,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -65,7 +64,7 @@ public class ChaDAO {
     public List<Cha> Pesquisar(String pesquisa) throws IOException {
         try {
             Connection con = new Conexao().getConnection();
-            PreparedStatement stm = con.prepareStatement("SELECT * FROM chas WHERE nome_cha ~* ?");
+            PreparedStatement stm = con.prepareStatement("SELECT codigo, nome, beneficios FROM chas WHERE nome ~* ?");
             stm.setString(1, pesquisa);
 
             ResultSet rs = stm.executeQuery();
@@ -74,11 +73,11 @@ public class ChaDAO {
 
             int nCont = 0;
             while (rs.next()) {
-                int id = rs.getInt("cod_cha");
-                String nome = rs.getString("nome_cha");
-                String detalhes = rs.getString("descricao_cha");
-                System.out.println(nome);
-                System.out.println(detalhes);
+                int id = rs.getInt("codigo");
+                String nome = rs.getString("nome");
+                String detalhes = rs.getString("beneficios");
+                //System.out.println(nome);
+                //System.out.println(detalhes);
                 //Cha c = new ChaTable(nome, detalhes);
                 lista.add(new Cha(id, nome, detalhes));
 //                InputStream in = new ByteArrayInputStream(rs.getBytes(9));
@@ -106,20 +105,21 @@ public class ChaDAO {
     public List<Cha> TodosChas() {
 
         List<Cha> chas = new ArrayList<Cha>();
+        
         try {
             Connection con = new Conexao().getConnection();
 
             //trocar detalhes por beneficios
-            PreparedStatement stm = con.prepareStatement("SELECT * FROM chas");
+            PreparedStatement stm = con.prepareStatement("SELECT codigo, nome, beneficios FROM chas");
 
             ResultSet rs = stm.executeQuery();
 
             while (rs.next()) {
-                int cod = rs.getInt("cod_cha");
-                String nome = rs.getString("nome_cha");
-                String detalhes = rs.getString("descricao_cha");
-//                System.out.println(nome);
-//                System.out.println(detalhes);
+                int cod = rs.getInt("codigo");
+                String nome = rs.getString("nome");
+                String detalhes = rs.getString("beneficios");
+                System.out.println(nome);
+                System.out.println(detalhes);
                 //Cha c = new ChaTable(nome, detalhes);
                 chas.add(new Cha(cod, nome, detalhes));
 
@@ -142,7 +142,7 @@ public class ChaDAO {
 
             try {
                     Connection con = new Conexao().getConnection();
-                    PreparedStatement stm = con.prepareStatement("SELECT imgcha FROM chas WHERE codigo = ?");
+                    PreparedStatement stm = con.prepareStatement("SELECT imgcha FROM chas WHERE cod_cha = ?");
                     stm.setInt(1, c.getId());
                     ResultSet rs = stm.executeQuery();
 
@@ -165,7 +165,7 @@ public class ChaDAO {
 
             try {
                     Connection con = new Conexao().getConnection();
-                    PreparedStatement stm = con.prepareStatement("SELECT * FROM chas WHERE codigo = ?");
+                    PreparedStatement stm = con.prepareStatement("SELECT * FROM chas WHERE cod_cha = ?");
                     stm.setInt(1, c.getId());
                     ResultSet rs = stm.executeQuery();
 
@@ -174,10 +174,6 @@ public class ChaDAO {
                     cha.setId(rs.getInt(1));
                     cha.setNome(rs.getString(2));
                     cha.setDescricao_cha(rs.getString(3));
-                    cha.setBeneficios(rs.getString(4));
-                    cha.setIngredientes(rs.getString(5));
-                    cha.setContra_indicacao(rs.getString(6));
-                    cha.setModo_preparo(rs.getString(7));
                     return cha;
                     
             } catch (Exception e) {
