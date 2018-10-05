@@ -7,7 +7,12 @@ create table usuario(
     constraint uc_login unique(login)
 )
 
-create table chas(
+-- Table: public.chas
+
+-- DROP TABLE public.chas;
+
+CREATE TABLE public.chas
+(
   codigo serial,
   nome character varying(60),
   breve_descricao character varying(60),
@@ -16,8 +21,13 @@ create table chas(
   contra_indicacao character varying(60),
   modo_preparo character varying(60),
   imgcha bytea,
-  constraint pk_cha primary key(codigo)
+  CONSTRAINT pk_cha PRIMARY KEY (codigo)
 )
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.chas
+  OWNER TO postgres;
 
 -- tabelas refentes ao cadastro de chas
 
