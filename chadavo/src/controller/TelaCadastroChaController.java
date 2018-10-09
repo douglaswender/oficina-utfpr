@@ -30,11 +30,18 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import com.jfoenix.controls.JFXCheckBox;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import model.Beneficio;
 import model.Cha;
+import dao.BeneficioDAO;
+import javafx.collections.ObservableList;
+import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class TelaCadastroChaController {
 
@@ -76,6 +83,16 @@ public class TelaCadastroChaController {
 
     @FXML
     private JFXButton btImagem;
+
+
+    @FXML
+    private TableView<Beneficio> tbvBeneficio;
+
+    @FXML
+    private TableColumn<Beneficio, Boolean> selectCol;
+
+    @FXML
+    private TableColumn<Beneficio, String> nomeBeneficio;
 
     private Boolean lAlteracao = false;
     private Integer id = 0;
@@ -154,28 +171,6 @@ public class TelaCadastroChaController {
     }
 
     @FXML
-    void btTeste(ActionEvent event) throws SQLException {
-        //List<JFXCheckBox> TodosBeneficios = ChaDAO.TodosBeneficios();
-//        JFrame frame = new JFrame("Options");
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-//        frame.setSize(300, 300);
-//        JPanel panel = new JPanel();
-//        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-//        List<JCheckBox> checkboxes = new ArrayList<>();
-//
-//        Connection con = new Conexao().getConnection();
-//        PreparedStatement stm = con.prepareStatement("SELECT * FROM beneficios");
-//        ResultSet rs = stm.executeQuery();
-//
-//        while (rs.next()) {
-//            JCheckBox box = new JCheckBox(rs.getString(2));
-//            checkboxes.add(box);
-//        }
-//
-//        frame.add(panel);
-    }
-
-    @FXML
     void onEnterPress(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
             Cha c = new Cha();
@@ -195,7 +190,10 @@ public class TelaCadastroChaController {
     }
 
     @FXML
-    void initialize() {
-        
+    void initialize() throws SQLException {
+        selectCol.setCellValueFactory(new PropertyValueFactory<>("selected"));
+        nomeBeneficio.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        selectCol.setCellFactory(CheckBoxTableCell.forTableColumn(selectCol));
+        tbvBeneficio.setItems(BeneficioDAO.pesquisaTodosBeneficios2());
     }
 }

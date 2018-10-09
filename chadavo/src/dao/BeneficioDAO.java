@@ -6,14 +6,15 @@
 package dao;
 
 import controller.Conexao;
-import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.control.Label;
+import javafx.collections.FXCollections;
+import static javafx.collections.FXCollections.observableArrayList;
+import javafx.collections.ObservableList;
 import model.Beneficio;
 import model.Cha;
 /**
@@ -124,7 +125,7 @@ public class BeneficioDAO {
         return retorno;
     }
 
-    public List<Beneficio> pesquisaTodosBeneficios() throws SQLException {
+    public static List<Beneficio> pesquisaTodosBeneficios() throws SQLException {
         List<Beneficio> retorno = new ArrayList<>();
 
         Connection con = new Conexao().getConnection();
@@ -141,6 +142,37 @@ public class BeneficioDAO {
                 retorno.add(b);
             }
             return retorno;
+        } catch (SQLException e) {
+            System.out.println("ERRO: #" + e);
+            return null;
+        } finally {
+            ps.close();
+        }
+
+    }
+
+    public static ObservableList<Beneficio> pesquisaTodosBeneficios2() throws SQLException {
+        
+
+        Connection con = new Conexao().getConnection();
+
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM beneficios");
+
+        ResultSet rs = ps.executeQuery();
+        ObservableList<Beneficio> observableArrayList = null;
+        List<Beneficio> retorno = new ArrayList<>();
+
+        try {
+
+            while (rs.next()) {
+                Beneficio b = new Beneficio(false, rs.getString("nome_beneficio"));
+                retorno.add(b);
+                //observableArrayList = FXCollections.observableArrayList(new Beneficio(false, rs.getString("nome_beneficio")));
+            }
+
+            observableArrayList = FXCollections.observableArrayList(retorno);
+
+            return observableArrayList;
         } catch (SQLException e) {
             System.out.println("ERRO: #" + e);
             return null;
