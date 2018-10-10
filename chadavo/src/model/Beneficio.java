@@ -26,8 +26,9 @@ public class Beneficio {
         this.nome = new SimpleStringProperty(nome);
     }
 
-    public Beneficio(Boolean marcado, String nome){
+    public Beneficio(Boolean marcado, int id, String nome){
         this.marcado = marcado;
+        this.id      = new SimpleIntegerProperty (id);
         this.nome    = new SimpleStringProperty (nome);
     }
 

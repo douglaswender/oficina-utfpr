@@ -53,15 +53,6 @@ public class TelaCadastroChaController {
 
     @FXML
     private JFXTextField txDescricao;
-
-    @FXML
-    private JFXTextField txBeneficio;
-
-    @FXML
-    private JFXTextField txIngredientes;
-
-    @FXML
-    private JFXTextField txContraIndicacao;
     
     @FXML
     private JFXCheckBox ckBeneficio;
@@ -99,19 +90,18 @@ public class TelaCadastroChaController {
 
     @FXML
     void btGravarAction(ActionEvent event) throws SQLException, IOException {
-        String nome, brevedescricao, beneficio, ingredientes, contra_indicacao, modo_preparo;
+        String nome, brevedescricao, modo_preparo;
         Image imgcha;
 
         nome = txNome.getText();
         brevedescricao = txDescricao.getText();
-        beneficio = txBeneficio.getText();
-        ingredientes = txIngredientes.getText();
-        contra_indicacao = txContraIndicacao.getText();
         modo_preparo = txModoPreparo.getText();
 
         imgcha = imgCha.getImage();
         BufferedImage imageBuffered = SwingFXUtils.fromFXImage(imgcha, null);
-        ChaDAO.Gravar(nome, brevedescricao, beneficio, ingredientes, contra_indicacao, modo_preparo, imageBuffered, lAlteracao, id);
+        ChaDAO.Gravar(nome, brevedescricao, imageBuffered, lAlteracao, id);
+        ObservableList<Beneficio> items = tbvBeneficio.getItems();
+        BeneficioDAO.Gravar(items);
 
     }
 
@@ -160,9 +150,6 @@ public class TelaCadastroChaController {
     void btnBackAction(ActionEvent event) {
         txNome.setText("");
         txDescricao.setText("");
-        txBeneficio.setText("");
-        txIngredientes.setText("");
-        txContraIndicacao.setText("");
         txModoPreparo.setText("");
         txPesquisa.setText("");
         Image img = new Image("/img/sem_foto.png");
@@ -180,7 +167,6 @@ public class TelaCadastroChaController {
             imgCha.setImage(img);
             txNome.setText(cha.getNome());
             txDescricao.setText(cha.getDescricao_cha());
-            txBeneficio.setText(cha.getBeneficios());
 //            txIngredientes.setText(cha.getIngredientes());
 //            txContraIndicacao.setText(cha.getContra_indicacao());
 //            txModoPreparo.setText(cha.getModo_preparo());

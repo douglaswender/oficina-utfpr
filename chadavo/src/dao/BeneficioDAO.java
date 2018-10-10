@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
-import static javafx.collections.FXCollections.observableArrayList;
 import javafx.collections.ObservableList;
 import model.Beneficio;
 import model.Cha;
@@ -165,7 +164,7 @@ public class BeneficioDAO {
         try {
 
             while (rs.next()) {
-                Beneficio b = new Beneficio(false, rs.getString("nome_beneficio"));
+                Beneficio b = new Beneficio(false, rs.getInt("cod_beneficio"), rs.getString("nome_beneficio"));
                 retorno.add(b);
                 //observableArrayList = FXCollections.observableArrayList(new Beneficio(false, rs.getString("nome_beneficio")));
             }
@@ -180,6 +179,35 @@ public class BeneficioDAO {
             ps.close();
         }
 
+    }
+
+    public static void Gravar(ObservableList<Beneficio> beneficio) throws SQLException{
+        Connection con2 = new Conexao().getConnection();
+        PreparedStatement stm2 = con2.prepareStatement("SELECT MAX(cod_cha) AS CONTADOR FROM CHAS");
+        ResultSet rs = stm2.executeQuery();
+        rs.next();
+        int idcha = rs.getInt(1);
+        
+        Connection con3 = new Conexao().getConnection();
+        PreparedStatement stm3 = con3.prepareStatement("DELETE FROM BENECHA WHERE CHAVE_BENECHA = ?");
+        stm3.setInt(1, idcha);
+        stm3.execute();
+        stm3.close();        
+
+        for(int i = 0; i < beneficio.size(); i++){
+            System.out.println(beneficio.get(i));
+            String cSqlExecute;
+
+            Connection con = new Conexao().getConnection();
+            cSqlExecute = "INSERT INTO BENECHA(CHAVE_BENEFICIO, CHAVE_BENECHA) VALUES(?, ?)";
+
+            int id      = beneficio.get(i).getId();
+            PreparedStatement stm = con.prepareStatement(cSqlExecute);
+            stm.setInt(1, id);
+            stm.setInt(2, idcha);
+            stm.execute();
+            stm.close();
+        }
     }
 
 }

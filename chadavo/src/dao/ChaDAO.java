@@ -31,21 +31,21 @@ import model.Cha;
 public class ChaDAO {
 
     //mudar todos esses dados para passar apenas um chá (objeto)
-    public static void Gravar(String nome, String brevedescricao, String beneficios, String ingredientes, String contra_indicacao, String modo_preparo, BufferedImage imgcha, Boolean lAlteracao, Integer id) throws SQLException, IOException {
+    public static void Gravar(String nome, String brevedescricao, BufferedImage imgcha, Boolean lAlteracao, Integer id) throws SQLException, IOException {
         try {
             Connection con = new Conexao().getConnection();
             String cSqlExecute;
 
             if (lAlteracao) {
-                cSqlExecute = "UPDATE CHAS SET NOME_CHA = ?, DESCRICAO_CHA = ?, BENEFICIOS = ?, IMGCHA = ? WHERE COD_CHA = ?";
+                cSqlExecute = "UPDATE CHAS SET NOME_CHA = ?, DESCRICAO_CHA = ?, MODO_PREPARO = ?, IMGCHA = ? WHERE COD_CHA = ?";
             }else{
-                cSqlExecute = "INSERT INTO CHAS(NOME_CHA, DESCRICAO_CHA, BENEFICIOS, IMGCHA) VALUES(?, ?, ?, ?)";
+                cSqlExecute = "INSERT INTO CHAS(NOME_CHA, DESCRICAO_CHA, MODO_PREPARO, IMGCHA) VALUES(?, ?, ?, ?)";
             }
 
             PreparedStatement stm = con.prepareStatement(cSqlExecute);
             stm.setString(1, nome);
             stm.setString(2, brevedescricao);
-            stm.setString(3, beneficios);
+            stm.setString(3, "teste");
 
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             ImageIO.write(imgcha, "jpg", bos );
