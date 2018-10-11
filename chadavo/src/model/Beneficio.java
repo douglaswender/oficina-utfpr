@@ -7,6 +7,7 @@ package model;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.CheckBox;
 
 /**
  *
@@ -16,7 +17,15 @@ public class Beneficio {
     
     private SimpleIntegerProperty id;
     private SimpleStringProperty nome;
-    private Boolean marcado;
+    private CheckBox marcado;
+
+    public CheckBox getMarcado() {
+        return marcado;
+    }
+
+    public void setMarcado(CheckBox marcado) {
+        this.marcado = marcado;
+    }
 
     public Beneficio() {
     }
@@ -24,12 +33,7 @@ public class Beneficio {
     public Beneficio(int id, String nome) {
         this.id = new SimpleIntegerProperty(id);
         this.nome = new SimpleStringProperty(nome);
-    }
-
-    public Beneficio(Boolean marcado, int id, String nome){
-        this.marcado = marcado;
-        this.id      = new SimpleIntegerProperty (id);
-        this.nome    = new SimpleStringProperty (nome);
+        this.marcado = new CheckBox();
     }
 
     public Beneficio(String nome) {

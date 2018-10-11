@@ -40,6 +40,7 @@ import model.Beneficio;
 import model.Cha;
 import dao.BeneficioDAO;
 import javafx.collections.ObservableList;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -80,7 +81,7 @@ public class TelaCadastroChaController {
     private TableView<Beneficio> tbvBeneficio;
 
     @FXML
-    private TableColumn<Beneficio, Boolean> selectCol;
+    private TableColumn<Beneficio, String> selectCol;
 
     @FXML
     private TableColumn<Beneficio, String> nomeBeneficio;
@@ -177,9 +178,8 @@ public class TelaCadastroChaController {
 
     @FXML
     void initialize() throws SQLException {
-        selectCol.setCellValueFactory(new PropertyValueFactory<>("selected"));
+        selectCol.setCellValueFactory(new PropertyValueFactory<Beneficio, String>("marcado"));
         nomeBeneficio.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        selectCol.setCellFactory(CheckBoxTableCell.forTableColumn(selectCol));
         tbvBeneficio.setItems(BeneficioDAO.pesquisaTodosBeneficios2());
     }
 }

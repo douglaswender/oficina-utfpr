@@ -162,10 +162,12 @@ public class BeneficioDAO {
         List<Beneficio> retorno = new ArrayList<>();
 
         try {
+            int i = 0;
 
             while (rs.next()) {
-                Beneficio b = new Beneficio(false, rs.getInt("cod_beneficio"), rs.getString("nome_beneficio"));
+                Beneficio b = new Beneficio(rs.getInt("cod_beneficio"), rs.getString("nome_beneficio"));
                 retorno.add(b);
+                i++;
                 //observableArrayList = FXCollections.observableArrayList(new Beneficio(false, rs.getString("nome_beneficio")));
             }
 
@@ -181,7 +183,7 @@ public class BeneficioDAO {
 
     }
 
-    public static void Gravar(ObservableList<Beneficio> beneficio) throws SQLException{
+    public static void Gravar(ObservableList<Beneficio> beneficio) throws SQLException{        
         Connection con2 = new Conexao().getConnection();
         PreparedStatement stm2 = con2.prepareStatement("SELECT MAX(cod_cha) AS CONTADOR FROM CHAS");
         ResultSet rs = stm2.executeQuery();
@@ -195,18 +197,19 @@ public class BeneficioDAO {
         stm3.close();        
 
         for(int i = 0; i < beneficio.size(); i++){
-            System.out.println(beneficio.get(i));
             String cSqlExecute;
+            
+            if(beneficio.get(i).getMarcado().isSelected()){
+                Connection con = new Conexao().getConnection();
+                cSqlExecute = "INSERT INTO BENECHA(CHAVE_BENEFICIO, CHAVE_BENECHA) VALUES(?, ?)";
 
-            Connection con = new Conexao().getConnection();
-            cSqlExecute = "INSERT INTO BENECHA(CHAVE_BENEFICIO, CHAVE_BENECHA) VALUES(?, ?)";
-
-            int id      = beneficio.get(i).getId();
-            PreparedStatement stm = con.prepareStatement(cSqlExecute);
-            stm.setInt(1, id);
-            stm.setInt(2, idcha);
-            stm.execute();
-            stm.close();
+                int id      = beneficio.get(i).getId();
+                PreparedStatement stm = con.prepareStatement(cSqlExecute);
+                stm.setInt(1, id);
+                stm.setInt(2, idcha);
+                stm.execute();
+                stm.close();
+            }
         }
     }
 

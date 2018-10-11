@@ -17,20 +17,15 @@ public class Cha {
     SimpleIntegerProperty id;
     SimpleStringProperty nome;
     SimpleStringProperty descricao_cha;
-    SimpleStringProperty beneficios;
-    SimpleStringProperty ingredientes;
-    SimpleStringProperty contra_indicacao;
     SimpleStringProperty modo_preparo;
     BufferedImage imgcha;
 
-    public Cha(SimpleIntegerProperty id, SimpleStringProperty nome, SimpleStringProperty descricao_cha, SimpleStringProperty beneficios, SimpleStringProperty ingredientes, SimpleStringProperty contra_indicacao, SimpleStringProperty modo_preparo, BufferedImage imgcha){
+    public Cha(SimpleIntegerProperty id, SimpleStringProperty nome, SimpleStringProperty descricao_cha, SimpleStringProperty modo_preparo, BufferedImage imgcha){
         this.id = id;
         this.nome          = nome;
         this.descricao_cha = descricao_cha;
-        this.beneficios    = beneficios;
-        this.ingredientes  = ingredientes;
-        this.contra_indicacao = contra_indicacao;
         this.modo_preparo  = modo_preparo;
+        this.imgcha        = imgcha;
     }
 
 
@@ -64,35 +59,6 @@ public class Cha {
 
     public void setDescricao_cha(String descricao_cha) {
         this.descricao_cha = new SimpleStringProperty (descricao_cha);
-    }
-
-    public String getBeneficios() {
-        return beneficios.get();
-
-    }
-
-    public void setBeneficios(String beneficios) {
-        this.beneficios = new SimpleStringProperty (beneficios);
-    }
-
-    public String getIngredientes() {
-
-        return ingredientes.getValue();
-
-    }
-
-    public void setIngredientes(String ingredientes) {
-        this.ingredientes = new SimpleStringProperty (ingredientes);
-    }
-
-    public String getContra_indicacao() {
-
-        return contra_indicacao.getValue();
-
-    }
-
-    public void setContra_indicacao(String contra_indicacao) {
-        this.contra_indicacao = new SimpleStringProperty (contra_indicacao);
     }
 
     public String getModo_preparo() {
