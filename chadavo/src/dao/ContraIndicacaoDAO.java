@@ -14,28 +14,28 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Ingredientes;
+import model.ContraIndicacao;
 
 /**
  *
  * @author ViniciusBelloli
  */
-public class IngredientesDAO {
-    public static ObservableList<Ingredientes> pesquisaTodosIngredientes() throws SQLException {
+public class ContraIndicacaoDAO {
+    public static ObservableList<ContraIndicacao> pesquisaTodasContra() throws SQLException {
         Connection con = new Conexao().getConnection();
 
-        PreparedStatement ps = con.prepareStatement("SELECT * FROM ingredientes");
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM contra_indicacao");
 
         ResultSet rs = ps.executeQuery();
-        ObservableList<Ingredientes> observableArrayList = null;
-        List<Ingredientes> retorno = new ArrayList<>();
+        ObservableList<ContraIndicacao> observableArrayList = null;
+        List<ContraIndicacao> retorno = new ArrayList<>();
 
         try {
             int i = 0;
 
             while (rs.next()) {
-                Ingredientes ing = new Ingredientes(rs.getInt("cod_ingrediente"), rs.getString("nome_ingrediente"));
-                retorno.add(ing);
+                ContraIndicacao contra = new ContraIndicacao(rs.getInt("cod_contra"), rs.getString("nome_contra"));
+                retorno.add(contra);
                 i++;
                 //observableArrayList = FXCollections.observableArrayList(new Beneficio(false, rs.getString("nome_beneficio")));
             }
@@ -51,7 +51,8 @@ public class IngredientesDAO {
         }
     }
 
-    public static void Gravar(ObservableList<Ingredientes> ingredientes) throws SQLException{        
+
+    public static void Gravar(ObservableList<ContraIndicacao> contraIndicacao) throws SQLException{        
         Connection con2 = new Conexao().getConnection();
         PreparedStatement stm2 = con2.prepareStatement("SELECT MAX(cod_cha) AS CONTADOR FROM CHAS");
         ResultSet rs = stm2.executeQuery();
@@ -59,19 +60,19 @@ public class IngredientesDAO {
         int idcha = rs.getInt(1);
         
         Connection con3 = new Conexao().getConnection();
-        PreparedStatement stm3 = con3.prepareStatement("DELETE FROM INGRECHA WHERE CHAVE_INGRECHA = ?");
+        PreparedStatement stm3 = con3.prepareStatement("DELETE FROM CONTRACHA WHERE CHAVE_CONTRACHA = ?");
         stm3.setInt(1, idcha);
         stm3.execute();
         stm3.close();        
 
-        for(int i = 0; i < ingredientes.size(); i++){
+        for(int i = 0; i < contraIndicacao.size(); i++){
             String cSqlExecute;
             
-            if(ingredientes.get(i).getMarcado().isSelected()){
+            if(contraIndicacao.get(i).getMarcado().isSelected()){
                 Connection con = new Conexao().getConnection();
-                cSqlExecute = "INSERT INTO INGRECHA(CHAVE_INGRE, CHAVE_INGRECHA) VALUES(?, ?)";
+                cSqlExecute = "INSERT INTO CONTRACHA(CHAVE_CONTRA, CHAVE_CONTRACHA) VALUES(?, ?)";
 
-                int id      = ingredientes.get(i).getId();
+                int id      = contraIndicacao.get(i).getId();
                 PreparedStatement stm = con.prepareStatement(cSqlExecute);
                 stm.setInt(1, id);
                 stm.setInt(2, idcha);

@@ -41,7 +41,7 @@
                         <TableView id="tbvContraIndicacao" fx:id="tbvContraIndicacao" editable="true" layoutX="12.0" layoutY="223.0" prefHeight="61.0" prefWidth="557.0">
                            <columns>
                               <TableColumn id="selectColContra" fx:id="selectColContra" prefWidth="75.0" />
-                              <TableColumn id="nomeContra" fx:id="nomeContra" editable="false" prefWidth="480.0" text="Contra Indicação" />
+                              <TableColumn id="nomeContraIndicacao" fx:id="nomeContraIndicacao" editable="false" prefWidth="480.0" text="Contra Indicação" />
                            </columns>
                         </TableView>
                         <JFXTextField id="txModoPreparo" fx:id="txModoPreparo" layoutX="118.0" layoutY="309.0" prefHeight="187.0" prefWidth="454.0" />

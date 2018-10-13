@@ -31,7 +31,7 @@ import model.Cha;
 public class ChaDAO {
 
     //mudar todos esses dados para passar apenas um chá (objeto)
-    public static void Gravar(String nome, String brevedescricao, BufferedImage imgcha, Boolean lAlteracao, Integer id) throws SQLException, IOException {
+    public static void Gravar(String nome, String brevedescricao, String modo_preparo, BufferedImage imgcha, Boolean lAlteracao, Integer id) throws SQLException, IOException {
         try {
             Connection con = new Conexao().getConnection();
             String cSqlExecute;
@@ -45,7 +45,7 @@ public class ChaDAO {
             PreparedStatement stm = con.prepareStatement(cSqlExecute);
             stm.setString(1, nome);
             stm.setString(2, brevedescricao);
-            stm.setString(3, "teste");
+            stm.setString(3, modo_preparo);
 
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             ImageIO.write(imgcha, "jpg", bos );
@@ -188,7 +188,7 @@ public class ChaDAO {
 
             try {
                     Connection con = new Conexao().getConnection();
-                    PreparedStatement stm = con.prepareStatement("SELECT cod_cha, nome_cha, descricao_cha  FROM chas WHERE cod_cha = ?");
+                    PreparedStatement stm = con.prepareStatement("SELECT cod_cha, nome_cha, descricao_cha, modo_preparo  FROM chas WHERE cod_cha = ?");
                     stm.setInt(1, c.getId());
                     ResultSet rs = stm.executeQuery();
 
@@ -197,6 +197,7 @@ public class ChaDAO {
                     cha.setId(rs.getInt(1));
                     cha.setNome(rs.getString(2));
                     cha.setDescricao_cha(rs.getString(3));
+                    cha.setModo_preparo(rs.getString(4));
                     return cha;
                     
             } catch (Exception e) {

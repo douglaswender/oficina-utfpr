@@ -26,9 +26,11 @@ import javafx.scene.control.TableView;
 import model.Beneficio;
 import model.Cha;
 import dao.BeneficioDAO;
+import dao.ContraIndicacaoDAO;
 import dao.IngredientesDAO;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.ContraIndicacao;
 import model.Ingredientes;
 
 public class TelaCadastroChaController {
@@ -78,6 +80,15 @@ public class TelaCadastroChaController {
     @FXML
     private TableColumn<Ingredientes, String> nomeIngrediente;
 
+    @FXML
+    private TableView<ContraIndicacao> tbvContraIndicacao;
+
+    @FXML
+    private TableColumn<ContraIndicacao, String> selectColContra;
+
+    @FXML
+    private TableColumn<ContraIndicacao, String> nomeContraIndicacao;
+
     private Boolean lAlteracao = false;
     private Integer id = 0;
 
@@ -92,13 +103,17 @@ public class TelaCadastroChaController {
 
         imgcha = imgCha.getImage();
         BufferedImage imageBuffered = SwingFXUtils.fromFXImage(imgcha, null);
-        ChaDAO.Gravar(nome, brevedescricao, imageBuffered, lAlteracao, id);
+        ChaDAO.Gravar(nome, brevedescricao, modo_preparo, imageBuffered, lAlteracao, id);
         //Grava Beneficios
         ObservableList<Beneficio> items = tbvBeneficio.getItems();
         BeneficioDAO.Gravar(items);
         //Grava Ingredientes
         ObservableList<Ingredientes> ingredientes = tbvIngredientes.getItems();
         IngredientesDAO.Gravar(ingredientes);
+        //Grava Contra indicação
+        ObservableList<ContraIndicacao> contraIndicaco = tbvContraIndicacao.getItems();
+        ContraIndicacaoDAO.Gravar(contraIndicaco);
+        limpaCampos();
     }
 
     @FXML
@@ -143,14 +158,21 @@ public class TelaCadastroChaController {
     }
 
     @FXML
-    void btnBackAction(ActionEvent event) {
+    void btnBackAction(ActionEvent event) throws SQLException {
+        limpaCampos();
+        Main.changeScene("principaladmin");
+    }
+
+    void limpaCampos() throws SQLException{
         txNome.setText("");
         txDescricao.setText("");
         txModoPreparo.setText("");
         txPesquisa.setText("");
         Image img = new Image("/img/sem_foto.png");
         imgCha.setImage(img);
-        Main.changeScene("principaladmin");
+        tbvBeneficio.setItems(BeneficioDAO.pesquisaTodosBeneficios2());
+        tbvIngredientes.setItems(IngredientesDAO.pesquisaTodosIngredientes());
+        tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra());
     }
 
     @FXML
@@ -163,6 +185,7 @@ public class TelaCadastroChaController {
             imgCha.setImage(img);
             txNome.setText(cha.getNome());
             txDescricao.setText(cha.getDescricao_cha());
+            txModoPreparo.setText(cha.getModo_preparo());
 //            txIngredientes.setText(cha.getIngredientes());
 //            txContraIndicacao.setText(cha.getContra_indicacao());
 //            txModoPreparo.setText(cha.getModo_preparo());
@@ -181,5 +204,10 @@ public class TelaCadastroChaController {
         selectColIngre.setCellValueFactory(new PropertyValueFactory<Ingredientes, String>("marcado"));
         nomeIngrediente.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tbvIngredientes.setItems(IngredientesDAO.pesquisaTodosIngredientes());
+        //Busca todos as contra indicações
+        selectColContra.setCellValueFactory(new PropertyValueFactory<ContraIndicacao, String>("marcado"));
+        nomeContraIndicacao.setCellValueFactory(new PropertyValueFactory<ContraIndicacao, String>("nome"));
+        tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra());
+        
     }
 }
