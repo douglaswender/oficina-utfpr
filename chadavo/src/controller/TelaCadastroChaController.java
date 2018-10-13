@@ -2,25 +2,18 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import model.Usuario;
 import java.awt.image.BufferedImage;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.input.MouseEvent;
 import dao.ChaDAO;
 import java.io.File;
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
@@ -28,21 +21,15 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import com.jfoenix.controls.JFXCheckBox;
-import java.util.ArrayList;
-import java.util.List;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javax.swing.BoxLayout;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import model.Beneficio;
 import model.Cha;
 import dao.BeneficioDAO;
+import dao.IngredientesDAO;
 import javafx.collections.ObservableList;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.Ingredientes;
 
 public class TelaCadastroChaController {
 
@@ -54,9 +41,6 @@ public class TelaCadastroChaController {
 
     @FXML
     private JFXTextField txDescricao;
-    
-    @FXML
-    private JFXCheckBox ckBeneficio;
 
     @FXML
     private JFXTextField txModoPreparo;
@@ -75,8 +59,7 @@ public class TelaCadastroChaController {
 
     @FXML
     private JFXButton btImagem;
-
-
+    
     @FXML
     private TableView<Beneficio> tbvBeneficio;
 
@@ -85,6 +68,15 @@ public class TelaCadastroChaController {
 
     @FXML
     private TableColumn<Beneficio, String> nomeBeneficio;
+
+    @FXML
+    private TableView<Ingredientes> tbvIngredientes;
+    
+    @FXML
+    private TableColumn<Ingredientes, String> selectColIngre;
+    
+    @FXML
+    private TableColumn<Ingredientes, String> nomeIngrediente;
 
     private Boolean lAlteracao = false;
     private Integer id = 0;
@@ -101,9 +93,12 @@ public class TelaCadastroChaController {
         imgcha = imgCha.getImage();
         BufferedImage imageBuffered = SwingFXUtils.fromFXImage(imgcha, null);
         ChaDAO.Gravar(nome, brevedescricao, imageBuffered, lAlteracao, id);
+        //Grava Beneficios
         ObservableList<Beneficio> items = tbvBeneficio.getItems();
         BeneficioDAO.Gravar(items);
-
+        //Grava Ingredientes
+        ObservableList<Ingredientes> ingredientes = tbvIngredientes.getItems();
+        IngredientesDAO.Gravar(ingredientes);
     }
 
     @FXML
@@ -178,8 +173,13 @@ public class TelaCadastroChaController {
 
     @FXML
     void initialize() throws SQLException {
+        //Busca todos os Beneficios
         selectCol.setCellValueFactory(new PropertyValueFactory<Beneficio, String>("marcado"));
         nomeBeneficio.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tbvBeneficio.setItems(BeneficioDAO.pesquisaTodosBeneficios2());
+        //Busca todos os Ingredientess
+        selectColIngre.setCellValueFactory(new PropertyValueFactory<Ingredientes, String>("marcado"));
+        nomeIngrediente.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        tbvIngredientes.setItems(IngredientesDAO.pesquisaTodosIngredientes());
     }
 }
