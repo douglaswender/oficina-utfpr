@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.CheckBox;
 import model.ContraIndicacao;
 
 /**
@@ -21,10 +22,22 @@ import model.ContraIndicacao;
  * @author ViniciusBelloli
  */
 public class ContraIndicacaoDAO {
-    public static ObservableList<ContraIndicacao> pesquisaTodasContra() throws SQLException {
+    public static ObservableList<ContraIndicacao> pesquisaTodasContra(Boolean lAlteracao, int CodigoCha) throws SQLException {
         Connection con = new Conexao().getConnection();
 
-        PreparedStatement ps = con.prepareStatement("SELECT * FROM contra_indicacao");
+        String cSQL = "";
+        
+        if (lAlteracao){
+            cSQL = "select con.*, coalesce((select true from contracha where chave_contra = con.cod_contra and chave_contracha = ?), false) as marcado from contra_indicacao as con left join contracha as cont on(cont.chave_contra = con.cod_contra) order by cod_contra";
+        }else{
+            cSQL = "SELECT * FROM contra_indicacao order by cod_contra";
+        }
+        
+        PreparedStatement ps = con.prepareStatement(cSQL);
+
+        if (lAlteracao){
+            ps.setInt(1, CodigoCha);
+        }
 
         ResultSet rs = ps.executeQuery();
         ObservableList<ContraIndicacao> observableArrayList = null;
@@ -36,6 +49,13 @@ public class ContraIndicacaoDAO {
             while (rs.next()) {
                 ContraIndicacao contra = new ContraIndicacao(rs.getInt("cod_contra"), rs.getString("nome_contra"));
                 retorno.add(contra);
+
+                if (lAlteracao){
+                    CheckBox c = new CheckBox();
+                    c.selectedProperty().set(rs.getBoolean("marcado"));
+                    contra.setMarcado(c);
+                }
+                
                 i++;
                 //observableArrayList = FXCollections.observableArrayList(new Beneficio(false, rs.getString("nome_beneficio")));
             }

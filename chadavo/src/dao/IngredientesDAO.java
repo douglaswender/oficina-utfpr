@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.CheckBox;
 import model.Ingredientes;
 
 /**
@@ -21,11 +22,22 @@ import model.Ingredientes;
  * @author ViniciusBelloli
  */
 public class IngredientesDAO {
-    public static ObservableList<Ingredientes> pesquisaTodosIngredientes() throws SQLException {
+    public static ObservableList<Ingredientes> pesquisaTodosIngredientes(Boolean lAlteracao, int CodigoCha) throws SQLException {
         Connection con = new Conexao().getConnection();
 
-        PreparedStatement ps = con.prepareStatement("SELECT * FROM ingredientes");
+        String cSQL = "";
+        if (lAlteracao){
+            cSQL = "select ing.*, coalesce((select true from ingrecha where chave_ingre = ing.cod_ingrediente and chave_ingrecha = ?), false) as marcado from ingredientes as ing left join ingrecha as ingr on(ingr.chave_ingre = ing.cod_ingrediente) order by cod_ingrediente";
+        }else{
+            cSQL = "SELECT * FROM ingredientes order by cod_ingrediente";
+        }
 
+        PreparedStatement ps = con.prepareStatement(cSQL);
+
+        if (lAlteracao){
+            ps.setInt(1, CodigoCha);
+        }
+        
         ResultSet rs = ps.executeQuery();
         ObservableList<Ingredientes> observableArrayList = null;
         List<Ingredientes> retorno = new ArrayList<>();
@@ -36,6 +48,13 @@ public class IngredientesDAO {
             while (rs.next()) {
                 Ingredientes ing = new Ingredientes(rs.getInt("cod_ingrediente"), rs.getString("nome_ingrediente"));
                 retorno.add(ing);
+
+                if (lAlteracao){
+                    CheckBox c = new CheckBox();
+                    c.selectedProperty().set(rs.getBoolean("marcado"));
+                    ing.setMarcado(c);
+                }
+
                 i++;
                 //observableArrayList = FXCollections.observableArrayList(new Beneficio(false, rs.getString("nome_beneficio")));
             }

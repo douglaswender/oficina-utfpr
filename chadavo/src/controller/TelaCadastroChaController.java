@@ -170,13 +170,13 @@ public class TelaCadastroChaController {
         txPesquisa.setText("");
         Image img = new Image("/img/sem_foto.png");
         imgCha.setImage(img);
-        tbvBeneficio.setItems(BeneficioDAO.pesquisaTodosBeneficios2());
-        tbvIngredientes.setItems(IngredientesDAO.pesquisaTodosIngredientes());
-        tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra());
+        tbvBeneficio.setItems(BeneficioDAO.pesquisaTodosBeneficios2(false, 0));
+        tbvIngredientes.setItems(IngredientesDAO.pesquisaTodosIngredientes(false, 0));
+        tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(false, 0));
     }
 
     @FXML
-    void onEnterPress(KeyEvent event) {
+    void onEnterPress(KeyEvent event) throws SQLException {
         if (event.getCode() == KeyCode.ENTER) {
             Cha c = new Cha();
             c.setId(Integer.parseInt(txPesquisa.getText()));
@@ -186,9 +186,10 @@ public class TelaCadastroChaController {
             txNome.setText(cha.getNome());
             txDescricao.setText(cha.getDescricao_cha());
             txModoPreparo.setText(cha.getModo_preparo());
-//            txIngredientes.setText(cha.getIngredientes());
-//            txContraIndicacao.setText(cha.getContra_indicacao());
-//            txModoPreparo.setText(cha.getModo_preparo());
+            
+            tbvBeneficio.setItems(BeneficioDAO.pesquisaTodosBeneficios2(true, c.getId()));
+            tbvIngredientes.setItems(IngredientesDAO.pesquisaTodosIngredientes(true, c.getId()));
+            tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(true, c.getId()));
             lAlteracao = true;
             id = cha.getId();
         }
@@ -199,15 +200,15 @@ public class TelaCadastroChaController {
         //Busca todos os Beneficios
         selectCol.setCellValueFactory(new PropertyValueFactory<Beneficio, String>("marcado"));
         nomeBeneficio.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        tbvBeneficio.setItems(BeneficioDAO.pesquisaTodosBeneficios2());
+        tbvBeneficio.setItems(BeneficioDAO.pesquisaTodosBeneficios2(false, 0));
         //Busca todos os Ingredientess
         selectColIngre.setCellValueFactory(new PropertyValueFactory<Ingredientes, String>("marcado"));
         nomeIngrediente.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        tbvIngredientes.setItems(IngredientesDAO.pesquisaTodosIngredientes());
+        tbvIngredientes.setItems(IngredientesDAO.pesquisaTodosIngredientes(false, 0));
         //Busca todos as contra indicações
         selectColContra.setCellValueFactory(new PropertyValueFactory<ContraIndicacao, String>("marcado"));
         nomeContraIndicacao.setCellValueFactory(new PropertyValueFactory<ContraIndicacao, String>("nome"));
-        tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra());
+        tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(false, 0));
         
     }
 }

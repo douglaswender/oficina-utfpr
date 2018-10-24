@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.CheckBox;
 import model.Beneficio;
 import model.Cha;
 /**
@@ -150,12 +151,22 @@ public class BeneficioDAO {
 
     }
 
-    public static ObservableList<Beneficio> pesquisaTodosBeneficios2() throws SQLException {
+    public static ObservableList<Beneficio> pesquisaTodosBeneficios2(Boolean lAlteracao, int CodigoCha) throws SQLException {
         
 
         Connection con = new Conexao().getConnection();
+        String cSQL = "";
+        if (lAlteracao){
+            cSQL = "select ben.*, coalesce((select true from benecha where chave_beneficio = ben.cod_beneficio and chave_benecha = ?), false) as marcado from beneficios as ben left join benecha as bene on(bene.chave_beneficio = ben.cod_beneficio) order by cod_beneficio";
+        }else{
+            cSQL = "SELECT * FROM beneficios order by cod_beneficio";
+        }
 
-        PreparedStatement ps = con.prepareStatement("SELECT * FROM beneficios");
+        PreparedStatement ps = con.prepareStatement(cSQL);
+        
+        if (lAlteracao){
+            ps.setInt(1, CodigoCha);
+        }
 
         ResultSet rs = ps.executeQuery();
         ObservableList<Beneficio> observableArrayList = null;
@@ -167,6 +178,13 @@ public class BeneficioDAO {
             while (rs.next()) {
                 Beneficio b = new Beneficio(rs.getInt("cod_beneficio"), rs.getString("nome_beneficio"));
                 retorno.add(b);
+
+                if (lAlteracao){
+                    CheckBox c = new CheckBox();
+                    c.selectedProperty().set(rs.getBoolean("marcado"));
+                    b.setMarcado(c);
+                }
+                
                 i++;
                 //observableArrayList = FXCollections.observableArrayList(new Beneficio(false, rs.getString("nome_beneficio")));
             }
