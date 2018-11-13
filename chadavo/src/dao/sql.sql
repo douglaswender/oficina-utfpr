@@ -33,7 +33,7 @@ ALTER TABLE public.chas
 
 create database ChaDaVo
 
-create table Chas (Cod_cha serial primary key, nome_cha varchar(60) unique not null, descricao_cha text not null, modo_preparo text not null);
+create table Chas (Cod_cha serial primary key, nome_cha varchar(60) unique not null, descricao_cha text not null, modo_preparo text not null, imgcha bytea);
 create table Beneficios (Cod_beneficio serial primary key, nome_beneficio varchar(60) not null);
 create table Contra_Indicacao (Cod_Contra serial primary key, nome_contra varchar(60) not null, descricao_contra text not null);
 create table Ingredientes (Cod_ingrediente serial primary key, nome_ingrediente varchar(60) not null);

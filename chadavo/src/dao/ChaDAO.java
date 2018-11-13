@@ -31,21 +31,21 @@ import model.Cha;
 public class ChaDAO {
 
     //mudar todos esses dados para passar apenas um chá (objeto)
-    public static void Gravar(String nome, String brevedescricao, String beneficios, String ingredientes, String contra_indicacao, String modo_preparo, BufferedImage imgcha, Boolean lAlteracao, Integer id) throws SQLException, IOException {
+    public static void Gravar(String nome, String brevedescricao, String modo_preparo, BufferedImage imgcha, Boolean lAlteracao, Integer id) throws SQLException, IOException {
         try {
             Connection con = new Conexao().getConnection();
             String cSqlExecute;
 
             if (lAlteracao) {
-                cSqlExecute = "UPDATE CHAS SET NOME_CHA = ?, DESCRICAO_CHA = ?, BENEFICIOS = ?, IMGCHA = ? WHERE COD_CHA = ?";
+                cSqlExecute = "UPDATE CHAS SET NOME_CHA = ?, DESCRICAO_CHA = ?, MODO_PREPARO = ?, IMGCHA = ? WHERE COD_CHA = ?";
             }else{
-                cSqlExecute = "INSERT INTO CHAS(NOME_CHA, DESCRICAO_CHA, BENEFICIOS, IMGCHA) VALUES(?, ?, ?, ?)";
+                cSqlExecute = "INSERT INTO CHAS(NOME_CHA, DESCRICAO_CHA, MODO_PREPARO, IMGCHA) VALUES(?, ?, ?, ?)";
             }
 
             PreparedStatement stm = con.prepareStatement(cSqlExecute);
             stm.setString(1, nome);
             stm.setString(2, brevedescricao);
-            stm.setString(3, beneficios);
+            stm.setString(3, modo_preparo);
 
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             ImageIO.write(imgcha, "jpg", bos );
@@ -72,7 +72,7 @@ public class ChaDAO {
     public List<Cha> Pesquisar(String pesquisa) throws IOException {
         try {
             Connection con = new Conexao().getConnection();
-            PreparedStatement stm = con.prepareStatement("SELECT cod_cha, nome_cha, beneficios FROM chas WHERE nome_cha ~* ?");
+            PreparedStatement stm = con.prepareStatement("SELECT cod_cha, nome_cha, descricao_cha FROM chas WHERE nome_cha ~* ?");
             stm.setString(1, pesquisa);
 
             ResultSet rs = stm.executeQuery();
@@ -83,7 +83,7 @@ public class ChaDAO {
             while (rs.next()) {
                 int id = rs.getInt("cod_cha");
                 String nome = rs.getString("nome_cha");
-                String detalhes = rs.getString("beneficios");
+                String detalhes = rs.getString("descricao_cha");
                 //System.out.println(nome);
                 //System.out.println(detalhes);
                 //Cha c = new ChaTable(nome, detalhes);
@@ -118,14 +118,14 @@ public class ChaDAO {
             Connection con = new Conexao().getConnection();
 
             //trocar detalhes por beneficios
-            PreparedStatement stm = con.prepareStatement("SELECT cod_cha, nome_cha, beneficios FROM chas");
+            PreparedStatement stm = con.prepareStatement("SELECT cod_cha, nome_cha, descricao_cha FROM chas");
 
             ResultSet rs = stm.executeQuery();
 
             while (rs.next()) {
                 int cod = rs.getInt("cod_cha");
                 String nome = rs.getString("nome_cha");
-                String detalhes = rs.getString("beneficios");
+                String detalhes = rs.getString("descricao_cha");
                 System.out.println(nome);
                 System.out.println(detalhes);
                 //Cha c = new ChaTable(nome, detalhes);
@@ -188,7 +188,7 @@ public class ChaDAO {
 
             try {
                     Connection con = new Conexao().getConnection();
-                    PreparedStatement stm = con.prepareStatement("SELECT cod_cha, nome_cha, descricao_cha, beneficios  FROM chas WHERE cod_cha = ?");
+                    PreparedStatement stm = con.prepareStatement("SELECT cod_cha, nome_cha, descricao_cha, modo_preparo  FROM chas WHERE cod_cha = ?");
                     stm.setInt(1, c.getId());
                     ResultSet rs = stm.executeQuery();
 
@@ -197,7 +197,7 @@ public class ChaDAO {
                     cha.setId(rs.getInt(1));
                     cha.setNome(rs.getString(2));
                     cha.setDescricao_cha(rs.getString(3));
-                    cha.setBeneficios(rs.getString(4));
+                    cha.setModo_preparo(rs.getString(4));
                     return cha;
                     
             } catch (Exception e) {
