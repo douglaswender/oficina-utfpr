@@ -11,13 +11,34 @@ import javafx.scene.control.CheckBox;
 
 /**
  *
- * @author dougl
+ * @author ViniciusBelloli
  */
-public class Beneficio {
-    
+public class Ingredientes {
     private SimpleIntegerProperty id;
     private SimpleStringProperty nome;
     private CheckBox marcado;
+
+    public Ingredientes(int id, String nome) {
+        this.id      = new SimpleIntegerProperty (id);
+        this.nome    = new SimpleStringProperty (nome);
+        this.marcado = new CheckBox();
+    }
+
+    public int getId() {
+        return id.get();
+    }
+
+    public void setId(int id) {
+        this.id = new SimpleIntegerProperty (id);
+    }
+
+    public String getNome() {
+        return nome.get();
+    }
+
+    public void setNome(String nome) {
+        this.nome = new SimpleStringProperty (nome);
+    }
 
     public CheckBox getMarcado() {
         return marcado;
@@ -26,41 +47,5 @@ public class Beneficio {
     public void setMarcado(CheckBox marcado) {
         this.marcado = marcado;
     }
-
-    public Beneficio() {
-    }
-
-    public Beneficio(int id, String nome) {
-        this.id = new SimpleIntegerProperty(id);
-        this.nome = new SimpleStringProperty(nome);
-        this.marcado = new CheckBox();
-    }
-
-    public Beneficio(String nome) {
-        this.nome = new SimpleStringProperty(nome);
-    }
-
-    public int getId() {
-        return id.get();
-    }
-
-    public void setId(int id) {
-        this.id = new SimpleIntegerProperty(id);
-    }
-
-    public String getNome() {
-        return nome.get();
-    }
-
-    public void setNome(String nome) {
-        this.nome = new SimpleStringProperty(nome);
-    }
-    
-    @Override
-    public String toString(){
-        return this.getNome();
-    }
-    
-    
     
 }

@@ -5,49 +5,68 @@
  */
 package model;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.CheckBox;
+
 /**
  *
  * @author dougl
  */
 public class ContraIndicacao {
     
-    private int id;
-    private String nome;
-    private String descricao;
+    private SimpleIntegerProperty id;
+    private SimpleStringProperty nome;
+    private SimpleStringProperty descricao;
+    private CheckBox marcado;
 
     public ContraIndicacao(int id, String nome, String descricao) {
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
+        this.id        = new SimpleIntegerProperty (id);
+        this.nome      = new SimpleStringProperty (nome);
+        this.descricao = new SimpleStringProperty (descricao);
+    }
+
+    public ContraIndicacao(int id, String nome){
+        this.id      = new SimpleIntegerProperty (id);
+        this.nome    = new SimpleStringProperty (nome);
+        this.marcado = new CheckBox();
+    }
+
+    public CheckBox getMarcado() {
+        return marcado;
+    }
+
+    public void setMarcado(CheckBox marcado) {
+        this.marcado = marcado;
     }
 
     public ContraIndicacao(String nome, String descricao) {
-        this.nome = nome;
-        this.descricao = descricao;
+        this.nome      = new SimpleStringProperty (nome);
+        this.descricao = new SimpleStringProperty (descricao);
     }
 
     public int getId() {
-        return id;
+        return id.get();
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id = new SimpleIntegerProperty (id);
     }
 
     public String getNome() {
-        return nome;
+        return nome.get();
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = new SimpleStringProperty (nome);
     }
 
     public String getDescricao() {
-        return descricao;
+        return descricao.get();
     }
 
     public void setDescricao(String descricao) {
-        this.descricao = descricao;
+        this.descricao = new SimpleStringProperty (descricao);
     }
     
     

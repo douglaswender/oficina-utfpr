@@ -6,14 +6,15 @@
 package dao;
 
 import controller.Conexao;
-import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.control.Label;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.CheckBox;
 import model.Beneficio;
 import model.Cha;
 /**
@@ -124,7 +125,7 @@ public class BeneficioDAO {
         return retorno;
     }
 
-    public List<Beneficio> pesquisaTodosBeneficios() throws SQLException {
+    public static List<Beneficio> pesquisaTodosBeneficios() throws SQLException {
         List<Beneficio> retorno = new ArrayList<>();
 
         Connection con = new Conexao().getConnection();
@@ -148,6 +149,86 @@ public class BeneficioDAO {
             ps.close();
         }
 
+    }
+
+    public static ObservableList<Beneficio> pesquisaTodosBeneficios2(Boolean lAlteracao, int CodigoCha) throws SQLException {
+        
+
+        Connection con = new Conexao().getConnection();
+        String cSQL = "";
+        if (lAlteracao){
+            cSQL = "select ben.*, coalesce((select true from benecha where chave_beneficio = ben.cod_beneficio and chave_benecha = ?), false) as marcado from beneficios as ben left join benecha as bene on(bene.chave_beneficio = ben.cod_beneficio) order by cod_beneficio";
+        }else{
+            cSQL = "SELECT * FROM beneficios order by cod_beneficio";
+        }
+
+        PreparedStatement ps = con.prepareStatement(cSQL);
+        
+        if (lAlteracao){
+            ps.setInt(1, CodigoCha);
+        }
+
+        ResultSet rs = ps.executeQuery();
+        ObservableList<Beneficio> observableArrayList = null;
+        List<Beneficio> retorno = new ArrayList<>();
+
+        try {
+            int i = 0;
+
+            while (rs.next()) {
+                Beneficio b = new Beneficio(rs.getInt("cod_beneficio"), rs.getString("nome_beneficio"));
+                retorno.add(b);
+
+                if (lAlteracao){
+                    CheckBox c = new CheckBox();
+                    c.selectedProperty().set(rs.getBoolean("marcado"));
+                    b.setMarcado(c);
+                }
+                
+                i++;
+                //observableArrayList = FXCollections.observableArrayList(new Beneficio(false, rs.getString("nome_beneficio")));
+            }
+
+            observableArrayList = FXCollections.observableArrayList(retorno);
+
+            return observableArrayList;
+        } catch (SQLException e) {
+            System.out.println("ERRO: #" + e);
+            return null;
+        } finally {
+            ps.close();
+        }
+
+    }
+
+    public static void Gravar(ObservableList<Beneficio> beneficio) throws SQLException{        
+        Connection con2 = new Conexao().getConnection();
+        PreparedStatement stm2 = con2.prepareStatement("SELECT MAX(cod_cha) AS CONTADOR FROM CHAS");
+        ResultSet rs = stm2.executeQuery();
+        rs.next();
+        int idcha = rs.getInt(1);
+        
+        Connection con3 = new Conexao().getConnection();
+        PreparedStatement stm3 = con3.prepareStatement("DELETE FROM BENECHA WHERE CHAVE_BENECHA = ?");
+        stm3.setInt(1, idcha);
+        stm3.execute();
+        stm3.close();        
+
+        for(int i = 0; i < beneficio.size(); i++){
+            String cSqlExecute;
+            
+            if(beneficio.get(i).getMarcado().isSelected()){
+                Connection con = new Conexao().getConnection();
+                cSqlExecute = "INSERT INTO BENECHA(CHAVE_BENEFICIO, CHAVE_BENECHA) VALUES(?, ?)";
+
+                int id      = beneficio.get(i).getId();
+                PreparedStatement stm = con.prepareStatement(cSqlExecute);
+                stm.setInt(1, id);
+                stm.setInt(2, idcha);
+                stm.execute();
+                stm.close();
+            }
+        }
     }
 
 }
