@@ -1,10 +1,12 @@
 package controller;
 
+import chadavo.Main;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import dao.BeneficioDAO;
 import dao.ChaDAO;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -13,21 +15,37 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import model.Beneficio;
 import model.Cha;
+import model.Usuario;
 
 public class TelaPrincipalAdminController implements Initializable {
+    
+    private Usuario user;
 
+    public TelaPrincipalAdminController(Usuario user) {
+        this.user = user;
+    }
+
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
+
+    @FXML
+    private AnchorPane anchorpane;
+    
     @FXML
     private JFXTextField txPesquisa;
 
@@ -94,8 +112,15 @@ public class TelaPrincipalAdminController implements Initializable {
     }
 
     @FXML
-    void btnSairAction(ActionEvent event) {
-        Main.changeScene("login");
+    void btnSairAction(ActionEvent event) throws IOException {
+        
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telalogin.fxml"));
+        // Definindo quem é o controller desse 'fxml':
+        fxmlloader.setController(new TelaLoginController());
+
+        AnchorPane a = (AnchorPane) fxmlloader.load();
+
+        anchorpane.getChildren().setAll(a);
     }
 
     @FXML

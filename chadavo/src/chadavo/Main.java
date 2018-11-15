@@ -1,4 +1,4 @@
-package controller;
+package chadavo;
 
 import java.util.ArrayList;
 import javafx.application.Application;
@@ -38,8 +38,8 @@ public class Main extends Application {
         Parent fxmlInicio = FXMLLoader.load(getClass().getResource("/view/telainicio.fxml"));
         mainScene = new Scene(fxmlInicio, 1200, 700);
 
-        Parent fxmlLogin = FXMLLoader.load(getClass().getResource("/view/telalogin.fxml"));
-        loginScene = new Scene(fxmlLogin, 1200, 700);
+        //Parent fxmlLogin = FXMLLoader.load(getClass().getResource("/view/telalogin.fxml"));
+        //loginScene = new Scene(fxmlLogin, 1200, 700);
 
         Parent fxmlCadastroCha = FXMLLoader.load(getClass().getResource("/view/telacadastrocha.fxml"));
         cadastroChaScene = new Scene(fxmlCadastroCha, 1200, 700);
@@ -56,13 +56,23 @@ public class Main extends Application {
         Parent fxmlCadastroBeneficio = FXMLLoader.load(getClass().getResource("/view/telacadastrabeneficio.fxml"));
         cadastroBeneficio = new Scene(fxmlCadastroBeneficio);
         
-        Parent fxmlPrincipalAdmin = FXMLLoader.load(getClass().getResource("/view/telaprincipaladmin.fxml"));
-        principalAdminScene = new Scene(fxmlPrincipalAdmin);
+        //Parent fxmlPrincipalAdmin = FXMLLoader.load(getClass().getResource("/view/telaprincipaladmin.fxml"));
+        //principalAdminScene = new Scene(fxmlPrincipalAdmin);
         
         primaryStage.setScene(mainScene);
 
         primaryStage.show();
     }
+
+    public static Stage getStage() {
+        return stage;
+    }
+
+    public static void setStage(Stage stage) {
+        Main.stage = stage;
+    }
+    
+    
 
     public static void changeScene(String scene, Object data) {
         switch (scene) {

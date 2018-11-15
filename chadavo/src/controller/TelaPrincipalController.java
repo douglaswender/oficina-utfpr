@@ -5,6 +5,7 @@
  */
 package controller;
 
+import chadavo.Main;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import dao.BeneficioDAO;
