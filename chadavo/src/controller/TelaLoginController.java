@@ -60,8 +60,6 @@ public class TelaLoginController implements Initializable {
     public TelaLoginController() {
     }
 
-    
-
     @FXML
     protected void btnEntrarAction(ActionEvent e) throws SQLException, IOException {
         realizarLogin();
@@ -118,23 +116,27 @@ public class TelaLoginController implements Initializable {
             }, 5000, 5000);
             //System.out.println("Usuário ou senha incorretos!");
         } else {
+            txLogin.setText(null);
+            txSenha.setText(null);
+            txLogin.requestFocus();
             if ("admin".equals(login)) {
-                txLogin.setText(null);
-                txSenha.setText(null);
-                txLogin.requestFocus();
-                
+
                 FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telaprincipaladmin.fxml"));
                 // Definindo quem é o controller desse 'fxml':
-                fxmlloader.setController(new TelaPrincipalAdminController(u));
+                fxmlloader.setController(new TelaPrincipalAdminController(retorno));
 
                 AnchorPane a = (AnchorPane) fxmlloader.load();
 
                 anchorpane.getChildren().setAll(a);
             } else {
-                txLogin.setText(null);
-                txSenha.setText(null);
-                txLogin.requestFocus();
-                Main.changeScene("principal", retorno);
+
+                FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telaprincipal.fxml"));
+                // Definindo quem é o controller desse 'fxml':
+                fxmlloader.setController(new TelaPrincipalController(retorno));
+
+                AnchorPane a = (AnchorPane) fxmlloader.load();
+                
+                anchorpane.getChildren().setAll(a);
             }
 
             //System.out.println("ChangeScene");

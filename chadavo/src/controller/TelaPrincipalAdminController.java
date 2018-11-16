@@ -176,6 +176,7 @@ public class TelaPrincipalAdminController implements Initializable {
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //System.out.println("Olá: "+user.getLoginUsuario());
         try {
             initListBeneficio();
             initListCha();

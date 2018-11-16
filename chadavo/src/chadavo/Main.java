@@ -50,8 +50,8 @@ public class Main extends Application {
         Parent fxmlRecuperarSenha = FXMLLoader.load(getClass().getResource("/view/telaesqueceusenha.fxml"));
         recuperarSenhaScene = new Scene(fxmlRecuperarSenha);
 
-        Parent fxmlPrincipal = FXMLLoader.load(getClass().getResource("/view/telaprincipal.fxml"));
-        principalScene = new Scene(fxmlPrincipal);
+        //Parent fxmlPrincipal = FXMLLoader.load(getClass().getResource("/view/telaprincipal.fxml"));
+        //principalScene = new Scene(fxmlPrincipal);
 
         Parent fxmlCadastroBeneficio = FXMLLoader.load(getClass().getResource("/view/telacadastrabeneficio.fxml"));
         cadastroBeneficio = new Scene(fxmlCadastroBeneficio);

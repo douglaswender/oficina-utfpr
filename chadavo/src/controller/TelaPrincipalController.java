@@ -20,7 +20,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -28,6 +31,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.Beneficio;
 import model.Cha;
 import model.Usuario;
@@ -39,7 +44,23 @@ import model.Usuario;
  */
 public class TelaPrincipalController implements Initializable {
 
-    
+    private Usuario user;
+
+    public TelaPrincipalController(Usuario user) {
+        this.user = user;
+    }
+
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
+
+    @FXML
+    private AnchorPane anchorpane;
+
     @FXML
     private Label lbTexto;
 
@@ -66,13 +87,41 @@ public class TelaPrincipalController implements Initializable {
     }
 
     @FXML
+    void abreCha(MouseEvent event) throws IOException {
+        Cha c = tabela.getSelectionModel().getSelectedItem();
+        //System.out.println(c.getId());
+        trocaTela(c);
+    }
+
+    public void trocaTela(Cha c) throws IOException {
+        
+        System.out.println(c.getDescricao_cha());
+        Stage stage = new Stage();
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telainfocha.fxml"));
+        
+        fxmlloader.setController(new TelaInfoCha(c));
+
+        Parent tela = fxmlloader.load();
+        
+        stage.setScene(new Scene(tela));
+        
+        stage.show();
+    }
+
+    @FXML
     void loadData(ActionEvent event) {
 
     }
 
     @FXML
-    void btnSairAction(ActionEvent event) {
-        Main.changeScene("login");
+    void btnSairAction(ActionEvent event) throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telalogin.fxml"));
+        // Definindo quem é o controller desse 'fxml':
+        fxmlloader.setController(new TelaLoginController());
+
+        AnchorPane a = (AnchorPane) fxmlloader.load();
+
+        anchorpane.getChildren().setAll(a);
     }
 
     @FXML
@@ -100,13 +149,13 @@ public class TelaPrincipalController implements Initializable {
         tabela.setItems(chas);
 
     }
-    
-    void pesquisarPorBeneficio(Beneficio b) throws SQLException{
-        
+
+    void pesquisarPorBeneficio(Beneficio b) throws SQLException {
+
         BeneficioDAO dao = new BeneficioDAO();
-        
+
         ObservableList<Cha> chas = FXCollections.observableArrayList(dao.pesquisaChaPorBeneficio(b));
-        
+
         tabela.setItems(chas);
     }
 
@@ -115,7 +164,6 @@ public class TelaPrincipalController implements Initializable {
         BeneficioDAO dao = new BeneficioDAO();
 
         ObservableList<Beneficio> list = FXCollections.observableArrayList(dao.pesquisaTodosBeneficios());
-        
 
         listOpc1.getItems().addAll(list);
 
@@ -157,16 +205,7 @@ public class TelaPrincipalController implements Initializable {
         // final TreeItem<Cha> root = new RecursiveTreeItem<Cha>(chas, RecursiveTreeObject::getChildren);
         //Trazendo dados do banco para primeira carregada dos chás
         //AQUI TERÁ QUE TRAZER INFORMAÇÕES DO BANCO, "CATEGORIAS" CREIO EU
-        Main.addOnChangeScreenListener(new Main.OnChangeScreen() {
-            @Override
-            public void onScreenChanged(String newScreen, Object Data) {
-                Usuario usr = (Usuario) Data;
-                if (newScreen.equals("principal")) {
-                    lbTexto.setText("Olá " + usr.getNomeUsuario() + ", está sentindo alguma coisa? Está a procura de algum chá? Digite aê...");
-                    //System.out.println("estou na tela cadastro e os dados são: " + usr.getLoginUsuario());
-                }
-            }
-        });
+        lbTexto.setText("Olá " + user.getNomeUsuario() + ", está sentindo alguma coisa? Está a procura de algum chá? Digite aê...");
         // TODO
     }
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="482.0" prefWidth="874.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="lblNomeCha" layoutX="28.0" layoutY="35.0" text="Nome do chá">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDescCha" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="28.0" layoutY="83.0" prefHeight="99.0" prefWidth="423.0" text="Descrição do cháaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" wrapText="true" />
+      <Pane fx:id="pane" layoutX="28.0" layoutY="182.0" prefHeight="284.0" prefWidth="423.0">
+         <children>
+            <Label fx:id="lblBeneCha" prefHeight="28.0" prefWidth="119.0" text="Benefícios:" />
+            <Label fx:id="lblIngredientes" layoutY="146.0" prefHeight="28.0" prefWidth="119.0" text="Ingredientes:" />
+            <ListView fx:id="listbeneficios" layoutX="121.0" prefHeight="99.0" prefWidth="302.0" />
+            <ListView fx:id="listIngredientes" layoutX="121.0" layoutY="146.0" prefHeight="146.0" prefWidth="302.0" />
+         </children>
+      </Pane>
+      <ImageView fx:id="imgCha" fitHeight="248.0" fitWidth="276.0" layoutX="563.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</Pane>

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #14CC3E;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaPrincipalController">
+<AnchorPane id="AnchorPane" fx:id="anchorpane" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #14CC3E;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="200.0" prefWidth="1200.0" style="-fx-background-color: #006B18;">
          <children>
@@ -44,7 +44,7 @@
       </Pane>
       <Pane layoutX="325.0" layoutY="210.0" prefHeight="482.0" prefWidth="874.0" style="-fx-background-color: #62CC8F;">
          <children>
-            <TableView fx:id="tabela" onSort="#loadData" prefHeight="482.0" prefWidth="874.0">
+            <TableView fx:id="tabela" onMouseClicked="#abreCha" onSort="#loadData" prefHeight="482.0" prefWidth="874.0">
               <columns>
                 <TableColumn fx:id="clmCha" prefWidth="235.20001220703125" text="Chá" />
                 <TableColumn fx:id="clmBeneficio" prefWidth="640.0" text="Benefício" />
