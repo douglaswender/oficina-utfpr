@@ -5,6 +5,7 @@
  */
 package controller;
 
+import com.jfoenix.controls.JFXListView;
 import dao.BeneficioDAO;
 import dao.ChaDAO;
 import java.net.URL;
@@ -47,10 +48,10 @@ public class TelaInfoCha implements Initializable {
     }
 
     @FXML
-    private ListView<Beneficio> listbeneficios;
+    private JFXListView<Beneficio> listbeneficios;
 
     @FXML
-    private ListView<Ingrediente> listIngredientes;
+    private JFXListView<Ingrediente> listIngredientes;
 
     @FXML
     private Pane pane;
@@ -70,9 +71,13 @@ public class TelaInfoCha implements Initializable {
     @FXML
     private Label lblIngredientes;
     
-    public void initList() throws SQLException{
+    public void initList(Cha c) throws SQLException{
+        
         BeneficioDAO dao = new BeneficioDAO();
-        ObservableList<Beneficio> list = FXCollections.observableArrayList(dao.pesquisaTodosBeneficios());
+        
+        ObservableList<Beneficio> list = FXCollections.observableArrayList(dao.pesquisaBeneficioPorCha(c));
+        
+        System.out.println(list);
 
         listbeneficios.getItems().addAll(list);
     }
@@ -81,23 +86,19 @@ public class TelaInfoCha implements Initializable {
     public void initialize(URL location, ResourceBundle resources){
         
         Cha c = ChaDAO.Pesquisar2(cha);
+        System.out.println("#ID: "+c.getId());
+        
+        Image img = ChaDAO.capturaImagemCha(c);
+        //System.out.println(beneficios.size());
+        lblNomeCha.setText(c.getNome() + " #" + c.getId());
+        lblDescCha.setText("Descrição: \n");
+        lblIngredientes.setText("Ingredientes:\n");
+        
         try {
-            initList();
+            initList(c);
         } catch (SQLException ex) {
             Logger.getLogger(TelaInfoCha.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Beneficio b1 = new Beneficio("Aumento na auto estima");
-        Beneficio b2 = new Beneficio("Melhora na qualidade respiratória");
-
-        ArrayList<Beneficio> beneficios = c.getBeneficios();
-
-        c.addBeneficio(b1);
-        c.addBeneficio(b2);
-        Image img = ChaDAO.capturaImagemCha(c);
-        System.out.println(beneficios.size());
-        lblNomeCha.setText(c.getNome() + " #" + c.getId());
-        lblDescCha.setText("Descrição: \n" + c.getDescricao_cha());
-        lblIngredientes.setText("Ingredientes:\n" + c.getModo_preparo());
         if (img != null) {
             imgCha.setImage(img);
         }

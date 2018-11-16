@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -18,8 +18,8 @@
          <children>
             <Label fx:id="lblBeneCha" prefHeight="28.0" prefWidth="119.0" text="Benefícios:" />
             <Label fx:id="lblIngredientes" layoutY="146.0" prefHeight="28.0" prefWidth="119.0" text="Ingredientes:" />
-            <ListView fx:id="listbeneficios" layoutX="121.0" prefHeight="99.0" prefWidth="302.0" />
-            <ListView fx:id="listIngredientes" layoutX="121.0" layoutY="146.0" prefHeight="146.0" prefWidth="302.0" />
+            <JFXListView fx:id="listbeneficios" focusTraversable="false" layoutX="112.0" prefHeight="110.0" prefWidth="200.0" />
+            <JFXListView fx:id="listIngredientes" focusTraversable="false" layoutX="112.0" layoutY="142.0" prefHeight="110.0" prefWidth="200.0" />
          </children>
       </Pane>
       <ImageView fx:id="imgCha" fitHeight="248.0" fitWidth="276.0" layoutX="563.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
