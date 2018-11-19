@@ -11,7 +11,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" pickOnBounds="false" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #006B18;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaCadastroChaController">
+<AnchorPane id="AnchorPane" fx:id="anchorpane" pickOnBounds="false" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #006B18;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <JFXTextField id="TxtPesquisa" fx:id="txPesquisa" focusColor="#1cc71f" layoutX="89.0" layoutY="78.0" onAction="#Pesquisar" onKeyPressed="#onEnterPress" prefHeight="27.0" prefWidth="477.0" promptText="INFORME UM CHÁ" style="-fx-prompt-text-fill: #ffffff;" unFocusColor="WHITE" />
       <Label id="LblPesquisa" layoutX="14.0" layoutY="83.0" text="Pesquisa" textFill="#f2f2f2" />
@@ -23,28 +23,28 @@
                      <children>
                         <Label id="LblNome" layoutX="12.0" layoutY="18.0" text="Nome" />
                         <Label id="LblBreveDescricao" layoutX="12.0" layoutY="55.0" text="Breve Descrição" />
-                        <Label id="LblDicas" layoutX="14.0" layoutY="314.0" text="Modo de Preparo" />
+                        <Label id="LblDicas" layoutX="18.0" layoutY="356.0" text="Modo de Preparo" />
                         <JFXTextField id="TxtNome" fx:id="txNome" layoutX="161.0" layoutY="14.0" prefHeight="26.0" prefWidth="408.0" />
                         <JFXTextField id="TxtBreveDescricao" fx:id="txDescricao" layoutX="163.0" layoutY="49.0" prefHeight="26.0" prefWidth="408.0" />
-                        <TableView id="tbvBeneficio" fx:id="tbvBeneficio" editable="true" layoutX="12.0" layoutY="86.0" prefHeight="61.0" prefWidth="557.0">
+                        <TableView id="tbvBeneficio" fx:id="tbvBeneficio" editable="true" layoutX="12.0" layoutY="86.0" prefHeight="90.0" prefWidth="558.0">
                           <columns>
                             <TableColumn id="selectCol" fx:id="selectCol" prefWidth="75.0" />
                             <TableColumn id="nomeBeneficio" fx:id="nomeBeneficio" editable="false" prefWidth="480.0" text="Benefício" />
                           </columns>
                         </TableView>
-                        <TableView id="tbvIngredientes" fx:id="tbvIngredientes" editable="true" layoutX="12.0" layoutY="153.0" prefHeight="61.0" prefWidth="557.0">
+                        <TableView id="tbvIngredientes" fx:id="tbvIngredientes" editable="true" layoutX="11.0" layoutY="182.0" prefHeight="82.0" prefWidth="558.0">
                            <columns>
                               <TableColumn id="selectColIngre" fx:id="selectColIngre" prefWidth="75.0" />
                               <TableColumn id="nomeIngrediente" fx:id="nomeIngrediente" editable="false" prefWidth="480.0" text="Ingredientes" />
                            </columns>
                         </TableView>
-                        <TableView id="tbvContraIndicacao" fx:id="tbvContraIndicacao" editable="true" layoutX="12.0" layoutY="223.0" prefHeight="61.0" prefWidth="557.0">
+                        <TableView id="tbvContraIndicacao" fx:id="tbvContraIndicacao" editable="true" layoutX="11.0" layoutY="268.0" prefHeight="77.0" prefWidth="558.0">
                            <columns>
                               <TableColumn id="selectColContra" fx:id="selectColContra" prefWidth="75.0" />
                               <TableColumn id="nomeContraIndicacao" fx:id="nomeContraIndicacao" editable="false" prefWidth="480.0" text="Contra Indicação" />
                            </columns>
                         </TableView>
-                        <JFXTextField id="txModoPreparo" fx:id="txModoPreparo" layoutX="118.0" layoutY="309.0" prefHeight="187.0" prefWidth="454.0" />
+                        <JFXTextField id="txModoPreparo" fx:id="txModoPreparo" layoutX="118.0" layoutY="356.0" prefHeight="140.0" prefWidth="454.0" />
                         <ImageView id="btAdicionar" fx:id="btAdicionar1" depthTest="ENABLE" fitHeight="24.0" fitWidth="100.0" layoutX="614.0" layoutY="223.0" onMouseClicked="#btAdicionarAction" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/plus.png" />

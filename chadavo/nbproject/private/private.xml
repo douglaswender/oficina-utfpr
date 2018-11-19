@@ -4,10 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/chadavo/Main.java</file>
-            <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/controller/TelaPrincipalController.java</file>
-            <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/model/Beneficio.java</file>
-            <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/model/Cha.java</file>
-            <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/controller/TelaInfoCha.java</file>
+            <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/controller/TelacadastrabeneficioController.java</file>
+            <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/view/telacadastrabeneficio.fxml</file>
+            <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/controller/TelaPrincipalAdminController.java</file>
+            <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/controller/TelaCadastroChaController.java</file>
+            <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/view/telacadastrocha.fxml</file>
+            <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/controller/TelaLoginController.java</file>
         </group>
     </open-files>
 </project-private>

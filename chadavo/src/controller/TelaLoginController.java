@@ -102,6 +102,7 @@ public class TelaLoginController implements Initializable {
         if (retorno == null || !retorno.getSenhaUsuario().equals(senha)) {
 
             lbSenha.setText("Usuário ou senha inválidos!");
+            txSenha.setText(null);
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
                 @Override

@@ -41,8 +41,8 @@ public class Main extends Application {
         //Parent fxmlLogin = FXMLLoader.load(getClass().getResource("/view/telalogin.fxml"));
         //loginScene = new Scene(fxmlLogin, 1200, 700);
 
-        Parent fxmlCadastroCha = FXMLLoader.load(getClass().getResource("/view/telacadastrocha.fxml"));
-        cadastroChaScene = new Scene(fxmlCadastroCha, 1200, 700);
+        //Parent fxmlCadastroCha = FXMLLoader.load(getClass().getResource("/view/telacadastrocha.fxml"));
+        //cadastroChaScene = new Scene(fxmlCadastroCha, 1200, 700);
 
         Parent fxmlCadastroUsuario = FXMLLoader.load(getClass().getResource("/view/telacadastrousuario.fxml"));
         cadastroUsuarioScene = new Scene(fxmlCadastroUsuario);
@@ -53,8 +53,8 @@ public class Main extends Application {
         //Parent fxmlPrincipal = FXMLLoader.load(getClass().getResource("/view/telaprincipal.fxml"));
         //principalScene = new Scene(fxmlPrincipal);
 
-        Parent fxmlCadastroBeneficio = FXMLLoader.load(getClass().getResource("/view/telacadastrabeneficio.fxml"));
-        cadastroBeneficio = new Scene(fxmlCadastroBeneficio);
+        //Parent fxmlCadastroBeneficio = FXMLLoader.load(getClass().getResource("/view/telacadastrabeneficio.fxml"));
+        //cadastroBeneficio = new Scene(fxmlCadastroBeneficio);
         
         //Parent fxmlPrincipalAdmin = FXMLLoader.load(getClass().getResource("/view/telaprincipaladmin.fxml"));
         //principalAdminScene = new Scene(fxmlPrincipalAdmin);

@@ -34,6 +34,7 @@ public class TelaPrincipalAdminController implements Initializable {
     public TelaPrincipalAdminController(Usuario user) {
         this.user = user;
     }
+    
 
     public Usuario getUser() {
         return user;
@@ -74,26 +75,28 @@ public class TelaPrincipalAdminController implements Initializable {
     
     
     @FXML
-    void btnCadBeneficioAction(ActionEvent event) throws SQLException {
+    void btnCadBeneficioAction(ActionEvent event) throws SQLException, IOException {
 
-        Main.changeScene("cadastrobeneficio");
-//        Stage stage = new Stage();
-//        stage.setScene(Main.retornaSceneCadBeneficio());
-//        
-//        if (stage.isShowing()) {
-//            System.out.println("a janela já esta aberta");
-//        } else {
-//            stage.show();
-//            stage.setTitle("Cadastrar benefício");
-//            
-//        }
-        
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telacadastrabeneficio.fxml"));
+        // Definindo quem é o controller desse 'fxml':
+        fxmlloader.setController(new TelacadastrabeneficioController());
+
+        AnchorPane a = (AnchorPane) fxmlloader.load();
+
+        anchorpane.getChildren().setAll(a);
         
     }
 
     @FXML
-    void btnCadChaAction(ActionEvent event) {
-        Main.changeScene("cadastrocha");
+    void btnCadChaAction(ActionEvent event) throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telacadastrocha.fxml"));
+        // Definindo quem é o controller desse 'fxml':
+        fxmlloader.setController(new TelaCadastroChaController());
+
+        AnchorPane a = (AnchorPane) fxmlloader.load();
+
+        anchorpane.getChildren().setAll(a);
+        //Main.changeScene("cadastrocha");
     }
 
     @FXML

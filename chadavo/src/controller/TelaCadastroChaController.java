@@ -30,7 +30,9 @@ import dao.BeneficioDAO;
 import dao.ContraIndicacaoDAO;
 import dao.IngredientesDAO;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import model.ContraIndicacao;
 import model.Ingredientes;
 
@@ -61,8 +63,11 @@ public class TelaCadastroChaController {
     private ImageView btRemover;
 
     @FXML
+    private AnchorPane anchorpane;
+
+    @FXML
     private JFXButton btImagem;
-    
+
     @FXML
     private TableView<Beneficio> tbvBeneficio;
 
@@ -74,10 +79,10 @@ public class TelaCadastroChaController {
 
     @FXML
     private TableView<Ingredientes> tbvIngredientes;
-    
+
     @FXML
     private TableColumn<Ingredientes, String> selectColIngre;
-    
+
     @FXML
     private TableColumn<Ingredientes, String> nomeIngrediente;
 
@@ -159,12 +164,18 @@ public class TelaCadastroChaController {
     }
 
     @FXML
-    void btnBackAction(ActionEvent event) throws SQLException {
+    void btnBackAction(ActionEvent event) throws SQLException, IOException {
         limpaCampos();
-        Main.changeScene("principaladmin");
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telaprincipaladmin.fxml"));
+        // Definindo quem é o controller desse 'fxml':
+        fxmlloader.setController(new TelaPrincipalAdminController(null));
+
+        AnchorPane a = (AnchorPane) fxmlloader.load();
+
+        anchorpane.getChildren().setAll(a);
     }
 
-    void limpaCampos() throws SQLException{
+    void limpaCampos() throws SQLException {
         txNome.setText("");
         txDescricao.setText("");
         txModoPreparo.setText("");
@@ -187,7 +198,7 @@ public class TelaCadastroChaController {
             txNome.setText(cha.getNome());
             txDescricao.setText(cha.getDescricao_cha());
             txModoPreparo.setText(cha.getModo_preparo());
-            
+
             tbvBeneficio.setItems(BeneficioDAO.pesquisaTodosBeneficios2(true, c.getId()));
             tbvIngredientes.setItems(IngredientesDAO.pesquisaTodosIngredientes(true, c.getId()));
             tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(true, c.getId()));
@@ -210,6 +221,6 @@ public class TelaCadastroChaController {
         selectColContra.setCellValueFactory(new PropertyValueFactory<ContraIndicacao, String>("marcado"));
         nomeContraIndicacao.setCellValueFactory(new PropertyValueFactory<ContraIndicacao, String>("nome"));
         tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(false, 0));
-        
+
     }
 }
