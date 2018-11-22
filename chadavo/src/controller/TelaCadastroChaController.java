@@ -31,8 +31,11 @@ import dao.ContraIndicacaoDAO;
 import dao.IngredientesDAO;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.ContraIndicacao;
 import model.Ingredientes;
 
@@ -185,11 +188,15 @@ public class TelaCadastroChaController {
         tbvBeneficio.setItems(BeneficioDAO.pesquisaTodosBeneficios2(false, 0));
         tbvIngredientes.setItems(IngredientesDAO.pesquisaTodosIngredientes(false, 0));
         tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(false, 0));
+        id = 0;
+        lAlteracao = false;
     }
 
     @FXML
-    void onEnterPress(KeyEvent event) throws SQLException {
+    void onEnterPress(KeyEvent event) throws SQLException, IOException {
         if (event.getCode() == KeyCode.ENTER) {
+            trocaTela(txPesquisa.getText());
+/*
             Cha c = new Cha();
             c.setId(Integer.parseInt(txPesquisa.getText()));
             Cha cha = ChaDAO.Pesquisar2(c);
@@ -204,6 +211,7 @@ public class TelaCadastroChaController {
             tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(true, c.getId()));
             lAlteracao = true;
             id = cha.getId();
+*/
         }
     }
 
@@ -221,6 +229,18 @@ public class TelaCadastroChaController {
         selectColContra.setCellValueFactory(new PropertyValueFactory<ContraIndicacao, String>("marcado"));
         nomeContraIndicacao.setCellValueFactory(new PropertyValueFactory<ContraIndicacao, String>("nome"));
         tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(false, 0));
+    }
 
+    public void trocaTela(String pesquisa) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/resultadobusca.fxml"));
+
+        fxmlloader.setController(new ResultadobuscaController(pesquisa));
+
+        Parent tela = fxmlloader.load();
+
+        stage.setScene(new Scene(tela));
+
+        stage.show();
     }
 }

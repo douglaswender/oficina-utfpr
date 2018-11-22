@@ -30,6 +30,9 @@ public class Cha {
         this.imgcha        = imgcha;
     }
 
+    public Cha(String nome){
+        this.nome = new SimpleStringProperty(nome);
+    }
 
     public Cha(int id, String nome, String detalhes) {
         this.id = new SimpleIntegerProperty(id);

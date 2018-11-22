@@ -21,6 +21,8 @@ import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import com.jfoenix.controls.JFXCheckBox;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import model.Cha;
 
@@ -142,6 +144,60 @@ public class ChaDAO {
         }
         return chas;
 
+    }
+    
+        public static ObservableList<Cha> pesquisaTodosChas(String pesquisa) throws SQLException {
+        
+        Connection con = new Conexao().getConnection();
+        String cSQL;
+
+        if (pesquisa.matches("[0-9]+")) {
+            cSQL = "select * from chas where cod_cha = ?";
+        }else{
+            cSQL = "select * from chas where nome_cha like ?";
+        }
+        
+        PreparedStatement ps = con.prepareStatement(cSQL);
+
+        if (pesquisa.matches("[0-9]+")) {
+            ps.setInt(1, Integer.parseInt(pesquisa));
+        }else{
+            ps.setString(1, '%' + pesquisa + '%');
+        }
+        
+        ResultSet rs = ps.executeQuery();
+        ObservableList<Cha> observableArrayList = null;
+        List<Cha> retorno = new ArrayList<>();
+        
+        try {
+            int i = 0;
+            
+            if (!rs.isBeforeFirst()){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Informação");
+                alert.setHeaderText("Nenhum registro foi encontrados.");
+                alert.show();
+                return null;
+            }
+            
+            while (rs.next()) {
+                Cha c = new Cha(rs.getString("nome_cha"));
+                retorno.add(c);
+              
+                i++;
+                //observableArrayList = FXCollections.observableArrayList(new Beneficio(false, rs.getString("nome_beneficio")));
+            }
+            
+            observableArrayList = FXCollections.observableArrayList(retorno);
+            
+            return observableArrayList;
+        } catch (SQLException e) {
+            System.out.println("ERRO: #" + e);
+            return null;
+        } finally {
+            ps.close();
+        }
+        
     }
     
     public static Image capturaImagemCha(Cha c) {
