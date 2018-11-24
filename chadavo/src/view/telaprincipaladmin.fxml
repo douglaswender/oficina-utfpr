@@ -49,7 +49,7 @@
       </AnchorPane>
       <Pane layoutX="335.0" layoutY="220.0" prefHeight="482.0" prefWidth="874.0" style="-fx-background-color: #62CC8F;">
          <children>
-            <JFXListView fx:id="listChas" layoutX="14.0" layoutY="46.0" prefHeight="434.0" prefWidth="417.0" style="-fx-background-color: #62CC8F;" stylesheets="@../css/Principal.css" />
+            <JFXListView fx:id="listChas" layoutX="14.0" layoutY="46.0" onMouseClicked="#abreCha" prefHeight="434.0" prefWidth="417.0" style="-fx-background-color: #62CC8F;" stylesheets="@../css/Principal.css" />
             <JFXListView fx:id="listBeneficios" layoutX="443.0" layoutY="46.0" prefHeight="434.0" prefWidth="417.0" style="-fx-background-color: #62CC8F;" stylesheets="@../css/Principal.css" />
             <Label layoutX="14.0" prefHeight="48.0" prefWidth="318.0" text="LISTA DE CHÁS" textFill="WHITE">
                <font>

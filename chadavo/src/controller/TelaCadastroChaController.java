@@ -29,8 +29,14 @@ import model.Cha;
 import dao.BeneficioDAO;
 import dao.ContraIndicacaoDAO;
 import dao.IngredientesDAO;
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -39,7 +45,7 @@ import javafx.stage.Stage;
 import model.ContraIndicacao;
 import model.Ingredientes;
 
-public class TelaCadastroChaController {
+public class TelaCadastroChaController implements Initializable{
 
     @FXML
     private JFXTextField txPesquisa;
@@ -100,6 +106,11 @@ public class TelaCadastroChaController {
 
     private Boolean lAlteracao = false;
     private Integer id = 0;
+    private Integer pesquisa;
+
+    TelaCadastroChaController(Integer pesquisa) {
+        this.pesquisa = pesquisa;
+    }
 
     @FXML
     void btGravarAction(ActionEvent event) throws SQLException, IOException {
@@ -215,8 +226,7 @@ public class TelaCadastroChaController {
         }
     }
 
-    @FXML
-    void initialize() throws SQLException {
+    public void initList(int pesquisa) throws SQLException{
         //Busca todos os Beneficios
         selectCol.setCellValueFactory(new PropertyValueFactory<Beneficio, String>("marcado"));
         nomeBeneficio.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -229,6 +239,29 @@ public class TelaCadastroChaController {
         selectColContra.setCellValueFactory(new PropertyValueFactory<ContraIndicacao, String>("marcado"));
         nomeContraIndicacao.setCellValueFactory(new PropertyValueFactory<ContraIndicacao, String>("nome"));
         tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(false, 0));
+
+        if (pesquisa > 0){
+            Cha c = new Cha(pesquisa, "", "");
+            c = ChaDAO.Pesquisar2(c);
+
+            txNome.setText(c.getNome());
+            txDescricao.setText(c.getDescricao_cha());
+            txModoPreparo.setText(c.getModo_preparo());
+            tbvBeneficio.setItems(BeneficioDAO.pesquisaTodosBeneficios2(true, c.getId()));
+            tbvIngredientes.setItems(IngredientesDAO.pesquisaTodosIngredientes(true, c.getId()));
+            tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(true, c.getId()));
+            lAlteracao = true;
+            id = c.getId();
+        }
+    }
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources){
+        try {
+            initList(pesquisa);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaInfoCha.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void trocaTela(String pesquisa) throws IOException {

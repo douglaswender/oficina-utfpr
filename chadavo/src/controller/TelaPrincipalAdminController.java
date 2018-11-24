@@ -9,6 +9,7 @@ import dao.ChaDAO;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +19,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -91,7 +94,7 @@ public class TelaPrincipalAdminController implements Initializable {
     void btnCadChaAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telacadastrocha.fxml"));
         // Definindo quem é o controller desse 'fxml':
-        fxmlloader.setController(new TelaCadastroChaController());
+        fxmlloader.setController(new TelaCadastroChaController(0));
 
         AnchorPane a = (AnchorPane) fxmlloader.load();
 
@@ -124,6 +127,12 @@ public class TelaPrincipalAdminController implements Initializable {
         AnchorPane a = (AnchorPane) fxmlloader.load();
 
         anchorpane.getChildren().setAll(a);
+    }
+
+    @FXML
+    void abreCha(MouseEvent event) throws IOException {
+        Integer nIdCha = listChas.getSelectionModel().getSelectedItem().getId();
+        trocaTela(nIdCha);
     }
 
     @FXML
@@ -186,5 +195,18 @@ public class TelaPrincipalAdminController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(TelaPrincipalAdminController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public void trocaTela(int pesquisa) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telacadastrocha.fxml"));
+
+        fxmlloader.setController(new TelaCadastroChaController(pesquisa));
+
+        Parent tela = fxmlloader.load();
+
+        stage.setScene(new Scene(tela));
+
+        stage.show();
     }
 }
