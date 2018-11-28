@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="anchorpane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #14CC3E;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Telasobre2Controller">
+   <children>
+      <Label layoutX="148.0" layoutY="14.0" text="CHÁ DA VÓ" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="62.0" />
+         </font>
+      </Label>
+      <Label layoutX="45.0" layoutY="92.0" prefHeight="235.0" prefWidth="510.0" text="O chá da vo foi feito com muito carinho e amor para você que procura algo mais natural para sua vida. Qualquer duvida ou sugestão entre em contato atráves do email suporte@chadavo.com.br" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" onAction="#btnBackAction" prefHeight="44.0" prefWidth="34.0" style="-fx-background-color: #14CC3E #14CC3E; -fx-background-radius: 100%;" styleClass="login" textAlignment="CENTER">
+         <graphic>
+            <ImageView fx:id="imgBtn" depthTest="ENABLE" fitHeight="35.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/back.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>

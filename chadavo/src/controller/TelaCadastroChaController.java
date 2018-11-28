@@ -180,6 +180,7 @@ public class TelaCadastroChaController implements Initializable{
     @FXML
     void btnBackAction(ActionEvent event) throws SQLException, IOException {
         limpaCampos();
+        /*
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telaprincipaladmin.fxml"));
         // Definindo quem é o controller desse 'fxml':
         fxmlloader.setController(new TelaPrincipalAdminController(null));
@@ -187,6 +188,10 @@ public class TelaCadastroChaController implements Initializable{
         AnchorPane a = (AnchorPane) fxmlloader.load();
 
         anchorpane.getChildren().setAll(a);
+        */
+        Scene Scene = anchorpane.getScene();
+        Stage stage = (Stage) anchorpane.getScene().getWindow();
+        stage.close();
     }
 
     void limpaCampos() throws SQLException {
