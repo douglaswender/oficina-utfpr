@@ -8,7 +8,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #006B18;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView id="TbvCha" fx:id="TbvCha" layoutX="14.0" layoutY="14.0" prefHeight="355.0" prefWidth="579.0">
+      <TableView id="TbvCha" fx:id="TbvCha" layoutX="14.0" layoutY="14.0" onKeyPressed="#onEnterPressed" prefHeight="355.0" prefWidth="579.0">
         <columns>
           <TableColumn fx:id="nomeCha" prefWidth="577.0" text="Chá" />
         </columns>
