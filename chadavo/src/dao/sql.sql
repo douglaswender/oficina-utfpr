@@ -3,6 +3,7 @@ create table usuario(
     login varchar(40),
     senha varchar(40),
     nome varchar(40),
+    email varchar(254),
     constraint pk_usuario primary key(id),
     constraint uc_login unique(login)
 )
@@ -52,3 +53,39 @@ alter table ingrecha add constraint fk_ch_ingre foreign key (chave_ingre) refere
 alter table ingrecha add constraint fk_ch_ingrecha foreign key (chave_ingrecha) references chas(cod_cha);
 alter table contracha add constraint fk_ch_contra foreign key (chave_contra) references Contra_indicacao(cod_contra);
 alter table contracha add constraint fk_ch_contracha foreign key (chave_contracha) references chas(cod_cha) 
+
+-- Insert dos ingredientes
+insert into ingredientes(nome_ingrediente) values('água');
+insert into ingredientes(nome_ingrediente) values('camomila');
+insert into ingredientes(nome_ingrediente) values('canela');
+insert into ingredientes(nome_ingrediente) values('manjericao');
+insert into ingredientes(nome_ingrediente) values('cravo');
+insert into ingredientes(nome_ingrediente) values('cebola');
+insert into ingredientes(nome_ingrediente) values('alho');
+insert into ingredientes(nome_ingrediente) values('chá verde');
+insert into ingredientes(nome_ingrediente) values('pitanga');
+insert into ingredientes(nome_ingrediente) values('abacaxi');
+insert into ingredientes(nome_ingrediente) values('gengibre');
+insert into ingredientes(nome_ingrediente) values('hibisco');
+insert into ingredientes(nome_ingrediente) values('maça');
+insert into ingredientes(nome_ingrediente) values('maracuja');
+insert into ingredientes(nome_ingrediente) values('limão');
+insert into ingredientes(nome_ingrediente) values('hortela');
+insert into ingredientes(nome_ingrediente) values('leite');
+insert into ingredientes(nome_ingrediente) values('amendoin');
+insert into ingredientes(nome_ingrediente) values('menta');
+insert into ingredientes(nome_ingrediente) values('folha de bergamoteira');
+insert into ingredientes(nome_ingrediente) values('folha de laranjeira');
+insert into ingredientes(nome_ingrediente) values('espinheira santa');
+
+--Insert das contra indicações
+insert into contra_indicacao(nome_contra, descricao_contra) values('náuseas', 'O consumo elevado desse cha pode provocar esse sintoma.');
+insert into contra_indicacao(nome_contra, descricao_contra) values('insônia', 'O consumo elevado desse cha pode provocar esse sintoma.');
+insert into contra_indicacao(nome_contra, descricao_contra) values('problemas hepáticos', 'Quem tem problemas hepáticos deve evitar consumir esse chá.');
+insert into contra_indicacao(nome_contra, descricao_contra) values('hipertensos', 'Quem tem problemas com hipertensão deve evitar consumir esse chá.');
+insert into contra_indicacao(nome_contra, descricao_contra) values('diabeticos', 'Pessoas com diabetes devem evitar consumir esse chá.');
+insert into contra_indicacao(nome_contra, descricao_contra) values('gestantes', 'Gestantes devem evitar consumir esse chá.');
+insert into contra_indicacao(nome_contra, descricao_contra) values('insuficiência renal', 'Pessoas com esse problema devem evitar consumir esse chá.');
+insert into contra_indicacao(nome_contra, descricao_contra) values('insuficiência cardíaca', 'Pessoas com esse problema devem evitar consumir esse chá.');
+insert into contra_indicacao(nome_contra, descricao_contra) values('lactante', 'Mulheres que estão em período de amamentação devem evitar consumir esse chá');
+insert into contra_indicacao(nome_contra, descricao_contra) values('fígado', 'O consumo elevado desse cha pode provocar problemas no fígado.');
