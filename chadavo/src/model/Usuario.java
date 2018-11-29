@@ -20,6 +20,13 @@ public class Usuario {
     private SimpleStringProperty nomeUsuario;
     private SimpleStringProperty emailUsuario;
 
+    public Usuario(String loginUsuario, String nomeUsuario, String emailUsuario) {
+        this.loginUsuario = new SimpleStringProperty(loginUsuario);
+        this.nomeUsuario = new SimpleStringProperty(nomeUsuario);
+        this.emailUsuario = new SimpleStringProperty(emailUsuario);
+    }
+    
+
     public Usuario(int idUsuario, String loginUsuario, String senhaUsuario, String nomeUsuario, String email) {
         this.idUsuario = new SimpleIntegerProperty(idUsuario);
         this.loginUsuario = new SimpleStringProperty(loginUsuario);

@@ -52,7 +52,7 @@
                   <Font size="28.0" />
                </font>
             </Label>
-            <JFXListView fx:id="listOpc1" layoutX="14.0" layoutY="54.0" onMouseClicked="#listClick" prefHeight="417.0" prefWidth="302.0" style="-fx-background-color: #62CC8F;" stylesheets="@../css/Principal.css" />
+            <JFXListView fx:id="listOpc1" layoutX="14.0" layoutY="54.0" onMouseClicked="#listClick" prefHeight="379.0" prefWidth="302.0" style="-fx-background-color: #62CC8F;" stylesheets="@../css/Principal.css" />
             <JFXButton buttonType="RAISED" layoutX="13.0" layoutY="446.0" onAction="#btnSobreAction" prefHeight="25.0" prefWidth="292.0" ripplerFill="WHITE" style="-fx-background-color: #14CC3E;" text="SOBRE" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
          </children>
       </Pane>

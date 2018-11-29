@@ -60,6 +60,6 @@
             <Font size="20.0" />
          </font>
       </JFXButton>
-      <JFXPasswordField fx:id="txSenha" focusColor="WHITE" layoutX="569.0" layoutY="304.0" prefHeight="34.0" prefWidth="169.0" style="-fx-prompt-text-fill: #fff;" unFocusColor="WHITE" />
+      <JFXPasswordField fx:id="txSenha" focusColor="WHITE" layoutX="569.0" layoutY="304.0" prefHeight="34.0" prefWidth="169.0" style="-fx-prompt-text-fill: #fff; -fx-text-fill: #fff;" unFocusColor="WHITE" />
    </children>
 </AnchorPane>
