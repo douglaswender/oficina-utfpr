@@ -30,8 +30,9 @@ public class Cha {
         this.imgcha        = imgcha;
     }
 
-    public Cha(String nome){
+    public Cha(String nome, int id){
         this.nome = new SimpleStringProperty(nome);
+        this.id   = new SimpleIntegerProperty(id);
     }
 
     public Cha(int id, String nome, String detalhes) {

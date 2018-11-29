@@ -209,4 +209,22 @@ public class TelaPrincipalAdminController implements Initializable {
 
         stage.show();
     }
+
+    public void trocaTela2(String tela) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telasobre.fxml"));
+
+        fxmlloader.setController(new TelasobreController(tela));
+
+        Parent tela2 = fxmlloader.load();
+
+        stage.setScene(new Scene(tela2));
+
+        stage.show();
+    }
+
+    @FXML
+    void btnSobreAction(ActionEvent event) throws IOException {
+        trocaTela2("telaprincipaladmin");
+    }
 }

@@ -35,6 +35,7 @@
          <children>
             <JFXButton fx:id="btnCadBeneficio" buttonType="RAISED" layoutX="8.0" layoutY="14.0" onAction="#btnCadBeneficioAction" prefHeight="25.0" prefWidth="302.0" ripplerFill="WHITE" style="-fx-background-color: #14CC3E;" text="CADASTRAR BENEFÍCIO" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
             <JFXButton fx:id="btnCadCha" buttonType="RAISED" layoutX="8.0" layoutY="53.0" onAction="#btnCadChaAction" prefHeight="25.0" prefWidth="302.0" ripplerFill="WHITE" style="-fx-background-color: #14CC3E;" text="CADASTRAR CHÁ" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+            <JFXButton buttonType="RAISED" layoutX="8.0" layoutY="92.0" onAction="#btnSobreAction" prefHeight="25.0" prefWidth="302.0" ripplerFill="WHITE" style="-fx-background-color: #14CC3E;" text="SOBRE" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
          </children>
       </Pane>
       <AnchorPane layoutX="325.0" layoutY="210.0">

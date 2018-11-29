@@ -175,13 +175,13 @@ public class ChaDAO {
             if (!rs.isBeforeFirst()){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Informação");
-                alert.setHeaderText("Nenhum registro foi encontrados.");
+                alert.setHeaderText("Nenhum registro foi encontrado.");
                 alert.show();
                 return null;
             }
             
             while (rs.next()) {
-                Cha c = new Cha(rs.getString("nome_cha"));
+                Cha c = new Cha(rs.getString("nome_cha"), rs.getInt("cod_cha"));
                 retorno.add(c);
               
                 i++;
@@ -248,6 +248,14 @@ public class ChaDAO {
                     stm.setInt(1, c.getId());
                     ResultSet rs = stm.executeQuery();
 
+                    if (!rs.isBeforeFirst()){
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Informação");
+                        alert.setHeaderText("Nenhum registro foi encontrado.");
+                        alert.show();
+                        return null;
+                    }
+                    
                     rs.next();
                     Cha cha = new Cha();
                     cha.setId(rs.getInt(1));

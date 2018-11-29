@@ -180,6 +180,7 @@ public class TelaCadastroChaController implements Initializable{
     @FXML
     void btnBackAction(ActionEvent event) throws SQLException, IOException {
         limpaCampos();
+        /*
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telaprincipaladmin.fxml"));
         // Definindo quem é o controller desse 'fxml':
         fxmlloader.setController(new TelaPrincipalAdminController(null));
@@ -187,6 +188,10 @@ public class TelaCadastroChaController implements Initializable{
         AnchorPane a = (AnchorPane) fxmlloader.load();
 
         anchorpane.getChildren().setAll(a);
+        */
+        Scene Scene = anchorpane.getScene();
+        Stage stage = (Stage) anchorpane.getScene().getWindow();
+        stage.close();
     }
 
     void limpaCampos() throws SQLException {
@@ -206,7 +211,25 @@ public class TelaCadastroChaController implements Initializable{
     @FXML
     void onEnterPress(KeyEvent event) throws SQLException, IOException {
         if (event.getCode() == KeyCode.ENTER) {
-            trocaTela(txPesquisa.getText());
+            String pesquisa = txPesquisa.getText();
+            if (pesquisa.matches("[0-9]+")) {
+                Cha c = new Cha(Integer.parseInt(pesquisa), "", "");
+                c = ChaDAO.Pesquisar2(c);
+
+                txNome.setText(c.getNome());
+                txDescricao.setText(c.getDescricao_cha());
+                txModoPreparo.setText(c.getModo_preparo());
+                tbvBeneficio.setItems(BeneficioDAO.pesquisaTodosBeneficios2(true, c.getId()));
+                tbvIngredientes.setItems(IngredientesDAO.pesquisaTodosIngredientes(true, c.getId()));
+                tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(true, c.getId()));
+                lAlteracao = true;
+                id = c.getId();
+                Image img = ChaDAO.capturaImagemCha(c);
+                imgCha.setImage(img);
+            }else{
+                trocaTela(txPesquisa.getText());
+            }
+            
 /*
             Cha c = new Cha();
             c.setId(Integer.parseInt(txPesquisa.getText()));
@@ -252,6 +275,8 @@ public class TelaCadastroChaController implements Initializable{
             tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(true, c.getId()));
             lAlteracao = true;
             id = c.getId();
+            Image img = ChaDAO.capturaImagemCha(c);
+            imgCha.setImage(img);
         }
     }
     
