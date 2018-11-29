@@ -128,8 +128,8 @@ public class ChaDAO {
                 int cod = rs.getInt("cod_cha");
                 String nome = rs.getString("nome_cha");
                 String detalhes = rs.getString("descricao_cha");
-                System.out.println(nome);
-                System.out.println(detalhes);
+                //System.out.println(nome);
+                //System.out.println(detalhes);
                 //Cha c = new ChaTable(nome, detalhes);
                 chas.add(new Cha(cod, nome, detalhes));
 

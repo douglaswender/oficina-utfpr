@@ -28,10 +28,11 @@ public class UsuarioDAO {
                 return false;
             }else{
             Connection con = new Conexao().getConnection();
-            PreparedStatement stm = con.prepareStatement("INSERT INTO usuario(login, senha, nome) VALUES (?, ?, ?)");
+            PreparedStatement stm = con.prepareStatement("INSERT INTO usuario(login, senha, nome, email) VALUES (?, ?, ?, ?)");
             stm.setString(1, usuario.getLoginUsuario());
             stm.setString(2, usuario.getSenhaUsuario());
             stm.setString(3, usuario.getNomeUsuario());
+            stm.setString(4, usuario.getEmailUsuario());
         
             stm.execute();
             stm.close();
@@ -54,7 +55,7 @@ public class UsuarioDAO {
             
             if(rs.next()){
                 
-                usuario = new Usuario(rs.getInt("id"), rs.getString("login"), rs.getString("senha"), rs.getString("nome"));
+                usuario = new Usuario(rs.getInt("id"), rs.getString("login"), rs.getString("senha"), rs.getString("nome"), rs.getString("email"));
                 return usuario;
             }
             
@@ -67,6 +68,26 @@ public class UsuarioDAO {
             System.out.println(e);
         }
         return usuario;
+    }
+    
+    public static boolean salvarUsuario(Usuario u) throws SQLException{
+        try{
+            Connection con = new Conexao().getConnection();
+            PreparedStatement stm = con.prepareStatement("UPDATE usuario set login=?, senha=?, nome = ?, email = ? where id = ? ");
+            stm.setString(1, u.getLoginUsuario());
+            stm.setString(2, u.getSenhaUsuario());
+            stm.setString(3, u.getNomeUsuario());
+            stm.setString(4, u.getEmailUsuario());
+            stm.setInt(5, u.getIdUsuario());
+            
+            stm.execute();
+            
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+            
+            return false;
+        }
     }
     
 }

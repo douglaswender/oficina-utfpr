@@ -30,7 +30,7 @@ public class Main extends Application {
 
         stage = primaryStage;
         primaryStage.getIcons().add(new Image("/img/POJET.png"));
-        primaryStage.setTitle("Chá da Vó 1.0 ALPHA");
+        primaryStage.setTitle("Chá da Vó 1.0");
         primaryStage.setResizable(false);
         //primaryStage.setWidth(1200);
         //,primaryStage.setHeight(700);

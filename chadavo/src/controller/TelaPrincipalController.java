@@ -24,6 +24,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -57,6 +58,9 @@ public class TelaPrincipalController implements Initializable {
     public void setUser(Usuario user) {
         this.user = user;
     }
+
+    @FXML
+    private Hyperlink hiper;
 
     @FXML
     private AnchorPane anchorpane;
@@ -94,17 +98,17 @@ public class TelaPrincipalController implements Initializable {
     }
 
     public void trocaTela(Cha c) throws IOException {
-        
-        System.out.println(c.getDescricao_cha());
+
+        //System.out.println(c.getDescricao_cha());
         Stage stage = new Stage();
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telainfocha.fxml"));
-        
+
         fxmlloader.setController(new TelaInfoCha(c));
 
         Parent tela = fxmlloader.load();
-        
+
         stage.setScene(new Scene(tela));
-        
+
         stage.show();
     }
 
@@ -138,6 +142,17 @@ public class TelaPrincipalController implements Initializable {
             pesquisaPorNome();
         }
 
+    }
+
+    @FXML
+    void openProfile(ActionEvent event) throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/perfilusuario.fxml"));
+        // Definindo quem é o controller desse 'fxml':
+        fxmlloader.setController(new TelaPerfilUsuarioController(getUser()));
+
+        AnchorPane a = (AnchorPane) fxmlloader.load();
+
+        anchorpane.getChildren().setAll(a);
     }
 
     void pesquisaPorNome() throws IOException {
@@ -198,6 +213,8 @@ public class TelaPrincipalController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(TelaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        hiper.setText(user.getNomeUsuario());
+
         clmCha.setCellValueFactory(new PropertyValueFactory<Cha, String>("nome"));
         clmBeneficio.setCellValueFactory(new PropertyValueFactory<Cha, String>("descricao_cha"));
         initTable();
@@ -205,7 +222,7 @@ public class TelaPrincipalController implements Initializable {
         // final TreeItem<Cha> root = new RecursiveTreeItem<Cha>(chas, RecursiveTreeObject::getChildren);
         //Trazendo dados do banco para primeira carregada dos chás
         //AQUI TERÁ QUE TRAZER INFORMAÇÕES DO BANCO, "CATEGORIAS" CREIO EU
-        lbTexto.setText("Olá " + user.getNomeUsuario() + ", está sentindo alguma coisa? Está a procura de algum chá? Digite aê...");
+        lbTexto.setText("Olá, está sentindo alguma coisa? Está a procura de algum chá? Digite aê...");
         // TODO
     }
 

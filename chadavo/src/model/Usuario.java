@@ -18,18 +18,21 @@ public class Usuario {
     private SimpleStringProperty loginUsuario;
     private SimpleStringProperty senhaUsuario;
     private SimpleStringProperty nomeUsuario;
+    private SimpleStringProperty emailUsuario;
 
-    public Usuario(int idUsuario, String loginUsuario, String senhaUsuario, String nomeUsuario) {
+    public Usuario(int idUsuario, String loginUsuario, String senhaUsuario, String nomeUsuario, String email) {
         this.idUsuario = new SimpleIntegerProperty(idUsuario);
         this.loginUsuario = new SimpleStringProperty(loginUsuario);
         this.senhaUsuario = new SimpleStringProperty(senhaUsuario);
         this.nomeUsuario = new SimpleStringProperty(nomeUsuario);
+        this.emailUsuario = new SimpleStringProperty(email);
     }
 
-    public Usuario(String loginUsuario, String senhaUsuario, String nomeUsuario) {
+    public Usuario(String loginUsuario, String senhaUsuario, String nomeUsuario, String emailUsuario) {
         this.loginUsuario = new SimpleStringProperty(loginUsuario);
         this.senhaUsuario = new SimpleStringProperty(senhaUsuario);
         this.nomeUsuario = new SimpleStringProperty(nomeUsuario);
+        this.emailUsuario = new SimpleStringProperty(emailUsuario);
     }
 
     public Usuario(String loginUsuario, String senhaUsuario) {
@@ -74,6 +77,15 @@ public class Usuario {
     public void setNomeUsuario(String nomeUsuario) {
         this.nomeUsuario = new SimpleStringProperty(nomeUsuario);
     }
+
+    public String getEmailUsuario() {
+        return emailUsuario.get();
+    }
+
+    public void setEmailUsuario(String emailUsuario) {
+        this.emailUsuario = new SimpleStringProperty(emailUsuario);
+    }
+    
     
     
     

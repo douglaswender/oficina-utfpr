@@ -9,6 +9,7 @@ import chadavo.Main;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -17,9 +18,11 @@ import java.util.TimerTask;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import model.Usuario;
 
 /**
@@ -35,6 +38,8 @@ public class TelaCadastroUsuarioController implements Initializable {
     @FXML
     private JFXTextField txUsuario;
 
+    @FXML
+    private JFXTextField txEmail;
 
     @FXML
     private JFXPasswordField txSenha;
@@ -49,24 +54,30 @@ public class TelaCadastroUsuarioController implements Initializable {
     private Label lbSenha;
 
     @FXML
-    void btnBackAction(ActionEvent event) {
-        Main.changeScene("main");
+    private AnchorPane anchorpane;
+
+    @FXML
+    void btnBackAction(ActionEvent event) throws IOException {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telainicio.fxml"));
+        // Definindo quem é o controller desse 'fxml':
+        AnchorPane a = (AnchorPane) fxmlloader.load();
+
+        anchorpane.getChildren().setAll(a);
 
     }
 
     @FXML
-    void btnCadastrarAction(ActionEvent event) throws SQLException {
-        
+    void btnCadastrarAction(ActionEvent event) throws SQLException, IOException {
+
         boolean retorno;
 
         String nome = txNome.getText();
         String login = txUsuario.getText();
         String senha = txSenha.getText();
-       
-        
-        Usuario usuario = new Usuario(login, senha, nome);
-        
-        
+        String email = txEmail.getText();
+
+        Usuario usuario = new Usuario(login, senha, nome, email);
+
         retorno = dao.UsuarioDAO.createUsuario(usuario);
 
         if (!retorno) {
@@ -83,9 +94,15 @@ public class TelaCadastroUsuarioController implements Initializable {
                     });
                 }
             }, 5000, 5000);
-        } else{
+        } else {
             usuario = dao.UsuarioDAO.loginUsuario(usuario);
-            Main.changeScene("principal", usuario);
+            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telaprincipal.fxml"));
+            // Definindo quem é o controller desse 'fxml':
+            fxmlloader.setController(new TelaPrincipalController(usuario));
+
+            AnchorPane a = (AnchorPane) fxmlloader.load();
+
+            anchorpane.getChildren().setAll(a);
             txNome.setText(null);
             txSenha.setText(null);
             txUsuario.setText(null);
