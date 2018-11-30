@@ -5,59 +5,75 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" pickOnBounds="false" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #006B18;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaCadastroChaController">
+<AnchorPane id="AnchorPane" fx:id="anchorpane" pickOnBounds="false" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #006B18;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXTextField id="TxtPesquisa" fx:id="txPesquisa" focusColor="#1cc71f" layoutX="93.0" layoutY="20.0" prefHeight="27.0" prefWidth="477.0" promptText="INFORME UM CHÁ" style="-fx-prompt-text-fill: #ffffff;" unFocusColor="WHITE" />
-      <Label id="LblPesquisa" layoutX="14.0" layoutY="24.0" text="Pesquisa" textFill="#f2f2f2" />
-      <Label fx:id="lbUser" alignment="TOP_RIGHT" layoutX="587.0" layoutY="9.0" prefHeight="18.0" prefWidth="238.0" textAlignment="RIGHT" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <JFXTabPane fx:id="PgfGeral" layoutX="14.0" layoutY="55.0" prefHeight="640.0" prefWidth="1180.0" style="-fx-background-color: #ffffff;" stylesheets="@../css/CadastroCha.css">
+      <JFXTextField id="TxtPesquisa" fx:id="txPesquisa" focusColor="#1cc71f" layoutX="177.0" layoutY="22.0" onAction="#Pesquisar" onKeyPressed="#onEnterPress" prefHeight="27.0" prefWidth="477.0" promptText="INFORME UM CHÁ" style="-fx-prompt-text-fill: #ffffff;" unFocusColor="WHITE" />
+      <Label id="LblPesquisa" layoutX="102.0" layoutY="27.0" text="Pesquisa" textFill="#f2f2f2" />
+      <JFXTabPane fx:id="PgfGeral" layoutX="14.0" layoutY="69.0" prefHeight="618.0" prefWidth="1180.0" style="-fx-background-color: #ffffff;" stylesheets="@../css/CadastroCha.css">
          <tabs>
             <Tab fx:id="PgDados" text="Dados">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="531.0" prefWidth="1180.0">
                      <children>
-                        <Label id="LblNome" layoutX="15.0" layoutY="16.0" text="Nome" />
-                        <Label id="LblBreveDescricao" layoutX="15.0" layoutY="53.0" text="Breve Descrição" />
-                        <Label id="LblDetalhes" layoutX="15.0" layoutY="93.0" text="Detalhes" />
-                        <Label id="LblEspecificacaoTecnica" layoutX="16.0" layoutY="132.0" text="Especificação Técnica" />
-                        <Label id="LblIndicacoes" layoutX="16.0" layoutY="175.0" text="Indicação" />
-                        <Label id="LblContraIndicacoes" layoutX="16.0" layoutY="214.0" text="Contra Indicação" />
-                        <Label id="LblDicas" layoutX="15.0" layoutY="250.0" text="Dicas" />
-                        <Label id="LblPrevencao" layoutX="14.0" layoutY="289.0" text="Prevenção" />
-                        <JFXTextField id="TxtNome" fx:id="txNome1" layoutX="161.0" layoutY="14.0" prefHeight="26.0" prefWidth="408.0" />
-                        <JFXTextField id="TxtBreveDescricao" fx:id="txDescricao1" layoutX="163.0" layoutY="49.0" prefHeight="26.0" prefWidth="408.0" />
-                        <JFXTextField id="TxtDetalhes" fx:id="txDetalhes1" layoutX="163.0" layoutY="89.0" prefHeight="26.0" prefWidth="408.0" />
-                        <JFXTextField id="TxtEspecificacaoTecnica" fx:id="txEspecificacao1" layoutX="163.0" layoutY="128.0" prefHeight="26.0" prefWidth="408.0" />
-                        <JFXTextField id="TxtIndicacoes" fx:id="txIndicacao1" layoutX="163.0" layoutY="171.0" prefHeight="26.0" prefWidth="408.0" />
-                        <JFXTextField id="TxtContraIndicacoes" fx:id="txContraIndicacao1" layoutX="163.0" layoutY="210.0" prefHeight="26.0" prefWidth="408.0" />
-                        <JFXTextField id="TxtDicas" fx:id="txDicas1" layoutX="162.0" layoutY="246.0" prefHeight="26.0" prefWidth="408.0" />
-                        <JFXTextField id="TxtPrevencao" fx:id="txPrevencao1" layoutX="161.0" layoutY="285.0" prefHeight="26.0" prefWidth="408.0" />
-                        <ImageView id="ImgCha" fx:id="imgCha1" fitHeight="150.0" fitWidth="200.0" layoutX="592.0" layoutY="27.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0;" />
-                        <ImageView id="btAdicionar" fx:id="btAdicionar1" depthTest="ENABLE" fitHeight="24.0" fitWidth="100.0" layoutX="614.0" layoutY="181.0" onMouseClicked="#btAdicionarAction" pickOnBounds="true" preserveRatio="true">
+                        <Label id="LblNome" layoutX="13.0" layoutY="9.0" text="Nome" />
+                        <Label id="LblBreveDescricao" layoutX="12.0" layoutY="45.0" text="Breve Descrição" />
+                        <Label id="LblDicas" layoutX="7.0" layoutY="436.0" text="Modo de Preparo" />
+                        <JFXTextField id="TxtNome" fx:id="txNome" layoutX="162.0" layoutY="5.0" prefHeight="26.0" prefWidth="408.0" />
+                        <JFXTextField id="TxtBreveDescricao" fx:id="txDescricao" layoutX="163.0" layoutY="39.0" prefHeight="26.0" prefWidth="408.0" />
+                        <TableView id="tbvBeneficio" fx:id="tbvBeneficio" editable="true" layoutX="12.0" layoutY="86.0" prefHeight="117.0" prefWidth="558.0">
+                          <columns>
+                            <TableColumn id="selectCol" fx:id="selectCol" prefWidth="75.0" />
+                            <TableColumn id="nomeBeneficio" fx:id="nomeBeneficio" editable="false" prefWidth="480.0" text="Benefício" />
+                          </columns>
+                        </TableView>
+                        <TableView id="tbvIngredientes" fx:id="tbvIngredientes" editable="true" layoutX="11.0" layoutY="204.0" prefHeight="117.0" prefWidth="558.0">
+                           <columns>
+                              <TableColumn id="selectColIngre" fx:id="selectColIngre" prefWidth="75.0" />
+                              <TableColumn id="nomeIngrediente" fx:id="nomeIngrediente" editable="false" prefWidth="480.0" text="Ingredientes" />
+                           </columns>
+                        </TableView>
+                        <TableView id="tbvContraIndicacao" fx:id="tbvContraIndicacao" editable="true" layoutX="11.0" layoutY="322.0" prefHeight="113.0" prefWidth="558.0">
+                           <columns>
+                              <TableColumn id="selectColContra" fx:id="selectColContra" prefWidth="75.0" />
+                              <TableColumn id="nomeContraIndicacao" fx:id="nomeContraIndicacao" editable="false" prefWidth="480.0" text="Contra Indicação" />
+                           </columns>
+                        </TableView>
+                        <JFXTextField id="txModoPreparo" fx:id="txModoPreparo" alignment="TOP_LEFT" layoutX="112.0" layoutY="436.0" prefHeight="140.0" prefWidth="454.0" />
+                        <ImageView id="btAdicionar" fx:id="btAdicionar1" depthTest="ENABLE" fitHeight="24.0" fitWidth="100.0" layoutX="685.0" layoutY="214.0" onMouseClicked="#btAdicionarAction" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/plus.png" />
                            </image>
                         </ImageView>
-                        <ImageView id="btRemover" fx:id="btRemover1" depthTest="ENABLE" fitHeight="24.0" fitWidth="100.0" layoutX="645.0" layoutY="181.0" onMouseClicked="#btRemoverAction" pickOnBounds="true" preserveRatio="true">
+                        <ImageView id="btRemover" fx:id="btRemover1" depthTest="ENABLE" fitHeight="24.0" fitWidth="100.0" layoutX="716.0" layoutY="214.0" onMouseClicked="#btRemoverAction" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/negative.png" />
                            </image>
                         </ImageView>
-                        <JFXButton id="BtnGravar" layoutX="14.0" layoutY="562.0" onAction="#btGravarAction" style="-fx-background-color: #14CC3E;" text="Gravar" />
+                        <ImageView id="imgCha" fx:id="imgCha" fitHeight="196.0" fitWidth="319.0" layoutX="614.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/sem_foto.png" />
+                           </image></ImageView>
+                        <JFXButton id="BtnGravar" layoutX="19.0" layoutY="541.0" onAction="#btGravarAction" style="-fx-background-color: #14CC3E;" text="Gravar" />
                      </children>
                   </AnchorPane>
               </content>
             </Tab>
          </tabs>
       </JFXTabPane>
+      <JFXButton buttonType="RAISED" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" onAction="#btnBackAction" prefHeight="44.0" prefWidth="34.0" style="-fx-background-color: #14CC3E #14CC3E; -fx-background-radius: 100%;" styleClass="login" textAlignment="CENTER">
+         <graphic>
+            <ImageView fx:id="imgBtn" depthTest="ENABLE" fitHeight="35.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/back.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

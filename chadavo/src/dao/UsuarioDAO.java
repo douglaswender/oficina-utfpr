@@ -18,51 +18,103 @@ import model.Usuario;
  */
 public class UsuarioDAO {
 
-    
-    public static boolean createUsuario(String login, String senha, String nome) throws SQLException{
+    public static boolean createUsuario(Usuario usuario) throws SQLException {
+//        System.out.println(usuario.getLoginUsuario());
+//        System.out.println(usuario.getSenhaUsuario());
+//        System.out.println(usuario.getNomeUsuario());
         try {
-            if(login.equals("")||senha.equals("")||nome.equals("")){
+            if (usuario.getLoginUsuario().equals("") || usuario.getSenhaUsuario().equals("") || usuario.getNomeUsuario().equals("")) {
                 return false;
-            }else{
-            Connection con = new Conexao().getConnection();
-            PreparedStatement stm = con.prepareStatement("INSERT INTO usuario(login, senha, nome) VALUES (?, ?, ?)");
-            stm.setString(1, login);
-            stm.setString(2, senha);
-            stm.setString(3, nome);
-        
-            stm.execute();
-            stm.close();
-            return true;
+            } else {
+                Connection con = new Conexao().getConnection();
+                PreparedStatement stm = con.prepareStatement("INSERT INTO usuario(login, senha, nome, email) VALUES (?, ?, ?, ?)");
+                stm.setString(1, usuario.getLoginUsuario());
+                stm.setString(2, usuario.getSenhaUsuario());
+                stm.setString(3, usuario.getNomeUsuario());
+                stm.setString(4, usuario.getEmailUsuario());
+
+                stm.execute();
+                stm.close();
+                return true;
             }
         } catch (Exception e) {
+            System.out.println(e);
             return false;
-            //System.out.println(e);
+
         }
     }
-    public static Usuario loginUsuario(String login, String senha){
+
+    public static Usuario loginUsuario(Usuario u) {
         Usuario usuario = null;
-        try {            
+        try {
             Connection con = new Conexao().getConnection();
             PreparedStatement stm = con.prepareStatement("SELECT * FROM usuario WHERE login=?");
-            stm.setString(1, login);
-            
+            stm.setString(1, u.getLoginUsuario());
+
             ResultSet rs = stm.executeQuery();
-            
-            if(rs.next()){
-                
-                usuario = new Usuario(rs.getInt("id"), rs.getString("login"), rs.getString("senha"), rs.getString("nome"));
+
+            if (rs.next()) {
+
+                usuario = new Usuario(rs.getInt("id"), rs.getString("login"), rs.getString("senha"), rs.getString("nome"), rs.getString("email"));
                 return usuario;
             }
-            
-            
+
             rs.close();
             stm.close();
             con.close();
-            
+
         } catch (SQLException e) {
             System.out.println(e);
         }
         return usuario;
     }
-    
+
+    public static boolean salvarUsuario(Usuario u) throws SQLException {
+        try {
+            Connection con = new Conexao().getConnection();
+            PreparedStatement stm = con.prepareStatement("UPDATE usuario set login=?, senha=?, nome = ?, email = ? where id = ? ");
+            stm.setString(1, u.getLoginUsuario());
+            stm.setString(2, u.getSenhaUsuario());
+            stm.setString(3, u.getNomeUsuario());
+            stm.setString(4, u.getEmailUsuario());
+            stm.setInt(5, u.getIdUsuario());
+
+            stm.execute();
+
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+
+            return false;
+        }
+    }
+
+    public static Usuario recuperaSenha(Usuario u) {
+        Usuario usuario = null;
+        try {
+            Connection con = new Conexao().getConnection();
+            PreparedStatement stm = con.prepareStatement("SELECT * FROM usuario WHERE login=? and nome=? and email=?");
+            stm.setString(1, u.getLoginUsuario());
+            stm.setString(2, u.getNomeUsuario());
+            stm.setString(3, u.getEmailUsuario());
+
+            ResultSet rs = stm.executeQuery();
+
+            if (rs.next()) {
+
+                usuario = new Usuario(rs.getInt("id"), rs.getString("login"), rs.getString("senha"), rs.getString("nome"), rs.getString("email"));
+                return usuario;
+            }
+
+            rs.close();
+            stm.close();
+            con.close();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return usuario;
+
+    }
+
 }

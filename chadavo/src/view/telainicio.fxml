@@ -2,30 +2,37 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #006B18;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaInicioController">
+<AnchorPane id="AnchorPane" fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #006B18;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaInicioController">
    <children>
-      <Label layoutX="306.0" layoutY="144.0" text="Já tem cadastro? Então faça o login!" textFill="#f2f2f2">
+      <Label layoutX="299.0" layoutY="238.0" text="Já tem cadastro? Então faça o login!" textFill="#f2f2f2">
          <font>
             <Font size="38.0" />
          </font>
       </Label>
-      <Label layoutX="281.0" layoutY="385.0" text="Ainda não tem cadastro? Faça já o seu!" textFill="#f2f2f2">
+      <Label layoutX="274.0" layoutY="479.0" text="Ainda não tem cadastro? Faça já o seu!" textFill="#f2f2f2">
          <font>
             <Font size="38.0" />
          </font>
       </Label>
-      <JFXButton id="btnLogin" fx:id="btnLogin" buttonType="RAISED" focusTraversable="false" layoutX="556.0" layoutY="199.0" onAction="#btLoginAction" style="-fx-background-color: #14CC3E;" text="LOGIN" textAlignment="CENTER" textFill="WHITE">
+      <JFXButton id="btnLogin" fx:id="btnLogin" buttonType="RAISED" focusTraversable="false" layoutX="549.0" layoutY="293.0" onAction="#btLoginAction" style="-fx-background-color: #14CC3E;" text="LOGIN" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </JFXButton>
-      <JFXButton id="btnCadastrar" fx:id="btnCadastro" buttonType="RAISED" focusTraversable="false" layoutX="516.0" layoutY="440.0" onAction="#btnCadastrarAction" style="-fx-background-color: #14CC3E;" text="CADASTRE-SE" textAlignment="CENTER" textFill="WHITE">
+      <JFXButton id="btnCadastrar" fx:id="btnCadastro" buttonType="RAISED" focusTraversable="false" layoutX="509.0" layoutY="534.0" onAction="#btnCadastrarAction" style="-fx-background-color: #14CC3E;" text="CADASTRE-SE" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </JFXButton>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="520.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/LOGO1.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

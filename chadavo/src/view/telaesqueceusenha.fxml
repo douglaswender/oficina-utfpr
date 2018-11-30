@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -10,16 +9,16 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #006B18;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaEsqueceuSenhaController">
+<AnchorPane id="AnchorPane" fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #006B18;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaEsqueceuSenhaController">
    <children>
       <Pane layoutX="420.0" layoutY="184.0" prefHeight="332.0" prefWidth="359.0" AnchorPane.leftAnchor="420.00000000000006" AnchorPane.rightAnchor="420.8">
          <children>
-            <JFXTextField fx:id="txNome" alignment="CENTER" focusColor="#1cc71f" labelFloat="true" layoutX="45.0" layoutY="25.0" promptText="NOME" style="-fx-prompt-text-fill: #FFF; -fx-text-fill: #fff;" unFocusColor="WHITE">
+            <JFXTextField fx:id="txNome" alignment="CENTER" focusColor="#1cc71f" labelFloat="true" layoutX="5.0" layoutY="25.0" prefHeight="51.0" prefWidth="350.0" promptText="NOME" style="-fx-prompt-text-fill: #FFF; -fx-text-fill: #fff;" unFocusColor="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="txUsuario" alignment="CENTER" focusColor="#1cc71f" labelFloat="true" layoutX="45.0" layoutY="106.0" promptText="USUÁRIO" style="-fx-prompt-text-fill: #FFF; -fx-text-fill: #fff;" unFocusColor="WHITE">
+            <JFXTextField fx:id="txUsuario" alignment="CENTER" focusColor="#1cc71f" labelFloat="true" layoutX="6.0" layoutY="104.0" prefHeight="51.0" prefWidth="344.0" promptText="USUÁRIO" style="-fx-prompt-text-fill: #FFF; -fx-text-fill: #fff;" unFocusColor="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
@@ -29,12 +28,16 @@
                   <Font size="20.0" />
                </font>
             </JFXButton>
-            <JFXDatePicker fx:id="txDataNasc" layoutX="55.0" layoutY="192.0" prefHeight="51.0" prefWidth="269.0" promptText="DATA DE NASCIMENTO" style="-jfx-label-float: TRUE;" />
             <Label fx:id="lbSenha" alignment="CENTER" layoutX="48.0" layoutY="250.0" prefHeight="18.0" prefWidth="264.0" textAlignment="CENTER" textFill="#df0e0e" wrapText="true">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
+            <JFXTextField fx:id="txEmail" alignment="CENTER" focusColor="#1cc71f" labelFloat="true" layoutX="8.0" layoutY="189.0" prefHeight="51.0" prefWidth="344.0" promptText="EMAIL" style="-fx-prompt-text-fill: #FFF; -fx-text-fill: #fff;" unFocusColor="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </JFXTextField>
          </children>
       </Pane>
       <JFXButton buttonType="RAISED" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" onAction="#btnBackAction" prefHeight="44.0" prefWidth="34.0" style="-fx-background-color: #14CC3E #14CC3E; -fx-background-radius: 100%;" styleClass="login" textAlignment="CENTER">

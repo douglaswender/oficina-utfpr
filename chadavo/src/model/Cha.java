@@ -1,128 +1,96 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package model;
 
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 /**
  *
  * @author ViniciusBelloli
  */
 public class Cha {
-    String nome;
-    String brevedescricao;
-    String detalhes;
-    String especificacao_tecnica;
-    String indicacao;
-    String contra_indicacao;
-    String dicas;
-    String prevencao;
+    SimpleIntegerProperty id;
+    SimpleStringProperty nome;
+    SimpleStringProperty descricao_cha;
+    SimpleStringProperty modo_preparo;
+    ArrayList<Beneficio> beneficios = new ArrayList<>();
     BufferedImage imgcha;
 
-    public Cha(String nome, String brevedescricao, String detalhes, String especificacao_tecnica, String indicacao, String contra_indicacao, String dicas, String prevencao, BufferedImage imgcha){
-        this.nome                  = nome;
-        this.brevedescricao        = brevedescricao;
-        this.detalhes              = detalhes;
-        this.especificacao_tecnica = especificacao_tecnica;
-        this.indicacao             = indicacao;
-        this.contra_indicacao      = contra_indicacao;
-        this.dicas                 = dicas;
-        this.prevencao             = prevencao;
-        this.imgcha                = imgcha;
+    public Cha(SimpleIntegerProperty id, SimpleStringProperty nome, SimpleStringProperty descricao_cha, SimpleStringProperty modo_preparo, BufferedImage imgcha){
+        this.id = id;
+        this.nome          = nome;
+        this.descricao_cha = descricao_cha;
+        this.modo_preparo  = modo_preparo;
+        this.imgcha        = imgcha;
     }
-/*
-    public class Chas extends RecursiveTreeObject<Chas> {
 
-        StringProperty nome;
-        StringProperty brevedescricao;
-        StringProperty detalhes;
-        StringProperty especificacao_tecnica;
-        StringProperty indicacao;
-        StringProperty contra_indicacao;
-        StringProperty dicas;
-        StringProperty prevencao;
-
-        public Chas(String nome, String brevedescricao, String detalhes, String especificacao_tecnica, String indicacao, String contra_indicacao, String dicas, String prevencao) {
-            this.nome                  = new SimpleStringProperty(nome);
-            this.brevedescricao        = new SimpleStringProperty(brevedescricao);
-            this.detalhes              = new SimpleStringProperty(detalhes);
-            this.especificacao_tecnica = new SimpleStringProperty(especificacao_tecnica);
-            this.indicacao             = new SimpleStringProperty(indicacao);
-            this.contra_indicacao      = new SimpleStringProperty(contra_indicacao);
-            this.dicas                 = new SimpleStringProperty(dicas);
-            this.prevencao             = new SimpleStringProperty(prevencao);                        
-        }
-
+    public Cha(String nome, int id){
+        this.nome = new SimpleStringProperty(nome);
+        this.id   = new SimpleIntegerProperty(id);
     }
-*/
+
+    public Cha(int id, String nome, String detalhes) {
+        this.id = new SimpleIntegerProperty(id);
+        this.descricao_cha = new SimpleStringProperty(detalhes);
+        this.nome = new SimpleStringProperty(nome);        
+    }
+
+    public ArrayList<Beneficio> getBeneficios() {
+        return beneficios;
+    }
+
+    public void setBeneficios(ArrayList<Beneficio> beneficios) {
+        this.beneficios = beneficios;
+    }
+    
+    public void addBeneficio(Beneficio b){
+        beneficios.add(b);
+    }
+    
+    public ArrayList percorreLista(){
+        return null;
+    }
+
+
+    public int getId() {
+        return id.getValue();
+    }
+
+    public void setId(int id) {
+        this.id = new SimpleIntegerProperty (id);
+    }
+
     public String getNome() {
-        return nome;
+        return nome.getValue();
+
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = new SimpleStringProperty (nome);
     }
 
-    public String getBrevedescricao() {
-        return brevedescricao;
+    public String getDescricao_cha() {
+        return descricao_cha.getValue();
     }
 
-    public void setBrevedescricao(String brevedescricao) {
-        this.brevedescricao = brevedescricao;
+    public void setDescricao_cha(String descricao_cha) {
+        this.descricao_cha = new SimpleStringProperty (descricao_cha);
     }
 
-    public String getDetalhes() {
-        return detalhes;
+    public String getModo_preparo() {
+
+        return modo_preparo.getValue();
+
     }
 
-    public void setDetalhes(String detalhes) {
-        this.detalhes = detalhes;
-    }
-
-    public String getEspecificacao_tecnica() {
-        return especificacao_tecnica;
-    }
-
-    public void setEspecificacao_tecnica(String especificacao_tecnica) {
-        this.especificacao_tecnica = especificacao_tecnica;
-    }
-
-    public String getIndicacao() {
-        return indicacao;
-    }
-
-    public void setIndicacao(String indicacao) {
-        this.indicacao = indicacao;
-    }
-
-    public String getContra_indicacao() {
-        return contra_indicacao;
-    }
-
-    public void setContra_indicacao(String contra_indicacao) {
-        this.contra_indicacao = contra_indicacao;
-    }
-
-    public String getDicas() {
-        return dicas;
-    }
-
-    public void setDicas(String dicas) {
-        this.dicas = dicas;
-    }
-
-    public String getPrevencao() {
-        return prevencao;
-    }
-
-    public void setPrevencao(String prevencao) {
-        this.prevencao = prevencao;
+    public void setModo_preparo(String modo_preparo) {
+        this.modo_preparo = new SimpleStringProperty (modo_preparo);
     }
 
     public BufferedImage getImgcha() {
@@ -136,4 +104,10 @@ public class Cha {
     public Cha(){
         
     }
+    
+    @Override
+    public String toString(){
+        return this.getNome();
+    }
+    
 }

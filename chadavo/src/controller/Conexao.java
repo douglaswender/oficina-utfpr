@@ -16,15 +16,20 @@ import java.sql.SQLException;
 public class Conexao {
     private static String url   = "jdbc:postgresql://localhost:5432/chadavo";
     private static String user  = "postgres";
-    private static String senha = "";
+    private static String senha = "postgres";
 
-    public Connection getConnection(){
+    public Connection getConnection() throws SQLException{
+        
+        Connection con = null;
         try {
-            System.out.println("Conexão efetada com sucesso");
-            return DriverManager.getConnection(url, user, senha);
+            con = DriverManager.getConnection(url, user, senha);
+            //System.out.println("Conexão efetada com sucesso");
+            return con;
         } catch (SQLException ex) {
-            System.out.println("Falha de Conexão");
+            //System.out.println("Falha de Conexão " + ex);
             throw new RuntimeException(ex);
+        } finally{
+            //con.close();
         }
     }
 }

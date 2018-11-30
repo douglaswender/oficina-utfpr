@@ -5,24 +5,28 @@
  */
 package controller;
 
-import com.jfoenix.controls.JFXTreeTableColumn;
-import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import static dao.ChaDAO.pesquisaTodosChas;
+import java.io.IOException;
 import java.net.URL;
-import java.util.List;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TreeTableColumn;
-import javafx.util.Callback;
-import dao.ChaDAO;
-import java.io.IOException;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
+import model.Cha;
 
-public class ResultadobuscaController {
+public class ResultadobuscaController implements Initializable {
 
     @FXML
     private ResourceBundle resources;
@@ -31,47 +35,49 @@ public class ResultadobuscaController {
     private URL location;
 
     @FXML
-    private JFXTreeTableView<Chas> TbvCha;
+    private TableView<Cha> TbvCha;
 
     @FXML
-    void initialize() throws IOException {
-        JFXTreeTableColumn<Chas, String> nome = new JFXTreeTableColumn<>("Nome");
-        nome.setPrefWidth(150);
-        nome.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Chas, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Chas, String> param) {
-                return param.getValue().getValue().nome;
-            }
-        });
+    private TableColumn<Cha, String> nomeCha;
+    
+    private String pesquisa;
 
-        ObservableList<Chas> chas = FXCollections.observableArrayList();
-        
-        List lista = ChaDAO.Pesquisar("d");;
-        
-        chas.add(new Chas(lista.get(1).toString(), lista.get(2).toString(), lista.get(3).toString(), lista.get(4).toString(), lista.get(5).toString(), lista.get(6).toString(), lista.get(7).toString(), lista.get(8).toString()));
-
-    }
-}
-
-class Chas extends RecursiveTreeObject<Chas> {
-    StringProperty nome;
-    StringProperty brevedescricao;
-    StringProperty detalhes;
-    StringProperty especificacao_tecnica;
-    StringProperty indicacao;
-    StringProperty contra_indicacao;
-    StringProperty dicas;
-    StringProperty prevencao;
-
-    public Chas(String nome, String brevedescricao, String detalhes, String especificacao_tecnica, String indicacao, String contra_indicacao, String dicas, String prevencao) {
-        this.nome                  = new SimpleStringProperty(nome);
-        this.brevedescricao        = new SimpleStringProperty(brevedescricao);
-        this.detalhes              = new SimpleStringProperty(detalhes);
-        this.especificacao_tecnica = new SimpleStringProperty(especificacao_tecnica);
-        this.indicacao             = new SimpleStringProperty(indicacao);
-        this.contra_indicacao      = new SimpleStringProperty(contra_indicacao);
-        this.dicas                 = new SimpleStringProperty(dicas);
-        this.prevencao             = new SimpleStringProperty(prevencao);                        
+    public ResultadobuscaController(String pesquisa) {
+        this.pesquisa = pesquisa;
     }
 
+    public void initList(String pesquisa) throws SQLException{
+        nomeCha.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        TbvCha.setItems(pesquisaTodosChas(pesquisa));
+    }
+
+    @FXML
+    void onEnterPressed(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+            Cha c = TbvCha.getSelectionModel().getSelectedItem();
+            trocaTela(c.getId());
+        }
+    }
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources){
+        try {
+            initList(pesquisa);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaInfoCha.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void trocaTela(int pesquisa) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telacadastrocha.fxml"));
+
+        fxmlloader.setController(new TelaCadastroChaController(pesquisa));
+
+        Parent tela = fxmlloader.load();
+
+        stage.setScene(new Scene(tela));
+
+        stage.show();
+    }
 }

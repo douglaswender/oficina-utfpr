@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/controller/TelaPerfilUsuarioController.java</file>
+            <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/controller/TelaEsqueceuSenhaController.java</file>
+            <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/dao/UsuarioDAO.java</file>
+            <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/model/Usuario.java</file>
+            <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/controller/TelaLoginController.java</file>
+        </group>
+>>>>>>> 7e0decc9d4bb164de609d138c1b4921daef0ee3d
     </open-files>
 </project-private>
