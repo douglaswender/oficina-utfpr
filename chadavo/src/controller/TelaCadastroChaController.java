@@ -31,6 +31,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -208,7 +209,7 @@ public class TelaCadastroChaController implements Initializable {
         txPesquisa.setText("");
         Image img = new Image("/img/sem_foto.png");
         imgCha.setImage(img);
-        tbvBeneficio.setItems(BeneficioDAO.pesquisaTodosBeneficios2(false, 0));
+        //tbvBeneficio.setItems(BeneficioDAO.pesquisaTodosBeneficios2(false, 0));
         tbvIngredientes.setItems(IngredientesDAO.pesquisaTodosIngredientes(false, 0));
         tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(false, 0));
         id = 0;
@@ -226,7 +227,7 @@ public class TelaCadastroChaController implements Initializable {
                 txNome.setText(c.getNome());
                 txDescricao.setText(c.getDescricao_cha());
                 txModoPreparo.setText(c.getModo_preparo());
-                tbvBeneficio.setItems(BeneficioDAO.pesquisaTodosBeneficios2(true, c.getId()));
+                tbvBeneficio.setItems(FXCollections.observableArrayList(BeneficioDAO.pesquisaTodosBeneficios2(true, c.getId())));
                 tbvIngredientes.setItems(IngredientesDAO.pesquisaTodosIngredientes(true, c.getId()));
                 tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(true, c.getId()));
                 lAlteracao = true;
@@ -260,7 +261,7 @@ public class TelaCadastroChaController implements Initializable {
         //Busca todos os Beneficios
         selectCol.setCellValueFactory(new PropertyValueFactory<Beneficio, String>("marcado"));
         nomeBeneficio.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        tbvBeneficio.setItems(BeneficioDAO.pesquisaTodosBeneficios2(false, 0));
+        tbvBeneficio.setItems(FXCollections.observableArrayList(BeneficioDAO.pesquisaTodosBeneficios2(false, 0)));
         //Busca todos os Ingredientess
         selectColIngre.setCellValueFactory(new PropertyValueFactory<Ingredientes, String>("marcado"));
         nomeIngrediente.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -277,7 +278,7 @@ public class TelaCadastroChaController implements Initializable {
             txNome.setText(c.getNome());
             txDescricao.setText(c.getDescricao_cha());
             txModoPreparo.setText(c.getModo_preparo());
-            tbvBeneficio.setItems(BeneficioDAO.pesquisaTodosBeneficios2(true, c.getId()));
+            tbvBeneficio.setItems(FXCollections.observableArrayList(BeneficioDAO.pesquisaTodosBeneficios2(true, c.getId())));
             tbvIngredientes.setItems(IngredientesDAO.pesquisaTodosIngredientes(true, c.getId()));
             tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(true, c.getId()));
             lAlteracao = true;
@@ -292,6 +293,7 @@ public class TelaCadastroChaController implements Initializable {
         try {
             if (cha==null) {
                 System.out.println("Chá vazio");
+                initList(cha);
             }else{
                 initList(cha);
                 System.out.println(cha.getId());

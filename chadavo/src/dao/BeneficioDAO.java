@@ -206,10 +206,10 @@ public class BeneficioDAO {
 
     }
 
-    public static ObservableList<Beneficio> pesquisaTodosBeneficios2(Boolean lAlteracao, int CodigoCha) throws SQLException {
+    public static List<Beneficio> pesquisaTodosBeneficios2(Boolean lAlteracao, int CodigoCha) throws SQLException {
 
         Connection con = new Conexao().getConnection();
-        String cSQL = "";
+        String cSQL;
         if (lAlteracao) {
             cSQL = "select ben.*, coalesce((select true from benecha where chave_beneficio = ben.cod_beneficio and chave_benecha = ?), false) as marcado from beneficios as ben left join benecha as bene on(bene.chave_beneficio = ben.cod_beneficio) order by cod_beneficio";
         } else {
@@ -223,7 +223,7 @@ public class BeneficioDAO {
         }
 
         ResultSet rs = ps.executeQuery();
-        ObservableList<Beneficio> observableArrayList = null;
+        
         List<Beneficio> retorno = new ArrayList<>();
 
         try {
@@ -231,6 +231,7 @@ public class BeneficioDAO {
 
             while (rs.next()) {
                 Beneficio b = new Beneficio(rs.getInt("cod_beneficio"), rs.getString("nome_beneficio"));
+                System.out.println("Beneficio: "+b.getNome());
                 retorno.add(b);
 
                 if (lAlteracao) {
@@ -243,9 +244,9 @@ public class BeneficioDAO {
                 //observableArrayList = FXCollections.observableArrayList(new Beneficio(false, rs.getString("nome_beneficio")));
             }
 
-            observableArrayList = FXCollections.observableArrayList(retorno);
+           
 
-            return observableArrayList;
+            return retorno;
         } catch (SQLException e) {
             System.out.println("ERRO: #" + e);
             return null;
