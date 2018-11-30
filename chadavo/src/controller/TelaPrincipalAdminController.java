@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -89,7 +90,7 @@ public class TelaPrincipalAdminController implements Initializable {
     void btnCadChaAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telacadastrocha.fxml"));
         // Definindo quem é o controller desse 'fxml':
-        fxmlloader.setController(new TelaCadastroChaController(null));
+        fxmlloader.setController(new TelaCadastroChaController(new Cha()));
 
         AnchorPane a = (AnchorPane) fxmlloader.load();
 
@@ -108,8 +109,8 @@ public class TelaPrincipalAdminController implements Initializable {
     }
 
     @FXML
-    void btnPerquisarAction(ActionEvent event) {
-
+    void btnPerquisarAction(ActionEvent event) throws IOException, SQLException {
+        pesquisaTexto();
     }
 
     @FXML
@@ -141,8 +142,26 @@ public class TelaPrincipalAdminController implements Initializable {
     }
 
     @FXML
-    void onEnterPress(KeyEvent event) {
+    void onEnterPress(KeyEvent event) throws IOException, SQLException {
+        if (event.getCode() == KeyCode.ENTER) {
+            pesquisaTexto();
+        }
+    }
 
+    void pesquisaTexto() throws IOException, SQLException {
+        String pesq = txPesquisa.getText();
+
+        ChaDAO dao = new ChaDAO();
+
+        ObservableList<Cha> chas = FXCollections.observableArrayList(dao.Pesquisar(pesq));
+
+        listChas.setItems(chas);
+
+        BeneficioDAO daob = new BeneficioDAO();
+
+        ObservableList<Beneficio> bene = FXCollections.observableArrayList(daob.pesquisaBeneficioPorNome(pesq));
+
+        listBeneficios.setItems(bene);
     }
 
     public Stage getStage() {

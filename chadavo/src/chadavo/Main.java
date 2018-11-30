@@ -29,7 +29,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         stage = primaryStage;
-        primaryStage.getIcons().add(new Image("/img/POJET.png"));
+        primaryStage.getIcons().add(new Image("/img/logo.png"));
         primaryStage.setTitle("Chá da Vó 1.0");
         primaryStage.setResizable(false);
         //primaryStage.setWidth(1200);

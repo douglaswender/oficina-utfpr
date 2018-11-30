@@ -114,7 +114,9 @@ public class TelaCadastroChaController implements Initializable{
     private TableColumn<ContraIndicacao, String> nomeContraIndicacao;
 
     private Boolean lAlteracao = false;
+    
     private Integer id = 0;
+    
     private Cha pesquisa;
 
     TelaCadastroChaController(Cha pesquisa) {
@@ -271,7 +273,7 @@ public class TelaCadastroChaController implements Initializable{
         nomeContraIndicacao.setCellValueFactory(new PropertyValueFactory<ContraIndicacao, String>("nome"));
         tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(false, 0));
 
-        if (pesquisa.getId() > 0){
+        if (pesquisa.equals(null)){
             Cha c = new Cha(pesquisa.getId(), "", "");
             c = ChaDAO.Pesquisar2(c);
 
