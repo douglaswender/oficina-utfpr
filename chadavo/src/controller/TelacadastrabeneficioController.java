@@ -1,6 +1,5 @@
 package controller;
 
-import chadavo.Main;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
@@ -33,6 +32,14 @@ public class TelacadastrabeneficioController implements Initializable {
     @FXML
     private JFXListView<Beneficio> list;
 
+    @FXML
+    private JFXButton btnBackAction;
+
+    @FXML
+    void btnBackAction(ActionEvent event) throws IOException {
+        backAction();
+    }
+
     public void backAction() throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telaprincipaladmin.fxml"));
         // Definindo quem é o controller desse 'fxml':
@@ -41,15 +48,6 @@ public class TelacadastrabeneficioController implements Initializable {
         AnchorPane a = (AnchorPane) fxmlloader.load();
 
         anchorpane.getChildren().setAll(a);
-    }
-
-    @FXML
-    void btnBackAction(ActionEvent event) {
-        try {
-            backAction();
-        } catch (IOException ex) {
-            Logger.getLogger(TelacadastrabeneficioController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     private static Stage stage;

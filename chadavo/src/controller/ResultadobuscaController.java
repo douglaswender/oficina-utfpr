@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -39,14 +38,14 @@ public class ResultadobuscaController implements Initializable {
 
     @FXML
     private TableColumn<Cha, String> nomeCha;
-    
+
     private String pesquisa;
 
     public ResultadobuscaController(String pesquisa) {
         this.pesquisa = pesquisa;
     }
 
-    public void initList(String pesquisa) throws SQLException{
+    public void initList(String pesquisa) throws SQLException {
         nomeCha.setCellValueFactory(new PropertyValueFactory<>("nome"));
         TbvCha.setItems(pesquisaTodosChas(pesquisa));
     }
@@ -55,12 +54,12 @@ public class ResultadobuscaController implements Initializable {
     void onEnterPressed(KeyEvent event) throws IOException {
         if (event.getCode() == KeyCode.ENTER) {
             Cha c = TbvCha.getSelectionModel().getSelectedItem();
-            trocaTela(c.getId());
+            //trocaTela(c.getId());
         }
     }
-    
+
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
         try {
             initList(pesquisa);
         } catch (SQLException ex) {
@@ -68,7 +67,7 @@ public class ResultadobuscaController implements Initializable {
         }
     }
 
-    public void trocaTela(int pesquisa) throws IOException {
+    public void trocaTela(Cha pesquisa) throws IOException {
         Stage stage = new Stage();
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telacadastrocha.fxml"));
 

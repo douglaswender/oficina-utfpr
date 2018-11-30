@@ -1,6 +1,5 @@
 package controller;
 
-import chadavo.Main;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
@@ -9,7 +8,6 @@ import dao.ChaDAO;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,13 +29,12 @@ import model.Cha;
 import model.Usuario;
 
 public class TelaPrincipalAdminController implements Initializable {
-    
+
     private Usuario user;
 
     public TelaPrincipalAdminController(Usuario user) {
         this.user = user;
     }
-    
 
     public Usuario getUser() {
         return user;
@@ -49,7 +46,7 @@ public class TelaPrincipalAdminController implements Initializable {
 
     @FXML
     private AnchorPane anchorpane;
-    
+
     @FXML
     private JFXTextField txPesquisa;
 
@@ -75,8 +72,6 @@ public class TelaPrincipalAdminController implements Initializable {
     private JFXListView<Beneficio> listBeneficios;
 
     //private Stage stage;
-    
-    
     @FXML
     void btnCadBeneficioAction(ActionEvent event) throws SQLException, IOException {
 
@@ -87,14 +82,14 @@ public class TelaPrincipalAdminController implements Initializable {
         AnchorPane a = (AnchorPane) fxmlloader.load();
 
         anchorpane.getChildren().setAll(a);
-        
+
     }
 
     @FXML
     void btnCadChaAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telacadastrocha.fxml"));
         // Definindo quem é o controller desse 'fxml':
-        fxmlloader.setController(new TelaCadastroChaController(0));
+        fxmlloader.setController(new TelaCadastroChaController(null));
 
         AnchorPane a = (AnchorPane) fxmlloader.load();
 
@@ -119,7 +114,7 @@ public class TelaPrincipalAdminController implements Initializable {
 
     @FXML
     void btnSairAction(ActionEvent event) throws IOException {
-        
+
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telalogin.fxml"));
         // Definindo quem é o controller desse 'fxml':
         fxmlloader.setController(new TelaLoginController());
@@ -131,8 +126,8 @@ public class TelaPrincipalAdminController implements Initializable {
 
     @FXML
     void abreCha(MouseEvent event) throws IOException {
-        Integer nIdCha = listChas.getSelectionModel().getSelectedItem().getId();
-        trocaTela(nIdCha);
+        Cha c = listChas.getSelectionModel().getSelectedItem();
+        trocaTela(c);
     }
 
     @FXML
@@ -155,29 +150,30 @@ public class TelaPrincipalAdminController implements Initializable {
 
     }
 
-        void initListBeneficio() throws SQLException {
+    void initListBeneficio() throws SQLException {
 
-            listBeneficios.getItems().clear();
+        listBeneficios.getItems().clear();
 
-            BeneficioDAO dao = new BeneficioDAO();
+        BeneficioDAO dao = new BeneficioDAO();
 
-            ObservableList<Beneficio> list = FXCollections.observableArrayList(dao.pesquisaTodosBeneficios());
+        ObservableList<Beneficio> list = FXCollections.observableArrayList(dao.pesquisaTodosBeneficios());
 
-            listBeneficios.getItems().addAll(list);
+        listBeneficios.getItems().addAll(list);
 
-        }
-        void initListCha(){
-            
-            listChas.getItems().clear();
-            
-            ChaDAO dao = new ChaDAO();
-            
-            ObservableList<Cha> list = FXCollections.observableArrayList(dao.TodosChas());
-            
-            listChas.getItems().addAll(list);
-        }
-    
-    public void atualizaLista(){
+    }
+
+    void initListCha() {
+
+        listChas.getItems().clear();
+
+        ChaDAO dao = new ChaDAO();
+
+        ObservableList<Cha> list = FXCollections.observableArrayList(dao.TodosChas());
+
+        listChas.getItems().addAll(list);
+    }
+
+    public void atualizaLista() {
         try {
             initListBeneficio();
         } catch (SQLException ex) {
@@ -197,17 +193,24 @@ public class TelaPrincipalAdminController implements Initializable {
         }
     }
 
-    public void trocaTela(int pesquisa) throws IOException {
-        Stage stage = new Stage();
+    public void trocaTela(Cha c) throws IOException {
+        //Stage stage = new Stage();
+//        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telacadastrocha.fxml"));
+//
+//        fxmlloader.setController(new TelaCadastroChaController(pesquisa));
+//
+//        //Parent tela = fxmlloader.load();
+//
+//        stage.setScene(new Scene(tela));
+//
+//        stage.show();
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telacadastrocha.fxml"));
+        // Definindo quem é o controller desse 'fxml':
+        fxmlloader.setController(new TelaCadastroChaController(c));
 
-        fxmlloader.setController(new TelaCadastroChaController(pesquisa));
+        AnchorPane a = (AnchorPane) fxmlloader.load();
 
-        Parent tela = fxmlloader.load();
-
-        stage.setScene(new Scene(tela));
-
-        stage.show();
+        anchorpane.getChildren().setAll(a);
     }
 
     public void trocaTela2(String tela) throws IOException {

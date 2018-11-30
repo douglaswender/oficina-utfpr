@@ -1,6 +1,5 @@
 package controller;
 
-import chadavo.Main;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.sql.SQLException;
@@ -21,7 +20,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import com.jfoenix.controls.JFXCheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.Beneficio;
@@ -33,7 +31,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -46,6 +43,18 @@ import model.ContraIndicacao;
 import model.Ingredientes;
 
 public class TelaCadastroChaController implements Initializable{
+    
+    private Cha cha;
+
+    public Cha getCha() {
+        return cha;
+    }
+
+    public void setCha(Cha cha) {
+        this.cha = cha;
+    }
+    
+    
 
     @FXML
     private JFXTextField txPesquisa;
@@ -106,11 +115,12 @@ public class TelaCadastroChaController implements Initializable{
 
     private Boolean lAlteracao = false;
     private Integer id = 0;
-    private Integer pesquisa;
+    private Cha pesquisa;
 
-    TelaCadastroChaController(Integer pesquisa) {
+    TelaCadastroChaController(Cha pesquisa) {
         this.pesquisa = pesquisa;
     }
+
 
     @FXML
     void btGravarAction(ActionEvent event) throws SQLException, IOException {
@@ -180,7 +190,7 @@ public class TelaCadastroChaController implements Initializable{
     @FXML
     void btnBackAction(ActionEvent event) throws SQLException, IOException {
         limpaCampos();
-        /*
+        
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telaprincipaladmin.fxml"));
         // Definindo quem é o controller desse 'fxml':
         fxmlloader.setController(new TelaPrincipalAdminController(null));
@@ -188,10 +198,7 @@ public class TelaCadastroChaController implements Initializable{
         AnchorPane a = (AnchorPane) fxmlloader.load();
 
         anchorpane.getChildren().setAll(a);
-        */
-        Scene Scene = anchorpane.getScene();
-        Stage stage = (Stage) anchorpane.getScene().getWindow();
-        stage.close();
+        
     }
 
     void limpaCampos() throws SQLException {
@@ -249,7 +256,7 @@ public class TelaCadastroChaController implements Initializable{
         }
     }
 
-    public void initList(int pesquisa) throws SQLException{
+    public void initList(Cha pesquisa) throws SQLException{
         //Busca todos os Beneficios
         selectCol.setCellValueFactory(new PropertyValueFactory<Beneficio, String>("marcado"));
         nomeBeneficio.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -263,8 +270,8 @@ public class TelaCadastroChaController implements Initializable{
         nomeContraIndicacao.setCellValueFactory(new PropertyValueFactory<ContraIndicacao, String>("nome"));
         tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(false, 0));
 
-        if (pesquisa > 0){
-            Cha c = new Cha(pesquisa, "", "");
+        if (pesquisa.getId() > 0){
+            Cha c = new Cha(pesquisa.getId(), "", "");
             c = ChaDAO.Pesquisar2(c);
 
             txNome.setText(c.getNome());
