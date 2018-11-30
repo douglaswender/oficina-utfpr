@@ -93,7 +93,7 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     void abreCha(MouseEvent event) throws IOException {
         Cha c = tabela.getSelectionModel().getSelectedItem();
-        //System.out.println(c.getId());
+        System.out.println(c.getId());
         trocaTela(c);
     }
 

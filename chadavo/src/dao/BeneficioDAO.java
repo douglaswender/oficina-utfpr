@@ -100,7 +100,7 @@ public class BeneficioDAO {
         //System.out.println("Benefício: "+b.getId()+" "+b.getNome());
         Connection con = new Conexao().getConnection();
 
-        PreparedStatement ps = con.prepareStatement("SELECT DISTINCT c.cod_cha, c.nome_cha, c.beneficios FROM chas c "
+        PreparedStatement ps = con.prepareStatement("SELECT DISTINCT * FROM chas c "
                 + "JOIN benecha bc on bc.chave_benecha = c.cod_cha "
                 + "JOIN beneficios b on b.cod_beneficio = bc.chave_beneficio "
                 + " WHERE b.cod_beneficio = ?");
@@ -111,7 +111,7 @@ public class BeneficioDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                Cha c = new Cha(rs.getInt("cod_cha"), rs.getString("nome_cha"), rs.getString("beneficios"));
+                Cha c = new Cha(rs.getInt("cod_cha"), rs.getString("nome_cha"), rs.getString("descricao_cha"));
                 retorno.add(c);
             }
         } catch (Exception e) {
@@ -129,32 +129,54 @@ public class BeneficioDAO {
     public static List<Beneficio> pesquisaBeneficioPorCha(Cha c) throws SQLException {
 
         List<Beneficio> retorno = new ArrayList<>();
-
         Connection con = new Conexao().getConnection();
+        if (c != null) {
 
-        PreparedStatement ps = con.prepareStatement("select b.cod_beneficio, b.nome_beneficio from beneficios b \n"
-                + "inner join benecha bc on b.cod_beneficio = bc.chave_beneficio\n"
-                + "inner join chas c on c.cod_cha = bc.chave_benecha\n"
-                + "where c.cod_cha = ?");
+            PreparedStatement ps = con.prepareStatement("select b.cod_beneficio, b.nome_beneficio from beneficios b "
+                    + "inner join benecha bc on b.cod_beneficio = bc.chave_beneficio"
+                    + "inner join chas c on c.cod_cha = bc.chave_benecha"
+                    + "where c.cod_cha = ?");
 
-        ps.setInt(1, c.getId());
+            ps.setInt(1, c.getId());
 
-        ResultSet rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
-        try {
-            while (rs.next()) {
-                Beneficio b = new Beneficio(rs.getInt("cod_beneficio"), rs.getString("nome_beneficio"));
-                //System.out.println(b.getId() + "#" + b.getNome());
-                retorno.add(b);
+            try {
+                while (rs.next()) {
+                    Beneficio b = new Beneficio(rs.getInt("cod_beneficio"), rs.getString("nome_beneficio"));
+                    System.out.println(b.getId() + "#" + b.getNome());
+                    retorno.add(b);
+                }
+                return retorno;
+            } catch (SQLException e) {
+                System.out.println("ERRO: #" + e);
+                return null;
+            } finally {
+                ps.close();
+                con.close();
             }
-            return retorno;
-        } catch (Exception e) {
-            System.out.println("ERRO: #" + e);
-            return null;
-        } finally {
-            ps.close();
-            con.close();
+        } else {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM beneficios order by cod_beneficio");
+
+            ResultSet rs = ps.executeQuery();
+
+            try {
+                while (rs.next()) {
+                    Beneficio b = new Beneficio(rs.getInt("cod_beneficio"), rs.getString("nome_beneficio"));
+                    System.out.println(b.getId() + "#" + b.getNome());
+                    retorno.add(b);
+                }
+                return retorno;
+            } catch (SQLException e) {
+                System.out.println("ERRO: #" + e);
+                return null;
+            } finally {
+                ps.close();
+                con.close();
+            }
+
         }
+
     }
 
     public static List<Beneficio> pesquisaTodosBeneficios() throws SQLException {
@@ -264,7 +286,7 @@ public class BeneficioDAO {
     }
 
     public List<Beneficio> pesquisaBeneficioPorNome(String texto) throws SQLException {
-         List<Beneficio> lista = new ArrayList<>();
+        List<Beneficio> lista = new ArrayList<>();
         try {
             Connection con = new Conexao().getConnection();
             PreparedStatement stm = con.prepareStatement("SELECT * FROM beneficios WHERE nome_beneficio ~* ?");
@@ -283,7 +305,7 @@ public class BeneficioDAO {
             con.close();
 
         } catch (SQLException e) {
-            System.out.println("erro: #"+e);
+            System.out.println("erro: #" + e);
         }
         return lista;
     }

@@ -6,11 +6,11 @@
 package controller;
 
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTextArea;
 import dao.BeneficioDAO;
 import dao.ChaDAO;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +19,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -60,7 +59,7 @@ public class TelaInfoCha implements Initializable {
     private Label lblNomeCha;
 
     @FXML
-    private Label lblDescCha;
+    private JFXTextArea  lblDescCha;
 
     @FXML
     private Label lblBeneCha;
@@ -84,14 +83,14 @@ public class TelaInfoCha implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
-        
+        System.out.println("Este chá é o: "+ cha.getNome());
         Cha c = ChaDAO.Pesquisar2(cha);
         System.out.println("#ID: "+c.getId());
         
         Image img = ChaDAO.capturaImagemCha(c);
         //System.out.println(beneficios.size());
         lblNomeCha.setText(c.getNome() + " #" + c.getId());
-        lblDescCha.setText("Descrição: \n");
+        lblDescCha.setText("Descrição: "+ c.getDescricao_cha());
         lblIngredientes.setText("Ingredientes:\n");
         
         try {

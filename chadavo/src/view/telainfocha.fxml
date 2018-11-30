@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -13,15 +14,15 @@
             <Font size="28.0" />
          </font>
       </Label>
-      <Label fx:id="lblDescCha" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="28.0" layoutY="83.0" prefHeight="99.0" prefWidth="423.0" text="Descrição do cháaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" wrapText="true" />
       <Pane fx:id="pane" layoutX="28.0" layoutY="182.0" prefHeight="284.0" prefWidth="423.0">
          <children>
             <Label fx:id="lblBeneCha" prefHeight="28.0" prefWidth="119.0" text="Benefícios:" />
             <Label fx:id="lblIngredientes" layoutY="146.0" prefHeight="28.0" prefWidth="119.0" text="Ingredientes:" />
-            <JFXListView fx:id="listbeneficios" focusTraversable="false" layoutX="112.0" prefHeight="110.0" prefWidth="200.0" />
-            <JFXListView fx:id="listIngredientes" focusTraversable="false" layoutX="112.0" layoutY="142.0" prefHeight="110.0" prefWidth="200.0" />
+            <JFXListView fx:id="listIngredientes" focusTraversable="false" layoutX="76.0" layoutY="142.0" prefHeight="110.0" prefWidth="347.0" />
+            <JFXListView fx:id="listbeneficios" focusTraversable="false" layoutX="76.0" prefHeight="110.0" prefWidth="347.0" />
          </children>
       </Pane>
       <ImageView fx:id="imgCha" fitHeight="248.0" fitWidth="276.0" layoutX="563.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
+      <JFXTextArea fx:id="lblDescCha" editable="false" focusColor="#03821c" layoutX="28.0" layoutY="75.0" prefHeight="89.0" prefWidth="423.0" />
    </children>
 </Pane>
