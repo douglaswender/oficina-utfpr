@@ -185,6 +185,7 @@ public class TelaCadastroChaController implements Initializable{
 //        txIngredientes.setText(c.getIngredientes());
 //        txContraIndicacao.setText(c.getContra_indicacao());
 //        txModoPreparo.setText(c.getModo_preparo());
+//aaa
     }
 
     @FXML
