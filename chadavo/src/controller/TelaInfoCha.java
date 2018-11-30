@@ -79,22 +79,22 @@ public class TelaInfoCha implements Initializable {
 
         ObservableList<Beneficio> list = FXCollections.observableArrayList(dao.pesquisaBeneficioPorCha(c));
 
-        System.out.println(list);
+        //System.out.println(list);
 
         listbeneficios.getItems().addAll(list);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("Este chá é o: " + cha.getNome());
+        //System.out.println("Este chá é o: " + cha.getNome());
         Cha c = ChaDAO.Pesquisar2(cha);
-        System.out.println("#ID: " + c.getId());
+        //System.out.println("#ID: " + c.getId());
 
         Image img = ChaDAO.capturaImagemCha(c);
         //System.out.println(beneficios.size());
         lblNomeCha.setText(c.getNome() + " #" + c.getId());
         lblDescCha.setText("Descrição: " + c.getDescricao_cha());
-        lblIngredientes.setText("Ingredientes:\n");
+        lblIngredientes.setText("Modo de preparo:\n");
         txModoPreparo.setText(c.getModo_preparo());
 
         try {

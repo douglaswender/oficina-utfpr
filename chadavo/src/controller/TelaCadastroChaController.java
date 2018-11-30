@@ -1,6 +1,7 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import java.sql.SQLException;
 import javafx.event.ActionEvent;
@@ -69,7 +70,7 @@ public class TelaCadastroChaController implements Initializable {
     private JFXTextField txDescricao;
 
     @FXML
-    private JFXTextField txModoPreparo;
+    private JFXTextArea txModoPreparo;
 
     @FXML
     private ImageView imgCha;
@@ -121,99 +122,90 @@ public class TelaCadastroChaController implements Initializable {
     private Integer id = 0;
 
     //private Cha pesquisa;
-<<<<<<< HEAD
     @FXML
-    void btGravarAction(ActionEvent event) throws SQLException, IOException {
-=======
-
-@FXML
     boolean btGravarAction(ActionEvent event) throws SQLException, IOException {
->>>>>>> d64f7f54ce6b584b626cc75fd955ec625470e17c
+
         String nome, brevedescricao, modo_preparo;
         Image imgcha;
 
         nome = txNome.getText();
-        if (nome == ""){
+        if (nome == "") {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Informação");
-            alert.setHeaderText("O campo nome e obrigatório.");
+            alert.setHeaderText("O campo nome é obrigatório.");
             alert.show();
             txNome.requestFocus();
-            return false; 
+            return false;
         }
         brevedescricao = txDescricao.getText();
-        if (brevedescricao == ""){
+        if (brevedescricao == "") {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Informação");
-            alert.setHeaderText("O campo descrição e obrigatório.");
+            alert.setHeaderText("O campo descrição é obrigatório.");
             alert.show();
             txDescricao.requestFocus();
-            return false; 
+            return false;
         }
         modo_preparo = txModoPreparo.getText();
-        if (modo_preparo == ""){
+        if (modo_preparo == "") {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Informação");
-            alert.setHeaderText("O campo nome e obrigatório.");
+            alert.setHeaderText("O campo nome é obrigatório.");
             alert.show();
             txModoPreparo.requestFocus();
             return false;
         }
 
         ObservableList<Beneficio> items = tbvBeneficio.getItems();
-        ObservableList<Ingredientes> ingredientes = tbvIngredientes.getItems();
-        ObservableList<ContraIndicacao> contraIndicaco = tbvContraIndicacao.getItems();
-        
+        //ObservableList<Ingredientes> ingredientes = tbvIngredientes.getItems();
+        //ObservableList<ContraIndicacao> contraIndicaco = tbvContraIndicacao.getItems();
+
         boolean lMarcouBeneficio = false, lMarcouIngredientes = false, lMarcouContraInd = false;
 
-        for (int i = 0; i < items.size(); i++){
+        for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getMarcado().isSelected()) {
                 lMarcouBeneficio = true;
                 break;
             }
         }
 
-        if (!lMarcouBeneficio){
+        if (!lMarcouBeneficio) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Informação");
-            alert.setHeaderText("A seleção de um benefício e obrigatória.");
+            alert.setHeaderText("A seleção de um benefício é obrigatória.");
             alert.show();
             tbvBeneficio.requestFocus();
             return false;
         }
 
-        for (int i = 0; i < ingredientes.size(); i++){
-            if (ingredientes.get(i).getMarcado().isSelected()) {
-                lMarcouIngredientes = true;
-                break;
-            }
-        }
-
-        if (!lMarcouIngredientes){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Informação");
-            alert.setHeaderText("A seleção de um ingredinte e obrigatória.");
-            alert.show();
-            tbvIngredientes.requestFocus();
-            return false;
-        }
-
-        for (int i = 0; i < contraIndicaco.size(); i++){
-            if (contraIndicaco.get(i).getMarcado().isSelected()) {
-                lMarcouContraInd = true;
-                break;
-            }
-        }
-
-        if (!lMarcouContraInd){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Informação");
-            alert.setHeaderText("A seleção de uma contra indicação e obrigatória.");
-            alert.show();
-            tbvContraIndicacao.requestFocus();
-            return false;
-        }
-        
+//        for (int i = 0; i < ingredientes.size(); i++) {
+//            if (ingredientes.get(i).getMarcado().isSelected()) {
+//                lMarcouIngredientes = true;
+//                break;
+//            }
+//        }
+//        if (!lMarcouIngredientes) {
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Informação");
+//            alert.setHeaderText("A seleção de um ingredinte e obrigatória.");
+//            alert.show();
+//            tbvIngredientes.requestFocus();
+//            return false;
+//        }
+//        for (int i = 0; i < contraIndicaco.size(); i++) {
+//            if (contraIndicaco.get(i).getMarcado().isSelected()) {
+//                lMarcouContraInd = true;
+//                break;
+//            }
+//        }
+//        if (!lMarcouContraInd) {
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Informação");
+//            alert.setHeaderText("A seleção de uma contra indicação e obrigatória.");
+//            alert.show();
+//            tbvContraIndicacao.requestFocus();
+//            return false;
+//        }
         imgcha = imgCha.getImage();
         BufferedImage imageBuffered = SwingFXUtils.fromFXImage(imgcha, null);
         ChaDAO.Gravar(nome, brevedescricao, modo_preparo, imageBuffered, lAlteracao, id);
@@ -222,12 +214,20 @@ public class TelaCadastroChaController implements Initializable {
         BeneficioDAO.Gravar(items, id);
         //Grava Ingredientes
         //ObservableList<Ingredientes> ingredientes = tbvIngredientes.getItems();
-        IngredientesDAO.Gravar(ingredientes, id);
+        //IngredientesDAO.Gravar(ingredientes, id);
         //Grava Contra indicação
         //ObservableList<ContraIndicacao> contraIndicaco = tbvContraIndicacao.getItems();
-        ContraIndicacaoDAO.Gravar(contraIndicaco, id);
-        limpaCampos();
-        
+        //ContraIndicacaoDAO.Gravar(contraIndicaco, id);
+        //limpaCampos();
+
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telaprincipaladmin.fxml"));
+        // Definindo quem é o controller desse 'fxml':
+        fxmlloader.setController(new TelaPrincipalAdminController(null));
+
+        AnchorPane a = (AnchorPane) fxmlloader.load();
+
+        anchorpane.getChildren().setAll(a);
+
         return true;
     }
 
@@ -289,12 +289,12 @@ public class TelaCadastroChaController implements Initializable {
 
     @FXML
     void btExcluirAction(ActionEvent event) {
-        System.out.println("Chá: "+ cha.getNome()+cha.getId());
+        System.out.println("Chá: " + cha.getNome() + cha.getId());
         ChaDAO.excluirCha(getCha());
         Alert alert = new Alert(AlertType.WARNING);
         alert.setTitle("Atenção!");
         alert.setHeaderText("Chá removido com sucesso!");
-        
+
         alert.show();
     }
 
@@ -392,8 +392,8 @@ public class TelaCadastroChaController implements Initializable {
                 initList(cha);
             } else {
                 initList(cha);
-                System.out.println(cha.getId());
-                System.out.println(cha.getNome());
+//                System.out.println(cha.getId());
+//                System.out.println(cha.getNome());
             }
         } catch (SQLException ex) {
             Logger.getLogger(TelaInfoCha.class.getName()).log(Level.SEVERE, null, ex);

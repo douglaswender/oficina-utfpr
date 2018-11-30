@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -243,6 +244,7 @@ public class TelaPrincipalAdminController implements Initializable {
 
     public void trocaTela2(String tela) throws IOException {
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("/img/logo.png"));
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telasobre.fxml"));
 
         fxmlloader.setController(new TelasobreController(tela));

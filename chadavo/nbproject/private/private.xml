@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/chadavo/Main.java</file>
             <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/dao/BeneficioDAO.java</file>
             <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/controller/TelaPrincipalController.java</file>
+            <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/controller/TelaPrincipalAdminController.java</file>
             <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/controller/TelaCadastroChaController.java</file>
+            <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/dao/ChaDAO.java</file>
+            <file>file:/D:/dev/oficina-utfpr/oficina-utfpr/chadavo/src/controller/TelaInfoCha.java</file>
         </group>
     </open-files>
 </project-private>

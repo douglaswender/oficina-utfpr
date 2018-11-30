@@ -17,7 +17,7 @@
       <Pane fx:id="pane" layoutX="28.0" layoutY="182.0" prefHeight="284.0" prefWidth="561.0">
          <children>
             <Label fx:id="lblBeneCha" prefHeight="28.0" prefWidth="119.0" text="Benefícios:" />
-            <Label fx:id="lblIngredientes" layoutY="146.0" prefHeight="28.0" prefWidth="119.0" text="Ingredientes:" />
+            <Label fx:id="lblIngredientes" layoutY="146.0" prefHeight="28.0" prefWidth="119.0" text="Modo de preparo:" />
             <JFXListView fx:id="listbeneficios" focusTraversable="false" layoutX="175.0" prefHeight="124.0" prefWidth="347.0" />
             <JFXTextArea fx:id="txModoPreparo" editable="false" layoutX="175.0" layoutY="142.0" prefHeight="135.0" prefWidth="347.0" />
          </children>

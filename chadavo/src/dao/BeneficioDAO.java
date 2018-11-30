@@ -162,7 +162,7 @@ public static List<Beneficio> pesquisaTodosBeneficios() throws SQLException {
 
         Connection con = new Conexao().getConnection();
 
-        PreparedStatement ps = con.prepareStatement("SELECT * FROM beneficios");
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM beneficios order by nome_beneficio");
 
         ResultSet rs = ps.executeQuery();
 
@@ -189,9 +189,9 @@ public static List<Beneficio> pesquisaTodosBeneficios() throws SQLException {
         Connection con = new Conexao().getConnection();
         String cSQL;
         if (lAlteracao) {
-            cSQL = "select ben.*, coalesce((select true from benecha where chave_beneficio = ben.cod_beneficio and chave_benecha = ?), false) as marcado from beneficios as ben left join benecha as bene on(bene.chave_beneficio = ben.cod_beneficio) group by cod_beneficio order by cod_beneficio";
+            cSQL = "select ben.*, coalesce((select true from benecha where chave_beneficio = ben.cod_beneficio and chave_benecha = ?), false) as marcado from beneficios as ben left join benecha as bene on(bene.chave_beneficio = ben.cod_beneficio) group by cod_beneficio order by nome_beneficio";
         } else {
-            cSQL = "SELECT * FROM beneficios order by cod_beneficio";
+            cSQL = "SELECT * FROM beneficios order by nome_beneficio";
         }
 
         PreparedStatement ps = con.prepareStatement(cSQL);
@@ -209,7 +209,7 @@ public static List<Beneficio> pesquisaTodosBeneficios() throws SQLException {
 
             while (rs.next()) {
                 Beneficio b = new Beneficio(rs.getInt("cod_beneficio"), rs.getString("nome_beneficio"));
-                System.out.println("Beneficio: "+b.getNome());
+                //System.out.println("Beneficio: "+b.getNome());
                 retorno.add(b);
 
                 if (lAlteracao) {

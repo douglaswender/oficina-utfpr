@@ -29,6 +29,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -93,7 +94,7 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     void abreCha(MouseEvent event) throws IOException {
         Cha c = tabela.getSelectionModel().getSelectedItem();
-        System.out.println(c.getId());
+        //System.out.println(c.getId());
         trocaTela(c);
     }
 
@@ -101,6 +102,7 @@ public class TelaPrincipalController implements Initializable {
 
         //System.out.println(c.getDescricao_cha());
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("/img/logo.png"));
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telainfocha.fxml"));
 
         fxmlloader.setController(new TelaInfoCha(c));
@@ -228,6 +230,7 @@ public class TelaPrincipalController implements Initializable {
 
     public void trocaTela2(String tela) throws IOException {
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("/img/logo.png"));
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telasobre.fxml"));
 
         fxmlloader.setController(new TelasobreController(tela));
@@ -242,6 +245,6 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     void btnSobreAction(ActionEvent event) throws IOException {
         trocaTela2("telaprincipal");
-    }    
+    }
 
 }
