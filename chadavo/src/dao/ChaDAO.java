@@ -120,7 +120,7 @@ public class ChaDAO {
             Connection con = new Conexao().getConnection();
 
             //trocar detalhes por beneficios
-            PreparedStatement stm = con.prepareStatement("SELECT cod_cha, nome_cha, descricao_cha FROM chas");
+            PreparedStatement stm = con.prepareStatement("SELECT cod_cha, nome_cha, descricao_cha FROM chas order by cod_cha");
 
             ResultSet rs = stm.executeQuery();
 
@@ -269,6 +269,20 @@ public class ChaDAO {
             }
 
             return null;
+    }
+    
+    public static void excluirCha(Cha c){
+        try {
+                    Connection con = new Conexao().getConnection();
+                    PreparedStatement stm = con.prepareStatement("DELETE FROM chas WHERE cod_cha = ?");
+                    stm.setInt(1, c.getId());
+                    stm.execute();
+
+                                     
+       
+                    
+            } catch (SQLException e) {
+            }
     }
 
 }

@@ -47,6 +47,9 @@ public class TelaInfoCha implements Initializable {
     }
 
     @FXML
+    private JFXTextArea txModoPreparo;
+
+    @FXML
     private JFXListView<Beneficio> listbeneficios;
 
     @FXML
@@ -59,7 +62,7 @@ public class TelaInfoCha implements Initializable {
     private Label lblNomeCha;
 
     @FXML
-    private JFXTextArea  lblDescCha;
+    private JFXTextArea lblDescCha;
 
     @FXML
     private Label lblBeneCha;
@@ -69,35 +72,37 @@ public class TelaInfoCha implements Initializable {
 
     @FXML
     private Label lblIngredientes;
-    
-    public void initList(Cha c) throws SQLException{
-        
+
+    public void initList(Cha c) throws SQLException {
+
         BeneficioDAO dao = new BeneficioDAO();
-        
+
         ObservableList<Beneficio> list = FXCollections.observableArrayList(dao.pesquisaBeneficioPorCha(c));
-        
+
         System.out.println(list);
 
         listbeneficios.getItems().addAll(list);
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources){
-        System.out.println("Este chá é o: "+ cha.getNome());
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("Este chá é o: " + cha.getNome());
         Cha c = ChaDAO.Pesquisar2(cha);
-        System.out.println("#ID: "+c.getId());
-        
+        System.out.println("#ID: " + c.getId());
+
         Image img = ChaDAO.capturaImagemCha(c);
         //System.out.println(beneficios.size());
         lblNomeCha.setText(c.getNome() + " #" + c.getId());
-        lblDescCha.setText("Descrição: "+ c.getDescricao_cha());
+        lblDescCha.setText("Descrição: " + c.getDescricao_cha());
         lblIngredientes.setText("Ingredientes:\n");
-        
+        txModoPreparo.setText(c.getModo_preparo());
+
         try {
             initList(c);
         } catch (SQLException ex) {
-            Logger.getLogger(TelaInfoCha.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Erro: #" + ex);
         }
+
         if (img != null) {
             imgCha.setImage(img);
         }

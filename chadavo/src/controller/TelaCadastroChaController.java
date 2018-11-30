@@ -121,9 +121,14 @@ public class TelaCadastroChaController implements Initializable {
     private Integer id = 0;
 
     //private Cha pesquisa;
+<<<<<<< HEAD
+    @FXML
+    void btGravarAction(ActionEvent event) throws SQLException, IOException {
+=======
 
 @FXML
     boolean btGravarAction(ActionEvent event) throws SQLException, IOException {
+>>>>>>> d64f7f54ce6b584b626cc75fd955ec625470e17c
         String nome, brevedescricao, modo_preparo;
         Image imgcha;
 
@@ -270,7 +275,7 @@ public class TelaCadastroChaController implements Initializable {
 
     @FXML
     void btnBackAction(ActionEvent event) throws SQLException, IOException {
-        limpaCampos();
+        //limpaCampos();
 
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telaprincipaladmin.fxml"));
         // Definindo quem é o controller desse 'fxml':
@@ -280,6 +285,17 @@ public class TelaCadastroChaController implements Initializable {
 
         anchorpane.getChildren().setAll(a);
 
+    }
+
+    @FXML
+    void btExcluirAction(ActionEvent event) {
+        System.out.println("Chá: "+ cha.getNome()+cha.getId());
+        ChaDAO.excluirCha(getCha());
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Atenção!");
+        alert.setHeaderText("Chá removido com sucesso!");
+        
+        alert.show();
     }
 
     void limpaCampos() throws SQLException {
@@ -343,13 +359,13 @@ public class TelaCadastroChaController implements Initializable {
         nomeBeneficio.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tbvBeneficio.setItems(FXCollections.observableArrayList(BeneficioDAO.pesquisaTodosBeneficios2(false, 0)));
         //Busca todos os Ingredientess
-        selectColIngre.setCellValueFactory(new PropertyValueFactory<Ingredientes, String>("marcado"));
-        nomeIngrediente.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        tbvIngredientes.setItems(IngredientesDAO.pesquisaTodosIngredientes(false, 0));
+//        selectColIngre.setCellValueFactory(new PropertyValueFactory<Ingredientes, String>("marcado"));
+//        nomeIngrediente.setCellValueFactory(new PropertyValueFactory<>("nome"));
+//        tbvIngredientes.setItems(IngredientesDAO.pesquisaTodosIngredientes(false, 0));
         //Busca todos as contra indicações
-        selectColContra.setCellValueFactory(new PropertyValueFactory<ContraIndicacao, String>("marcado"));
-        nomeContraIndicacao.setCellValueFactory(new PropertyValueFactory<ContraIndicacao, String>("nome"));
-        tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(false, 0));
+//        selectColContra.setCellValueFactory(new PropertyValueFactory<ContraIndicacao, String>("marcado"));
+//        nomeContraIndicacao.setCellValueFactory(new PropertyValueFactory<ContraIndicacao, String>("nome"));
+//        tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(false, 0));
 
         if (pesquisa != null) {
             Cha c = new Cha(cha.getId(), "", "");
@@ -359,8 +375,8 @@ public class TelaCadastroChaController implements Initializable {
             txDescricao.setText(c.getDescricao_cha());
             txModoPreparo.setText(c.getModo_preparo());
             tbvBeneficio.setItems(FXCollections.observableArrayList(BeneficioDAO.pesquisaTodosBeneficios2(true, c.getId())));
-            tbvIngredientes.setItems(IngredientesDAO.pesquisaTodosIngredientes(true, c.getId()));
-            tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(true, c.getId()));
+            //tbvIngredientes.setItems(IngredientesDAO.pesquisaTodosIngredientes(true, c.getId()));
+            //tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(true, c.getId()));
             lAlteracao = true;
             id = c.getId();
             Image img = ChaDAO.capturaImagemCha(c);
@@ -371,10 +387,10 @@ public class TelaCadastroChaController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            if (cha==null) {
+            if (cha == null) {
                 System.out.println("Chá vazio");
                 initList(cha);
-            }else{
+            } else {
                 initList(cha);
                 System.out.println(cha.getId());
                 System.out.println(cha.getNome());
