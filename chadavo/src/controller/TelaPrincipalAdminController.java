@@ -90,7 +90,7 @@ public class TelaPrincipalAdminController implements Initializable {
     void btnCadChaAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telacadastrocha.fxml"));
         // Definindo quem é o controller desse 'fxml':
-        fxmlloader.setController(new TelaCadastroChaController(new Cha()));
+        fxmlloader.setController(new TelaCadastroChaController(null));
 
         AnchorPane a = (AnchorPane) fxmlloader.load();
 
@@ -127,8 +127,17 @@ public class TelaPrincipalAdminController implements Initializable {
 
     @FXML
     void abreCha(MouseEvent event) throws IOException {
+        
         Cha c = listChas.getSelectionModel().getSelectedItem();
-        trocaTela(c);
+        
+        //System.out.println(c.getId() + "--" + c.getNome());
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telacadastrocha.fxml"));
+        // Definindo quem é o controller desse 'fxml':
+        fxmlloader.setController(new TelaCadastroChaController(c));
+
+        AnchorPane a = (AnchorPane) fxmlloader.load();
+
+        anchorpane.getChildren().setAll(a);
     }
 
     @FXML

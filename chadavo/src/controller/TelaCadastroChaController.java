@@ -42,8 +42,8 @@ import javafx.stage.Stage;
 import model.ContraIndicacao;
 import model.Ingredientes;
 
-public class TelaCadastroChaController implements Initializable{
-    
+public class TelaCadastroChaController implements Initializable {
+
     private Cha cha;
 
     public Cha getCha() {
@@ -53,8 +53,10 @@ public class TelaCadastroChaController implements Initializable{
     public void setCha(Cha cha) {
         this.cha = cha;
     }
-    
-    
+
+    TelaCadastroChaController(Cha cha) {
+        this.cha = cha;
+    }
 
     @FXML
     private JFXTextField txPesquisa;
@@ -114,15 +116,10 @@ public class TelaCadastroChaController implements Initializable{
     private TableColumn<ContraIndicacao, String> nomeContraIndicacao;
 
     private Boolean lAlteracao = false;
-    
+
     private Integer id = 0;
-    
-    private Cha pesquisa;
 
-    TelaCadastroChaController(Cha pesquisa) {
-        this.pesquisa = pesquisa;
-    }
-
+    //private Cha pesquisa;
 
     @FXML
     void btGravarAction(ActionEvent event) throws SQLException, IOException {
@@ -193,7 +190,7 @@ public class TelaCadastroChaController implements Initializable{
     @FXML
     void btnBackAction(ActionEvent event) throws SQLException, IOException {
         limpaCampos();
-        
+
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telaprincipaladmin.fxml"));
         // Definindo quem é o controller desse 'fxml':
         fxmlloader.setController(new TelaPrincipalAdminController(null));
@@ -201,7 +198,7 @@ public class TelaCadastroChaController implements Initializable{
         AnchorPane a = (AnchorPane) fxmlloader.load();
 
         anchorpane.getChildren().setAll(a);
-        
+
     }
 
     void limpaCampos() throws SQLException {
@@ -236,11 +233,11 @@ public class TelaCadastroChaController implements Initializable{
                 id = c.getId();
                 Image img = ChaDAO.capturaImagemCha(c);
                 imgCha.setImage(img);
-            }else{
+            } else {
                 trocaTela(txPesquisa.getText());
             }
-            
-/*
+
+            /*
             Cha c = new Cha();
             c.setId(Integer.parseInt(txPesquisa.getText()));
             Cha cha = ChaDAO.Pesquisar2(c);
@@ -255,11 +252,11 @@ public class TelaCadastroChaController implements Initializable{
             tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(true, c.getId()));
             lAlteracao = true;
             id = cha.getId();
-*/
+             */
         }
     }
 
-    public void initList(Cha pesquisa) throws SQLException{
+    public void initList(Cha pesquisa) throws SQLException {
         //Busca todos os Beneficios
         selectCol.setCellValueFactory(new PropertyValueFactory<Beneficio, String>("marcado"));
         nomeBeneficio.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -273,8 +270,8 @@ public class TelaCadastroChaController implements Initializable{
         nomeContraIndicacao.setCellValueFactory(new PropertyValueFactory<ContraIndicacao, String>("nome"));
         tbvContraIndicacao.setItems(ContraIndicacaoDAO.pesquisaTodasContra(false, 0));
 
-        if (pesquisa.equals(null)){
-            Cha c = new Cha(pesquisa.getId(), "", "");
+        if (pesquisa != null) {
+            Cha c = new Cha(cha.getId(), "", "");
             c = ChaDAO.Pesquisar2(c);
 
             txNome.setText(c.getNome());
@@ -289,11 +286,17 @@ public class TelaCadastroChaController implements Initializable{
             imgCha.setImage(img);
         }
     }
-    
+
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
         try {
-            initList(pesquisa);
+            if (cha==null) {
+                System.out.println("Chá vazio");
+            }else{
+                initList(cha);
+                System.out.println(cha.getId());
+                System.out.println(cha.getNome());
+            }
         } catch (SQLException ex) {
             Logger.getLogger(TelaInfoCha.class.getName()).log(Level.SEVERE, null, ex);
         }
