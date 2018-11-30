@@ -211,7 +211,7 @@ public class BeneficioDAO {
         Connection con = new Conexao().getConnection();
         String cSQL;
         if (lAlteracao) {
-            cSQL = "select ben.*, coalesce((select true from benecha where chave_beneficio = ben.cod_beneficio and chave_benecha = ?), false) as marcado from beneficios as ben left join benecha as bene on(bene.chave_beneficio = ben.cod_beneficio) order by cod_beneficio";
+            cSQL = "select ben.*, coalesce((select true from benecha where chave_beneficio = ben.cod_beneficio and chave_benecha = ?), false) as marcado from beneficios as ben left join benecha as bene on(bene.chave_beneficio = ben.cod_beneficio) group by cod_beneficio order by cod_beneficio";
         } else {
             cSQL = "SELECT * FROM beneficios order by cod_beneficio";
         }

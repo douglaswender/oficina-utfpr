@@ -28,7 +28,7 @@ public class ContraIndicacaoDAO {
         String cSQL = "";
         
         if (lAlteracao){
-            cSQL = "select con.*, coalesce((select true from contracha where chave_contra = con.cod_contra and chave_contracha = ?), false) as marcado from contra_indicacao as con left join contracha as cont on(cont.chave_contra = con.cod_contra) order by cod_contra";
+            cSQL = "select con.*, coalesce((select true from contracha where chave_contra = con.cod_contra and chave_contracha = ?), false) as marcado from contra_indicacao as con left join contracha as cont on(cont.chave_contra = con.cod_contra) group by cod_contra order by cod_contra";
         }else{
             cSQL = "SELECT * FROM contra_indicacao order by cod_contra";
         }

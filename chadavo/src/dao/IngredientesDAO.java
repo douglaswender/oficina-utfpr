@@ -27,7 +27,7 @@ public class IngredientesDAO {
 
         String cSQL = "";
         if (lAlteracao){
-            cSQL = "select ing.*, coalesce((select true from ingrecha where chave_ingre = ing.cod_ingrediente and chave_ingrecha = ?), false) as marcado from ingredientes as ing left join ingrecha as ingr on(ingr.chave_ingre = ing.cod_ingrediente) order by cod_ingrediente";
+            cSQL = "select ing.*, coalesce((select true from ingrecha where chave_ingre = ing.cod_ingrediente and chave_ingrecha = ?), false) as marcado from ingredientes as ing left join ingrecha as ingr on(ingr.chave_ingre = ing.cod_ingrediente) group by cod_ingrediente order by cod_ingrediente";
         }else{
             cSQL = "SELECT * FROM ingredientes order by cod_ingrediente";
         }
