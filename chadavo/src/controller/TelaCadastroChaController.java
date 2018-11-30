@@ -122,28 +122,108 @@ public class TelaCadastroChaController implements Initializable {
 
     //private Cha pesquisa;
 
-    @FXML
-    void btGravarAction(ActionEvent event) throws SQLException, IOException {
+@FXML
+    boolean btGravarAction(ActionEvent event) throws SQLException, IOException {
         String nome, brevedescricao, modo_preparo;
         Image imgcha;
 
         nome = txNome.getText();
+        if (nome == ""){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Informação");
+            alert.setHeaderText("O campo nome e obrigatório.");
+            alert.show();
+            txNome.requestFocus();
+            return false; 
+        }
         brevedescricao = txDescricao.getText();
+        if (brevedescricao == ""){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Informação");
+            alert.setHeaderText("O campo descrição e obrigatório.");
+            alert.show();
+            txDescricao.requestFocus();
+            return false; 
+        }
         modo_preparo = txModoPreparo.getText();
+        if (modo_preparo == ""){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Informação");
+            alert.setHeaderText("O campo nome e obrigatório.");
+            alert.show();
+            txModoPreparo.requestFocus();
+            return false;
+        }
 
+        ObservableList<Beneficio> items = tbvBeneficio.getItems();
+        ObservableList<Ingredientes> ingredientes = tbvIngredientes.getItems();
+        ObservableList<ContraIndicacao> contraIndicaco = tbvContraIndicacao.getItems();
+        
+        boolean lMarcouBeneficio = false, lMarcouIngredientes = false, lMarcouContraInd = false;
+
+        for (int i = 0; i < items.size(); i++){
+            if (items.get(i).getMarcado().isSelected()) {
+                lMarcouBeneficio = true;
+                break;
+            }
+        }
+
+        if (!lMarcouBeneficio){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Informação");
+            alert.setHeaderText("A seleção de um benefício e obrigatória.");
+            alert.show();
+            tbvBeneficio.requestFocus();
+            return false;
+        }
+
+        for (int i = 0; i < ingredientes.size(); i++){
+            if (ingredientes.get(i).getMarcado().isSelected()) {
+                lMarcouIngredientes = true;
+                break;
+            }
+        }
+
+        if (!lMarcouIngredientes){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Informação");
+            alert.setHeaderText("A seleção de um ingredinte e obrigatória.");
+            alert.show();
+            tbvIngredientes.requestFocus();
+            return false;
+        }
+
+        for (int i = 0; i < contraIndicaco.size(); i++){
+            if (contraIndicaco.get(i).getMarcado().isSelected()) {
+                lMarcouContraInd = true;
+                break;
+            }
+        }
+
+        if (!lMarcouContraInd){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Informação");
+            alert.setHeaderText("A seleção de uma contra indicação e obrigatória.");
+            alert.show();
+            tbvContraIndicacao.requestFocus();
+            return false;
+        }
+        
         imgcha = imgCha.getImage();
         BufferedImage imageBuffered = SwingFXUtils.fromFXImage(imgcha, null);
         ChaDAO.Gravar(nome, brevedescricao, modo_preparo, imageBuffered, lAlteracao, id);
         //Grava Beneficios
-        ObservableList<Beneficio> items = tbvBeneficio.getItems();
-        BeneficioDAO.Gravar(items);
+        //ObservableList<Beneficio> items = tbvBeneficio.getItems();
+        BeneficioDAO.Gravar(items, id);
         //Grava Ingredientes
-        ObservableList<Ingredientes> ingredientes = tbvIngredientes.getItems();
-        IngredientesDAO.Gravar(ingredientes);
+        //ObservableList<Ingredientes> ingredientes = tbvIngredientes.getItems();
+        IngredientesDAO.Gravar(ingredientes, id);
         //Grava Contra indicação
-        ObservableList<ContraIndicacao> contraIndicaco = tbvContraIndicacao.getItems();
-        ContraIndicacaoDAO.Gravar(contraIndicaco);
+        //ObservableList<ContraIndicacao> contraIndicaco = tbvContraIndicacao.getItems();
+        ContraIndicacaoDAO.Gravar(contraIndicaco, id);
         limpaCampos();
+        
+        return true;
     }
 
     @FXML

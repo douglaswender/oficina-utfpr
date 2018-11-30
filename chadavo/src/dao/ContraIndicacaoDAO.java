@@ -72,12 +72,18 @@ public class ContraIndicacaoDAO {
     }
 
 
-    public static void Gravar(ObservableList<ContraIndicacao> contraIndicacao) throws SQLException{        
-        Connection con2 = new Conexao().getConnection();
-        PreparedStatement stm2 = con2.prepareStatement("SELECT MAX(cod_cha) AS CONTADOR FROM CHAS");
-        ResultSet rs = stm2.executeQuery();
-        rs.next();
-        int idcha = rs.getInt(1);
+    public static void Gravar(ObservableList<ContraIndicacao> contraIndicacao, int CodigoCha) throws SQLException{        
+        int idcha = 0;
+
+        if (CodigoCha == 0){
+            Connection con2 = new Conexao().getConnection();
+            PreparedStatement stm2 = con2.prepareStatement("SELECT MAX(cod_cha) AS CONTADOR FROM CHAS");
+            ResultSet rs = stm2.executeQuery();
+            rs.next();
+            idcha = rs.getInt(1);
+        }else{
+            idcha = CodigoCha;
+        }
         
         Connection con3 = new Conexao().getConnection();
         PreparedStatement stm3 = con3.prepareStatement("DELETE FROM CONTRACHA WHERE CHAVE_CONTRACHA = ?");
