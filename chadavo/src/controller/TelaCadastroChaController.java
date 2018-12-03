@@ -288,7 +288,7 @@ public class TelaCadastroChaController implements Initializable {
     }
 
     @FXML
-    void btExcluirAction(ActionEvent event) {
+    void btExcluirAction(ActionEvent event) throws IOException {
         System.out.println("Chá: " + cha.getNome() + cha.getId());
         ChaDAO.excluirCha(getCha());
         Alert alert = new Alert(AlertType.WARNING);
@@ -296,6 +296,14 @@ public class TelaCadastroChaController implements Initializable {
         alert.setHeaderText("Chá removido com sucesso!");
 
         alert.show();
+        
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/view/telaprincipaladmin.fxml"));
+        // Definindo quem é o controller desse 'fxml':
+        fxmlloader.setController(new TelaPrincipalAdminController(null));
+
+        AnchorPane a = (AnchorPane) fxmlloader.load();
+
+        anchorpane.getChildren().setAll(a);
     }
 
     void limpaCampos() throws SQLException {

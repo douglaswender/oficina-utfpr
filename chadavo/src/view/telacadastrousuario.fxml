@@ -50,7 +50,7 @@
             <Font size="20.0" />
          </font>
       </JFXButton>
-      <Label fx:id="lbSenha" alignment="CENTER" layoutX="468.0" layoutY="554.0" prefHeight="18.0" prefWidth="264.0" textAlignment="CENTER" textFill="#df0e0e" wrapText="true">
+      <Label fx:id="lbSenha" alignment="CENTER" layoutX="420.0" layoutY="538.0" prefHeight="18.0" prefWidth="359.0" textAlignment="CENTER" textFill="#df0e0e" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

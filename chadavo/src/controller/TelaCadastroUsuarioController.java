@@ -81,7 +81,7 @@ public class TelaCadastroUsuarioController implements Initializable {
         retorno = dao.UsuarioDAO.createUsuario(usuario);
 
         if (!retorno) {
-            lbSenha.setText("Nenhum campo pode estar vazio!");
+            lbSenha.setText("Nenhum campo pode estar vazio ou usuário já existe");
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
                 @Override
